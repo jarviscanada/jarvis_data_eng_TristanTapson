@@ -8,6 +8,7 @@ psql_password=$5
 #Check # of args
 if [ $# -ne  5 ]; then
   echo 'Incorrect number of arguments'
+  echo "Try: bash host_info [psql_host] [psql_port] [db_name] [psql_user] [psql_password]"
   exit 1
 fi
 
@@ -24,8 +25,8 @@ disk_io=$(vmstat -d | awk '{print $10}' | tail -n1 | xargs)
 
 # temporary variable created for available disk space
 # the character for the unit (M) is chopped off at the end of the string
-disk_available_temp=$( df -BM | egrep "/dev/sda2" | awk '{print $4}' | tail -n1 | xargs)
-disk_available="${disk_available_temp::-1}"
+disk_available=$( df -BM | egrep "/dev/sda2" | awk '{print $4}' | sed 's/.$//' | tail -n1 | xargs)
+
 
 #Current time in `2019-11-26 14:40:19` UTC format
 timestamp=$(vmstat -t | awk '{print $18, $19}' | tail -n1 | xargs)

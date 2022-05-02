@@ -8,6 +8,7 @@ psql_password=$5
 #Check # of args
 if [ $# -ne  5 ]; then
   echo "Illegal number of arguments"
+  echo "Try: bash host_info [psql_host] [psql_port] [db_name] [psql_user] [psql_password]"
   exit 1
 fi
 
@@ -23,11 +24,8 @@ cpu_number=$(echo "$lscpu_out"  | egrep "^CPU\(s\):" | awk '{print $2}' | xargs)
 cpu_architecture=$(echo "$lscpu_out"  | egrep "^Architecture:" | awk '{print $2}' | xargs)
 cpu_model=$(echo "$lscpu_out"  | egrep "^Model\sname:" | sed -e 's/.*://' | tail -n1 | xargs)
 cpu_mhz=$(echo "$lscpu_out"  | egrep "^CPU\sMHz:" | awk '{print $3}' | tail -n1 | xargs)
-L2_cache_temp=$(echo "$lscpu_out"  | egrep "^L2\scache:" | awk '{print $3}' | tail -n1 | xargs)
-L2_cache="${L2_cache_temp::-1}"
-
-meminfo=$(cat /proc/meminfo)
-total_mem=$(echo "$meminfo" | egrep "^MemTotal:" | awk '{print $2}' | xargs)
+L2_cache=$(echo "$lscpu_out"  | egrep "^L2\scache:" | awk '{print $3}' | sed 's/.$//' | tail -n1 | xargs)
+total_mem=$(cat /proc/meminfo | egrep "^MemTotal:" | awk '{print $2}' | xargs)
 
 #Current time in `2019-11-26 14:40:19` UTC format
 timestamp=$(vmstat -t | awk '{print $18, $19}' | tail -n1 | xargs)
