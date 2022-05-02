@@ -1,7 +1,7 @@
 -- connect to host_agent database --
 \c host_agent
 
--- creating the database table host info and its fields --
+-- creating the database table host_info and its fields --
 CREATE TABLE IF NOT EXISTS PUBLIC.host_info
 (
     id                  SERIAL NOT NULL PRIMARY KEY,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS PUBLIC.host_info
     timestamp           timestamp NOT NULL
 );
 
--- creating the database table host usage and its fields --
+-- creating the database table host_usage and its fields --
 CREATE TABLE IF NOT EXISTS PUBLIC.host_usage
 (
     timestamp       timestamp NOT NULL,
