@@ -1,15 +1,14 @@
 #! /bin/sh
 
-#capture CLI arguments (please do not copy comments)
+#capture CLI arguments
 cmd=$1
 db_username=$2
 db_password=$3
 
 #Start docker
-#Make sure you understand `||` cmd
 sudo systemctl status docker || systemctl start docker
 
-#check container status (try the following cmds on terminal)
+#check container status
 docker container inspect jrvs-psql
 container_status=$?
 
@@ -29,6 +28,7 @@ case $cmd in
   #check # of CLI arguments
   if [ $# -ne 3 ]; then
     echo 'Create requires username and password'
+      echo "Try: bash psql_docker.sh create [db_username] [db_password]"
     exit 1
   fi
 
@@ -43,7 +43,6 @@ case $cmd in
   # global variable state, taken by inspecting the state of the docker
   state=$(docker inspect -f '{{.State.Status}}' jrvs-psql)
   echo 'Initial state: '$state
-  #echo $container_status
 
    # (check instance status; exit 1 if container has not been created)
   if [ $container_status -ne 0 ]
@@ -53,17 +52,8 @@ case $cmd in
     exit 1
   fi
 
-  #if [ $state = "running" ]; then
-    #echo "RUNNN"
-  #fi
-
-  #if [ $state = "exited" ]; then
-      #echo "EXITEDDD"
-  #fi
-
   # start command executed
   if [ $cmd = "start" ]; then
-    #echo 'container_status: '$container_status
 
     echo "Attempting to start a stopped container..."
 
@@ -71,19 +61,15 @@ case $cmd in
     then
       echo 'Starting container sucessfully.'
       docker container $cmd jrvs-psql
-      #echo 'final state: '$state
       exit 0
     else
       echo 'Container has already been started.'
-      #docker container $cmd jrvs-psql
-      #echo 'final state: '$state
       exit 0
     fi
   fi
 
   # stop command executed
   if [ $cmd = "stop" ]; then
-      #echo 'container_status: '$container_status
 
       echo "Attempting to stop a started container..."
 
@@ -91,24 +77,12 @@ case $cmd in
       then
         echo 'Stopping container sucessfully.'
         docker container $cmd jrvs-psql
-        #echo 'final state: '$state
         exit 0
       else
         echo 'Container has already been stopped.'
-        #docker container $cmd jrvs-psql
-        #echo 'final state: '$state
         exit 0
       fi
   fi
-  #echo $cmd
-
-
-
-  #Start or stop the container
-  #echo "STATE: "$state
-	#docker container $cmd jrvs-psql
-	#echo $state
-	#exit $?
 	;;
 
   *)

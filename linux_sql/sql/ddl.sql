@@ -18,11 +18,11 @@ CREATE TABLE IF NOT EXISTS PUBLIC.host_info
 -- creating the database table host_usage and its fields --
 CREATE TABLE IF NOT EXISTS PUBLIC.host_usage
 (
-    timestamp       timestamp NOT NULL,
-    host_id         SERIAL REFERENCES host_info(id),
-    memory_free     int NOT NULL,
-    cpu_idle        int NOT NULL,
-    cpu_kernel      int NOT NULL,
-    disk_io         int NOT NULL,
-    disk_available  int NOT NULL
+    timestamp           timestamp NOT NULL,
+    host_id             SERIAL REFERENCES host_info(id),
+    memory_free         int NOT NULL,
+    cpu_idle            int NOT NULL,
+    cpu_kernel          int NOT NULL,
+    disk_io             int NOT NULL,
+    disk_available      int NOT NULL
 );
