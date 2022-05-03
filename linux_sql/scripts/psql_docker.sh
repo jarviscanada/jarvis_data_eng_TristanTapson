@@ -12,12 +12,11 @@ sudo systemctl status docker || systemctl start docker
 docker container inspect jrvs-psql
 container_status=$?
 
-#User switch case to handle create|stop|start opetions
+#User switch case to handle create|stop|start operations
 case $cmd in
   create)
 
   echo "creating container..."
-  #echo $container_status
 
   # Check if the container is already created
   if [ $container_status -eq 0 ]; then
@@ -48,7 +47,7 @@ case $cmd in
   if [ $container_status -ne 0 ]
   then
     echo "Error: Container does not exist, cannot use start|stop commands"
-    echo "Try: bash psql_docker.sh create [db_username] [db_password]"
+    echo "Try: bash psql_docker.sh start|stop"
     exit 1
   fi
 
@@ -57,6 +56,7 @@ case $cmd in
 
     echo "Attempting to start a stopped container..."
 
+    # check if container has been stopped, and start it if it has been exited
     if [ "$state" = "exited" ]
     then
       echo 'Starting container sucessfully.'
@@ -73,6 +73,7 @@ case $cmd in
 
       echo "Attempting to stop a started container..."
 
+      # check if container has been started, and stop it if it is running
       if [ "$state" = "running" ]
       then
         echo 'Stopping container sucessfully.'

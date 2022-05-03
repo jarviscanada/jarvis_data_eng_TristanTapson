@@ -1,4 +1,4 @@
-#Setup and validate arguments (again, don't copy comments)
+#Setup and validate arguments
 psql_host=$1
 psql_port=$2
 db_name=$3
@@ -25,14 +25,6 @@ disk_available=$( df -BM | egrep "/dev/sda2" | awk '{print $4}' | sed 's/.$//' |
 
 #Current time in `2019-11-26 14:40:19` UTC format
 timestamp=$(vmstat -t | awk '{print $18, $19}' | tail -n1 | xargs)
-
-#echo "$vmstat_mb"
-echo memory_free: $memory_free
-echo cpu_idle: $cpu_idle
-echo cpu_kernel: $cpu_kernel
-echo disk_io: $disk_io
-echo disk_available: $disk_available
-echo timestamp: $timestamp
 
 #Insert date into a database
 insert_stmt="INSERT INTO host_usage ("timestamp", host_id, memory_free, cpu_idle, cpu_kernel, disk_io, disk_available) VALUES ('$timestamp',(SELECT id FROM host_info WHERE hostname='$hostname'), '$memory_free', '$cpu_idle', '$cpu_kernel', '$disk_io', '$disk_available')"
