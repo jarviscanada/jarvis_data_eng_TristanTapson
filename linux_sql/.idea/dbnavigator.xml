@@ -36,11 +36,7 @@ from host_info
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="21367e4d-3d4d-4d2e-9492-e1b45d2158d6" object-ref="schemas/public/tables/host_usage" />
-      <object connection-id="21367e4d-3d4d-4d2e-9492-e1b45d2158d6" object-ref="schemas/public/tables/host_info" />
-      <object connection-id="21367e4d-3d4d-4d2e-9492-e1b45d2158d6" object-ref="consoles/hostagent" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="21367e4d-3d4d-4d2e-9492-e1b45d2158d6" />
