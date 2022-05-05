@@ -52,8 +52,9 @@ To implement the project, a docker container is created, used to provision an in
 The architecture diagram below represents the cluster monitoring agent; it uses a client-server architecture. Client machines are denoted in blue, and the server is denoted in red. Accompanying connections and data transfers are represented by the arrows.
 
 ![image_1](./assets/client_server_diagram.drawio.png)
-
-*client-server architecture diagram for the cluster monitoring agent*
+<p align="center">
+    *client-server architecture diagram for the cluster monitoring agent*
+</p>
 
 ### Scripts
 Shell script description(s) and usage:
@@ -114,7 +115,6 @@ Inside the database, two tables are used for storing hardware information and us
 To test the bash scripts and queries, work was completed within a linux virtual machine, primarily operated using the Command Line Interface. The end goal of the project is to provide tangible results, which is done using database querying. Further information about the specific queries can be found in the ***/sql/queries.sql*** file. 
 
 ![image_2](./assets/sampleOutput.PNG)
-
 *sample output for a server failure query*
 
 ## Deployment
