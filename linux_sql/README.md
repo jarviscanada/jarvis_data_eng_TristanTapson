@@ -50,13 +50,13 @@ To implement the project, a docker container is created, used to provision an in
 
 ### Architecture (TODO - architecture image file)
 The architecture diagram below represents the cluster monitoring agent; it uses a client-server architecture. Client machines are denoted in blue, and the server is denoted in red. Accompanying connections and data transfers are represented by the arrows.
-.emphasized { font-style: italic; }
+
 <p align="center">
     <img width="700" src="./assets/client_server_diagram.drawio.png" alt="">
 </p>
-**<p align="center">.emphasized { font-style: italic; }
+<p align="center">
     <span class="emphasized">client-server architecture diagram for the cluster monitoring agent</span>
-</p>**
+</p>
 
 ### Scripts
 Shell script description(s) and usage:
@@ -120,6 +120,7 @@ To test the bash scripts and queries, work was completed within a linux virtual 
     <img width="560" src="./assets/sampleOutput.PNG" alt="">
 </p>
 <p align="center">
+    sample output for a server failure query
     <span class="emphasized">sample output for a server failure query</span>
 </p>
 
