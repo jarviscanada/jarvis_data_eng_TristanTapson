@@ -55,7 +55,7 @@ The architecture diagram below represents the cluster monitoring agent; it uses 
     <img width="700" src="./assets/client_server_diagram.drawio.png" alt="">
 </p>
 <p align="center">
-    <span class="client-server architecture diagram for the cluster monitoring agent">word</span>
+    <span class="emphasized">client-server architecture diagram for the cluster monitoring agent</span>
 </p>
 
 ### Scripts
@@ -120,7 +120,7 @@ To test the bash scripts and queries, work was completed within a linux virtual 
     <img width="560" src="./assets/sampleOutput.PNG" alt="">
 </p>
 <p align="center">
-    <span class="sample output for a server failure query">word</span>
+    <span class="emphasized">sample output for a server failure query</span>
 </p>
 
 
