@@ -36,7 +36,7 @@ Once these tables have been created within the database successfully, we can beg
 Since we need to execute the ***host_usage.sh*** script repeatedly, we can do this using a crontab. Open and edit a crontab file using `crontab -e`, and insert the below lines into the file. You can then list the crontab jobs with  `crontab -l`. It is also recommended that you validate your results from the psql instance by connecting to it, and querying the ***host_usage*** table with a simple  `SELECT * FROM host_usage;` query.
 ```
 # Crontab setup
-* * * * * bash /home/centos/dev/jrvs_data_eng_[FirstnameLastname]/linux_sql/host_agent/scripts/host_usage.sh localhost 5432 host_agent postgres [password] > /tmp/host_usage.log
+* * * * * bash /home/centos/dev/jrvs_data_eng_[FirstnameLastname]/linux_sql/host_agent/scripts/host_usage.sh localhost 5432 host_agent postgres password > /tmp/host_usage.log
 ```
 
 Lastly, you want to display your query results, which retreives and outputs useful data to the user attained via SQL from the database tables about the hardware information and resource usage.
@@ -49,12 +49,13 @@ psql -h psql_host -U psql_user -d db_name -f sql/queries.sql
 To implement the project, a docker container is created, used to provision an instance of postgreSQL. Once provisioned, a database is created, and structured with appropriate tables to store hardware and resource usage information. Bash scripts are then used to retrieve this information, along with a crontab set at regular intervals. Afterwards, querying is done on the now populated tables, and meaningful results are displayed to a user.
 
 ### Architecture (TODO - architecture image file)
-Draw a cluster diagram with three Linux hosts, a DB, and agents (use draw.io website). Image must be saved to the `assets` directory.
+The architecture diagram below represents the cluster monitoring agent; it uses a client-server architecture. Client machines are denoted in blue, and the server is denoted in red. Accompanying connections and data transfers are represented by the arrows.
 
 ![image_1](./assets/client_server_diagram.drawio.png)
+*client-server architecture diagram for the cluster monitoring agent*
 
 ### Scripts
-Shell script description and usage (use markdown code block for script usage):
+Shell script description(s) and usage:
 
 - psql_docker.sh
    This script is used to create, start, and stop the docker container
@@ -74,7 +75,7 @@ Shell script description and usage (use markdown code block for script usage):
 - crontab
   This file is used to run ***host_usage.sh*** over repeated intervals
 
-- queries.sql (describe what business problem you are trying to resolve)
+- queries.sql
     This script is used to display the results of queries on the tables within the ***host_agent*** database
     ```
     psql -h psql_host -U psql_user -d db_name -f sql/queries.sql
@@ -108,18 +109,22 @@ Inside the database, two tables are used for storing hardware information and us
 | disk_io | number of disk I/O | int | not null |
 | disk_available | root directory avaiable disk space (in mB) | int | not null |
 
-## Test (TODO - image file with sample output)
-How did you test your bash scripts and SQL queries? What was the result?
-
-To test the bash scripts and queries, work was completed within a linux virtual machine, primarily operated using the Command Line Interface. 
+## Test 
+To test the bash scripts and queries, work was completed within a linux virtual machine, primarily operated using the Command Line Interface. The end goal of the project is to provide tangible results, which is done using database querying. Further information about the specific queries can be found in the ***/sql/queries.sql*** file. 
 
 ![image_2](./assets/sampleOutput.PNG)
+*sample output for a server failure query*
 
 ## Deployment
 For the purpose of this assignment, the app code (scripts & sql files) is stored on a remote repository. GitHub is used here, and development was done locally. In addtion, docker is used to create a container, with a specific postgreSQL image.
 
-## Improvements (TODO - explainations)
-Write at least three things you want to improve 
-- handle hardware update 
-- single run script
-- error failure detection
+## Improvements
+Listed below are three improvements that could be added to the application to improve it:
+- **handle hardware updates**
+Computer hardware may be updated, and it would be useful to have a script that allows for a user to update these changes within the database tables.
+
+- **database creation**
+Although we are to assume the appropriate database has been created, it is also recommended that we create the database before hand (either using a script or sql create) if the project is ported onto other machines. 
+
+- **single run script**
+By having a single run script in addition to including the afformentioned database creation change, we could entirely automate the process. In addition, it would also be good practice to create either a terminal output or log file that will let the user know which part of the cluster agent program failed, assuming we are structuring our single run script to use all the scripts we have initially created for this program.
