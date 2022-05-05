@@ -52,8 +52,10 @@ To implement the project, a docker container is created, used to provision an in
 The architecture diagram below represents the cluster monitoring agent; it uses a client-server architecture. Client machines are denoted in blue, and the server is denoted in red. Accompanying connections and data transfers are represented by the arrows.
 
 <p align="center">
-    ![image_1](./assets/client_server_diagram.drawio.png)
-    *client-server architecture diagram for the cluster monitoring agent*
+    <img width="700" src="./assets/client_server_diagram.drawio.png" alt="Material Bread logo">
+</p>
+<p align="center">
+    client-server architecture diagram for the cluster monitoring agent
 </p>
 
 ### Scripts
@@ -115,10 +117,10 @@ Inside the database, two tables are used for storing hardware information and us
 To test the bash scripts and queries, work was completed within a linux virtual machine, primarily operated using the Command Line Interface. The end goal of the project is to provide tangible results, which is done using database querying. Further information about the specific queries can be found in the ***/sql/queries.sql*** file. 
 
 <p align="center">
-    <img width="200" src="./assets/sampleOutput.PNG" alt="Material Bread logo">
+    <img width="600" src="./assets/sampleOutput.PNG" alt="">
 </p>
 <p align="center">
-    *sample output for a server failure query*
+    sample output for a server failure query
 </p>
 
 
