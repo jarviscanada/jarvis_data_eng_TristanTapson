@@ -51,6 +51,8 @@ To implement the project, a docker container is created, used to provision an in
 ### Architecture (TODO - architecture image file)
 Draw a cluster diagram with three Linux hosts, a DB, and agents (use draw.io website). Image must be saved to the `assets` directory.
 
+![image_1](./assets/client_server_diagram.drawio.png)
+
 ### Scripts
 Shell script description and usage (use markdown code block for script usage):
 
@@ -110,6 +112,8 @@ Inside the database, two tables are used for storing hardware information and us
 How did you test your bash scripts and SQL queries? What was the result?
 
 To test the bash scripts and queries, work was completed within a linux virtual machine, primarily operated using the Command Line Interface. 
+
+![image_2](./assets/sampleOutput.PNG)
 
 ## Deployment
 For the purpose of this assignment, the app code (scripts & sql files) is stored on a remote repository. GitHub is used here, and development was done locally. In addtion, docker is used to create a container, with a specific postgreSQL image.
