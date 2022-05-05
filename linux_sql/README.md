@@ -50,13 +50,13 @@ To implement the project, a docker container is created, used to provision an in
 
 ### Architecture (TODO - architecture image file)
 The architecture diagram below represents the cluster monitoring agent; it uses a client-server architecture. Client machines are denoted in blue, and the server is denoted in red. Accompanying connections and data transfers are represented by the arrows.
-
+.emphasized { font-style: italic; }
 <p align="center">
     <img width="700" src="./assets/client_server_diagram.drawio.png" alt="">
 </p>
-<p align="center">
+**<p align="center">.emphasized { font-style: italic; }
     <span class="emphasized">client-server architecture diagram for the cluster monitoring agent</span>
-</p>
+</p>**
 
 ### Scripts
 Shell script description(s) and usage:
@@ -138,3 +138,4 @@ Although we are to assume the appropriate database has been created, it is also 
 
 - **single run script**
 By having a single run script in addition to including the afformentioned database creation change, we could entirely automate the process. In addition, it would also be good practice to create either a terminal output or log file that will let the user know which part of the cluster agent program failed, assuming we are structuring our single run script to use all the scripts we have initially created for this program.
+
