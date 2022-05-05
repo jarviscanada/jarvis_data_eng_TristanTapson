@@ -55,7 +55,7 @@ The architecture diagram below represents the cluster monitoring agent; it uses 
     <img width="700" src="./assets/client_server_diagram.drawio.png" alt="">
 </p>
 <p align="center">
-    <span class="emphasized">client-server architecture diagram for the cluster monitoring agent</span>
+    <i>client-server architecture diagram for the cluster monitoring agent</i>
 </p>
 
 ### Scripts
@@ -120,8 +120,7 @@ To test the bash scripts and queries, work was completed within a linux virtual 
     <img width="560" src="./assets/sampleOutput.PNG" alt="">
 </p>
 <p align="center">
-    sample output for a server failure query
-    <span class="emphasized">sample output for a server failure query</span>
+    <i>sample output for a server failure query</i>
 </p>
 
 
@@ -139,4 +138,5 @@ Although we are to assume the appropriate database has been created, it is also 
 
 - **single run script**
 By having a single run script in addition to including the afformentioned database creation change, we could entirely automate the process. In addition, it would also be good practice to create either a terminal output or log file that will let the user know which part of the cluster agent program failed, assuming we are structuring our single run script to use all the scripts we have initially created for this program.
+
 
