@@ -115,9 +115,13 @@ Inside the database, two tables are used for storing hardware information and us
 To test the bash scripts and queries, work was completed within a linux virtual machine, primarily operated using the Command Line Interface. The end goal of the project is to provide tangible results, which is done using database querying. Further information about the specific queries can be found in the ***/sql/queries.sql*** file. 
 
 <p align="center">
-![image_2](./assets/sampleOutput.PNG)
-*sample output for a server failure query*
+    <img width="200" src="./assets/sampleOutput.PNG" alt="Material Bread logo">
 </p>
+<p align="center">
+    *sample output for a server failure query*
+</p>
+
+
 
 ## Deployment
 For the purpose of this assignment, the app code (scripts & sql files) is stored on a remote repository. GitHub is used here, and development was done locally. In addtion, docker is used to create a container, with a specific postgreSQL image.
