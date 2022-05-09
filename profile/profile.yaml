@@ -1,11 +1,12 @@
 #Preferred name (Characters only)
-name: "Tristan Tapson"
+name: "Tristan Ethan Tapson"
 # Your GitHub repo root URL
-github_repo_root_url: https://github.com/jarviscanada/jarvis_data_eng_TristanTapson
+github_repo_root_url: https://github.com/jarviscanada/jarvis_data_eng_demo
 
 # Introduce yourself, your academic and professional background.
 # What excites you about the software industry and your passion. At least 80 words
-summary: I am a recent McMaster University Computer Science graduate looking to practice my skills in a professional environment; currently, I am working for Jarvis Consulting as a software developer. Since high school, I have always enjoy the wide range of problems that programming can let me solve, as well as the many complexed challenges that accompany working towards a well structured solution. I have also tutored high school students in mathematics and programming. Coding is an excellent tool to utilize in solving many various problems that we encounter in our lives, and can also be used to make our lives substantially easier if applied correctly.
+summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed venenatis a orci ac malesuada. Vivamus ligula elit, viverra eu ante porttitor, blandit convallis augue. Aliquam justo justo, mollis at lacus eu, rutrum finibus est. Vestibulum venenatis purus id accumsan pretium. In efficitur magna nec enim laoreet tincidunt. Ut libero metus, scelerisque nec eros vitae, sagittis pellentesque enim. Donec dictum felis volutpat, vehicula magna eu, imperdiet elit. Phasellus ut velit a massa efficitur faucibus. Sed volutpat, lacus sed sagittis luctus, elit.
+
 # Group your skills by level.
 # Your skills can be anything software related (e.g. language, frameworks, methodologies, software, etc.).
 skills:
@@ -18,26 +19,26 @@ skills:
     - Git
   # At least 5 skills
   competent:
-    - C/C++
-    - HTML/CSS
-    - Algorithms
-    - Object Oriented Programming (OOP)
-    - Unit Testing
+    - Donec
+    - fermentum
+    - Donec
+    - fermentum
+    - Donec
   # At least 5 skills
   familiar:
-    - Python
-    - Haskell
-    - Elm
-    - Concurrent Programming
-    - Docker
+    - Donec
+    - fermentum
+    - fermentum
+    - fermentum
+    - fermentum
 
 # List of Jarvis projects
 jarvis_projects:
   - name: "Cluster Monitor"
-    git_url: "/https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/linux_sql"
+    git_url: "/linux_sql"
     # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
     # The project description must start with an action verb (https://bit.ly/3guO98u)
-    description: Developed a linux cluster monitoring agent that stored key hardware information and usage within a database within a client-server architecture. A postgreSQL database is provisioned on a client machine using docker, and a bash agent collects relevant information to be stored within the database tables. In addition, the afformention inforation is retrived at periodical intervals with Crontab, and the database is queried using SQL.
+    description: Suspendisse a tincidunt odio. Suspendisse posuere luctus aliquet. Quisque magna tellus, tempor vitae arcu sed, volutpat scelerisque lacus. Aliquam varius pulvinar dapibus. Ut a tincidunt sem. Aenean sollicitudin fringilla erat ut imperdiet. Phasellus fermentum, enim vitae laoreet elementum, eros nisl hendrerit lorem.
   - name: "Core Java Apps"
     git_url: "/core_java"
     description:
@@ -64,13 +65,14 @@ jarvis_projects:
 # Feel free to add more projects
 highlighted_projects:
   #project name
-  - name: "Personal Webpage"
+  - name: "Web app for resturant"
     #URL is optional
-    git_url: "https://github.com/tristantapson8/tristantapson8.github.io"
+    git_url: "https://github.com/jarviscanada/jarvis_profile_builder"
     # The project description must start with an action verb (https://bit.ly/3guO98u)
-    description: Built a personal webpage to display my skills in an interactive format, as well as showcase my skills in web development; tools used were HTML and CSS.
-
-    Website can be found at: https://tristantapson8.github.io/
+    description: Suspendisse a tincidunt odio. Suspendisse posuere luctus aliquet. Quisque magna tellus, tempor vitae arcu sed, volutpat scelerisque lacus. Aliquam varius pulvinar dapibus. Ut a tincidunt sem. Aenean sollicitudin fringilla erat ut imperdiet. Phasellus fermentum, enim vitae laoreet elementum, eros nisl hendrerit lorem.
+  - name: "Machine Learning"
+    git_url:
+    description: Suspendisse a tincidunt odio. Suspendisse posuere luctus aliquet. Quisque magna tellus, tempor vitae arcu sed, volutpat scelerisque lacus. Aliquam varius pulvinar dapibus. Ut a tincidunt sem. Aenean sollicitudin fringilla erat ut imperdiet. Phasellus fermentum, enim vitae laoreet elementum, eros nisl hendrerit lorem.
 
 #List of professional experience
 #The job description allows hiring managers to understand your job and the technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
@@ -79,28 +81,43 @@ professional_experience:
   #Write your Jarvis role as a professional experience rather than training.
   - title: "Software Developer"
     company: "Jarvis"
-    duration: "2022-present"
+    duration: "2020-present"
     # The project description must start with an action verb (https://bit.ly/3guO98u)
-    description: "Worked as a software developer in a Scrum environment, while implementing mutiple projects using a variety of technologies to enhance my skillset towards industry standards."
-  - title: "Math & Programming Tutor"
-    company: "Oxford Learning Centers"
-    duration: "2020-2022"
-    description: "Worked closely with high school students in aiding them with math and programming homework help; focus involved problem solving at a high level, as well as efficient and effective communication."
+    description: "Donec mattis sed justo et sagittis. Vestibulum lacinia nulla ipsum. Curabitur imperdiet nibh vitae leo lacinia laoreet. Nullam accumsan, lectus ut maximus ultricies, augue justo egestas mi, vel bibendum felis."
+  - title: "Tutor"
+    company: "XYZ Company"
+    duration: "2019"
+    description: "Donec mattis sed justo et sagittis. Vestibulum lacinia nulla ipsum. Curabitur imperdiet nibh vitae leo lacinia laoreet. Nullam accumsan, lectus ut maximus ultricies, augue justo egestas mi, vel bibendum felis."
 
 #List of edcuation
 education:
-  - school_name: "McMaster University"
-    duration: "2013-2019"
+  - school_name: "XYZ university"
+    duration: "2012-2016"
     degree: "Bachelor of Applied Sciences"
-    department: "Computer Science"
+    department: "Electrical and Computer Engineering"
     # optional
     awards_achievements:
-      - "GPA: 3.2/4.0"
+      - "Scholarship"
+      - "Dean's List (2015, 2016): Ut enim ad minim veniam"
+      - "GPA: 3.8/4.0"
+  - school_name: "XYZ university"
+    duration: "2016-2018"
+    degree: "Master of Engineering"
+    department: "Electrical and Computer Engineering"
+    awards_achievements:
 
 #Optional section
 others:
+  #category
+  - title: "Certificates"
+    #list of items
+    bullets:
+      - "Udacity Machine Learning (2019)"
+  - title: "Awards"
+    bullets:
+      - "Winner"
   - title: "Activities/Hobbies"
     bullets:
-      - "Piano playing"
-      - "Competitive soccer/volleyball"
-      - "Casual video games"
+      - "Basketball player"
+      - "Competitive gaming"
+      - "Volunteer, ABC Food bank: Ut enim ad minim veniam"
