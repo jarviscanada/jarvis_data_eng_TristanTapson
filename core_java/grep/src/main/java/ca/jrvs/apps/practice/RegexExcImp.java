@@ -26,7 +26,7 @@ public class RegexExcImp implements RegexExc {
 	// empty line
 	public boolean isEmptyLine(String line){
 
-		if(Pattern.matches("^(\\s)*" , line)){
+		if(Pattern.matches("^(\\s)*$", line)){
 			return true;
 		}
 
