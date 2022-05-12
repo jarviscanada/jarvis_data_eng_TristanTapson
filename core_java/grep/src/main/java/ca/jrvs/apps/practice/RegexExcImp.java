@@ -16,7 +16,7 @@ public class RegexExcImp implements RegexExc {
 	// IPv4 address
 	public boolean matchIp(String ip){
 
-		if(Pattern.matches(   "^([0-9]{1,3}).([0-9]{1,3}).([0-9]{1,3}).([0-9]{1,3})$", ip)){
+		if(Pattern.matches("^([0-9]{1,3}).([0-9]{1,3}).([0-9]{1,3}).([0-9]{1,3})$", ip)){
 			return true;
 		}
 
