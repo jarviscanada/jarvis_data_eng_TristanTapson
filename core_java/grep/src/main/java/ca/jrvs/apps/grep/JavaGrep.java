@@ -8,7 +8,7 @@ public interface JavaGrep {
 
 	void process() throws IOException;
 
-	List<File> listFiles(String rootDir);
+	List<File> listFiles(String rootDir, List<File> files);
 
 	List<String> readLines(File inputFile);
 

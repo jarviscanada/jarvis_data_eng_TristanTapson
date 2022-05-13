@@ -6,11 +6,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
+
 
 public class JavaGrepImp implements JavaGrep {
 
 	// TODO logger setup/test
-	//final Logger logger = LoggerFactory.getLogger(JavaGrep.class);
+	final Logger logger = LoggerFactory.getLogger(JavaGrep.class);
 
 	private String regex;
 	private String rootPath;
@@ -23,8 +26,7 @@ public class JavaGrepImp implements JavaGrep {
 		}
 
 		else{
-			System.out.println("JavaGrepImp class!!");
-
+			System.out.println("-- JavaGrepImp Class --");
 		}
 
 		// TODO logger setup/test
@@ -40,7 +42,7 @@ public class JavaGrepImp implements JavaGrep {
 			javaGrepImp.process();
 		} catch (Exception ex){
 			// TODO logger setup/test
-			//javaGrepImp.logger.error("Error: Unable to process", ex);
+			javaGrepImp.logger.error("Error: Unable to process", ex);
 		}
 	}
 
@@ -48,79 +50,91 @@ public class JavaGrepImp implements JavaGrep {
 	@Override
 	public void process() throws IOException {
 
-		// file listing hardcode test
-		List<File> myFileListHC = listFiles(rootPath);
-		System.out.println("num files in dir: " + myFileListHC.size());
-		for(int i = 0; i < myFileListHC.size(); i++) {
-			System.out.println(myFileListHC.get(i));
+		List<File> emptyListOfFiles = new ArrayList<File>();
+		List<File> myFiles = listFiles(rootPath, emptyListOfFiles);
+		List<String> matchedLines = new ArrayList<String>();
+
+		File root = new File(rootPath);
+		File [] list = root.listFiles();
+
+		// iterate through all files in root dir and its subdirectories
+		for (File f : myFiles) {
+			// read all lines in that file
+			for (String line : readLines(f)) {
+				// add lines in that file that match with the regex to list, and write to outfile
+				if (containsPattern(line) == true) {
+					matchedLines.add(line);
+				}
+			}
 		}
 
-		// read lines hardcode test
-		File testFile1 = myFileListHC.get(3);
-		List<String> myLinesListHC = readLines(testFile1);
-		for(int i = 0; i < myLinesListHC.size(); i++) {
-			System.out.println(myLinesListHC.get(i));
-		}
+		writeToFile(matchedLines);
 
-		// regex pattern hard code test
+		System.out.println("root dir: " + rootPath);
 		System.out.println("regex: " + regex);
-		for(int i = 0; i < myLinesListHC.size(); i++) {
-			System.out.println(myLinesListHC.get(i));
-			System.out.println(containsPattern(myLinesListHC.get(i)));
+		System.out.println("outfile: " + outFile);
+
+		// TODO remove print statements
+		// prints out file paths found from recursive decent
+		for(int i = 0; i < myFiles.size(); i++){
+			System.out.println("file path: " + myFiles.get(i));
 		}
 
-		// write to file hard code test - check success with cat in terminal
-		writeToFile(myLinesListHC);
+		// prints out all lines in the files from recursive decent that match with the regex
+		for(int i = 0; i < matchedLines.size(); i++){
+			System.out.println("matched line: " + matchedLines.get(i));
+		}
+
+		// logger test
+		logger.debug("Sample debug message");
 
 	}
 
-	// adds all files in a directory to a list
+	// adds all files in a directory (recursive decent) to a list
+	// NOTE: function signature changed to properly do recursion
 	@Override
-	public List<File> listFiles(String rootDir) {
-
-		System.out.println("root dir: " + rootDir);
-
-		// storing file names in a list
-		List<File> myFiles = new ArrayList<File>();
+	public List<File> listFiles(String rootDir, List<File> listOfFiles) {
 
 		// rootDir from string, as a file
 		File root = new File(rootDir);
 		File[] list = root.listFiles();
 
-		for(int i = 0; i < list.length; i++){
-			if (list[i].isDirectory()) {
-				//System.out.println("Directory: " + list[i]);
-			} else {
-				//System.out.println("File: " + list[i]);
-				myFiles.add(list[i]);
-			}
+		// if not a directory, add it to list
+		if(!root.isDirectory()){
+			listOfFiles.add(root);
+			return listOfFiles;
 		}
 
-		return myFiles;
+		// recursion on the list
+		for(File f : list){
+			listFiles(f.getPath(), listOfFiles);
+		}
+
+		return listOfFiles;
 	}
 
 	// adds all lines in a given file to a list
 	@Override
 	public List<String> readLines(File inputFile) {
 
-		List<String> myLines = new ArrayList<String>();
+		List<String> allLines = new ArrayList<String>();
 
 		// standard buffered reader to read all lines in a file
-		BufferedReader reader;
+		BufferedReader myReader;
 		try{
-			reader = new BufferedReader(new FileReader(inputFile));
-			String line = reader.readLine();
+			myReader = new BufferedReader(new FileReader(inputFile));
+			String line = myReader.readLine();
 			while (line != null){
 				//System.out.println(line);
-				myLines.add(line);
-				line = reader.readLine();
+				allLines.add(line);
+				line = myReader.readLine();
 			}
-			reader.close();
+			myReader.close();
 		} catch (IOException ex){
 			ex.printStackTrace();
 		}
 
-		return myLines;
+		return allLines;
 	}
 
 	// regex line check
@@ -142,16 +156,16 @@ public class JavaGrepImp implements JavaGrep {
 			FileWriter myWriter = new FileWriter(outFile);
 
 			// write to file if line matches with regex
-			// TODO may have to put this in the proccess function depending on implementation
+			// TODO may have to put this in the process function depending on implementation
 			for(int i = 0; i < lines.size(); i++){
-				if(containsPattern(lines.get(i)) == true){
+				//if(containsPattern(lines.get(i)) == true){
 					myWriter.write(lines.get(i) + "\n");
-				}
+				//}
 			}
 
 			//myWriter.write("test write\n");
 			myWriter.close();
-			System.out.println("Successfully wrote to the file.");
+			System.out.println("Successfully wrote to the file!");
 		} catch (IOException ex){
 			System.out.println("An error occurred.");
 			ex.printStackTrace();
