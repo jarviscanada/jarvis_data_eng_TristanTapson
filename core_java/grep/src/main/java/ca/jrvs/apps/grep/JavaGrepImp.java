@@ -44,7 +44,7 @@ public class JavaGrepImp implements JavaGrep {
 		}
 	}
 
-	// TODO make the process recursive, and get rid of hard code tests later
+	// TODO make the process recursive (ticket pseudocode), and get rid of hard code tests later
 	@Override
 	public void process() throws IOException {
 
@@ -72,11 +72,6 @@ public class JavaGrepImp implements JavaGrep {
 		// write to file hard code test - check success with cat in terminal
 		writeToFile(myLinesListHC);
 
-
-
-		// test for file write, follow the pseudocode in the ticket here...
-		//List<String> myList = new ArrayList<String>();
-		//writeToFile(myList);
 	}
 
 	// adds all files in a directory to a list
