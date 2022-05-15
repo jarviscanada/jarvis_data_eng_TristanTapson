@@ -8,6 +8,9 @@ import java.util.regex.Pattern;
 
 import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
+import java.io.IOException;
+
+
 
 
 public class JavaGrepImp implements JavaGrep {
@@ -16,7 +19,7 @@ public class JavaGrepImp implements JavaGrep {
 	final Logger logger = LoggerFactory.getLogger(JavaGrep.class);
 
 	private String regex;
-	private String rootPath;
+	public String rootPath;
 	private String outFile;
 
 	public static void main(String[] args){
@@ -93,7 +96,7 @@ public class JavaGrepImp implements JavaGrep {
 	// adds all files in a directory (recursive decent) to a list
 	// NOTE: function signature changed to properly do recursion
 	@Override
-	public List<File> listFiles(String rootDir, List<File> listOfFiles) {
+	public List<File> listFiles(String rootDir, List<File> listOfFiles) throws IOException {
 
 		// rootDir from string, as a file
 		File root = new File(rootDir);
@@ -115,7 +118,7 @@ public class JavaGrepImp implements JavaGrep {
 
 	// adds all lines in a given file to a list
 	@Override
-	public List<String> readLines(File inputFile) {
+	public List<String> readLines(File inputFile) throws IOException {
 
 		List<String> allLines = new ArrayList<String>();
 
