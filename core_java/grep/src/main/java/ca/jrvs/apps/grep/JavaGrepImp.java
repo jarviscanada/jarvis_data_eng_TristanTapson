@@ -1,17 +1,14 @@
 package ca.jrvs.apps.grep;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.apache.log4j.BasicConfigurator;
+
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
-
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
 import java.io.IOException;
-
-
-
 
 public class JavaGrepImp implements JavaGrep {
 
@@ -32,8 +29,7 @@ public class JavaGrepImp implements JavaGrep {
 			System.out.println("-- JavaGrepImp Class --");
 		}
 
-		// TODO logger setup/test
-		//BasicConfigurator.configure();
+		BasicConfigurator.configure();
 
 		JavaGrepImp javaGrepImp = new JavaGrepImp();
 		javaGrepImp.setRegex(args[0]);
@@ -44,26 +40,22 @@ public class JavaGrepImp implements JavaGrep {
 			// run the program
 			javaGrepImp.process();
 		} catch (Exception ex){
-			// TODO logger setup/test
+			// logger test
 			javaGrepImp.logger.error("Error: Unable to process", ex);
 		}
 	}
 
-	// TODO make the process recursive (ticket pseudocode), and get rid of hard code tests later
 	@Override
 	public void process() throws IOException {
 
-		List<File> emptyListOfFiles = new ArrayList<File>();
-		List<File> myFiles = listFiles(rootPath, emptyListOfFiles);
+		List<File> emptyList = new ArrayList<File>();
+		List<File> listFilesRecursively = listFiles(rootPath, emptyList);
 		List<String> matchedLines = new ArrayList<String>();
 
-		File root = new File(rootPath);
-		File [] list = root.listFiles();
-
 		// iterate through all files in root dir and its subdirectories
-		for (File f : myFiles) {
+		for (File file : listFilesRecursively) {
 			// read all lines in that file
-			for (String line : readLines(f)) {
+			for (String line : readLines(file)) {
 				// add lines in that file that match with the regex to list, and write to outfile
 				if (containsPattern(line) == true) {
 					matchedLines.add(line);
@@ -79,8 +71,8 @@ public class JavaGrepImp implements JavaGrep {
 
 		// TODO remove print statements
 		// prints out file paths found from recursive decent
-		for(int i = 0; i < myFiles.size(); i++){
-			System.out.println("file path: " + myFiles.get(i));
+		for(int i = 0; i < listFilesRecursively.size(); i++){
+			System.out.println("file path: " + listFilesRecursively.get(i));
 		}
 
 		// prints out all lines in the files from recursive decent that match with the regex
@@ -94,23 +86,23 @@ public class JavaGrepImp implements JavaGrep {
 	}
 
 	// adds all files in a directory (recursive decent) to a list
-	// NOTE: function signature changed to properly do recursion
+	// NOTE: function signature changed from template to properly do recursion
 	@Override
 	public List<File> listFiles(String rootDir, List<File> listOfFiles) throws IOException {
 
-		// rootDir from string, as a file
+		// store files in root dir in an array
 		File root = new File(rootDir);
 		File[] list = root.listFiles();
 
 		// if not a directory, add it to list
-		if(!root.isDirectory()){
+		if(root.isDirectory() == false){
 			listOfFiles.add(root);
 			return listOfFiles;
 		}
 
 		// recursion on the list
-		for(File f : list){
-			listFiles(f.getPath(), listOfFiles);
+		for(File file : list){
+			listFiles(file.getPath(), listOfFiles);
 		}
 
 		return listOfFiles;
@@ -128,7 +120,6 @@ public class JavaGrepImp implements JavaGrep {
 			myReader = new BufferedReader(new FileReader(inputFile));
 			String line = myReader.readLine();
 			while (line != null){
-				//System.out.println(line);
 				allLines.add(line);
 				line = myReader.readLine();
 			}
@@ -144,6 +135,7 @@ public class JavaGrepImp implements JavaGrep {
 	@Override
 	public boolean containsPattern(String line) {
 
+		// line matches with regex
 		if(Pattern.matches(regex, line)){
 			return true;
 		}
@@ -159,18 +151,13 @@ public class JavaGrepImp implements JavaGrep {
 			FileWriter myWriter = new FileWriter(outFile);
 
 			// write to file if line matches with regex
-			// TODO may have to put this in the process function depending on implementation
 			for(int i = 0; i < lines.size(); i++){
-				//if(containsPattern(lines.get(i)) == true){
-					myWriter.write(lines.get(i) + "\n");
-				//}
+				myWriter.write(lines.get(i) + "\n");
 			}
 
-			//myWriter.write("test write\n");
 			myWriter.close();
 			System.out.println("Successfully wrote to the file!");
 		} catch (IOException ex){
-			System.out.println("An error occurred.");
 			ex.printStackTrace();
 		}
 	}

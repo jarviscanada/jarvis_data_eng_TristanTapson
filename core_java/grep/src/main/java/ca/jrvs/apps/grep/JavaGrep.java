@@ -6,14 +6,49 @@ import java.util.List;
 
 public interface JavaGrep {
 
+	/**
+	 * Top level search workflow
+	 * @throws IOException
+	 */
 	void process() throws IOException;
 
+	/**
+	 *
+	 * Traverse a given directory and return all files
+	 *
+	 * @param rootDir input directory
+	 * @param files empty list of files
+	 * @return files under the rootDir
+	 * @throws IOException if a given files list is not a list of files
+	 */
 	List<File> listFiles(String rootDir, List<File> files) throws IOException;
 
+	/**
+	 *
+	 * Read a file and return all the lines
+	 *
+	 * @param inputFile file to be read
+	 * @return lines
+	 * @throws IOException if a given inputFile is not a file
+	 */
 	List<String> readLines(File inputFile) throws IOException;
 
+	/**
+	 *
+	 * check if a line contains the regex pattern (passed by user)
+	 *
+	 * @param line input string
+	 * @return true if there is a match
+	 */
 	boolean containsPattern(String line);
 
+	/**
+	 *
+	 * Write lines to a file
+	 *
+	 * @param lines matched line
+	 * @throws IOException if write failed
+	 */
 	void writeToFile(List<String> lines) throws IOException;
 
 	String getRootPath();

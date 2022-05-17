@@ -6,17 +6,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Pattern;
 
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
+// import org.slf4j.Logger;
+// import org.slf4j.LoggerFactory;
+// import org.apache.log4j.BasicConfigurator;
 
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
-import java.util.stream.DoubleStream;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class JavaGrepLambdaImp extends JavaGrepImp {
@@ -49,9 +44,9 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
         System.out.println("lambda (readLines) override...");
 
         String filename = inputFile.getPath();
-
         List<String> allLines = new ArrayList<String>();
 
+        // stream to add all lines in a file to a list of lines
        try (Stream<String> stream = Files.lines(Paths.get(filename))) {
            stream.forEach(allLines::add);
        } catch (IOException ex){
@@ -69,6 +64,8 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
         String directory = rootDir;
         List<File> validFiles = listOfFiles;
 
+        // stream api walking through files in a directory
+        // filter if valid file, and add the filepath to the list of valid files
         try (Stream<Path> stream = Files.walk(Paths.get(directory))) {
             stream.map(Path::normalize)
                     .filter(path-> Files.isRegularFile(path))
@@ -78,7 +75,6 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
             ex.printStackTrace();
         }
 
-        // validFiles.forEach(System.out::println);
         return validFiles;
     }
 }
