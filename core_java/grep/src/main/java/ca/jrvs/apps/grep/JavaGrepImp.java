@@ -12,7 +12,6 @@ import java.io.IOException;
 
 public class JavaGrepImp implements JavaGrep {
 
-	// TODO logger setup/test
 	final Logger logger = LoggerFactory.getLogger(JavaGrep.class);
 
 	private String regex;
