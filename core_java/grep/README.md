@@ -61,7 +61,7 @@ For the purpose of this assignment, the app code is stored on a remote repositor
 
 ## Improvements
 Listed below are three improvements that could be added to the application to improve it:
-- **Run Information**: After traversing the directories, a simple console output can be added that lists statistics of the files that were traversed through.
+- **Run Information**: After traversing the directories, a simple console output can be added that lists statistics of the files that were traversed.
 
 - **Additional Filtering**: Currently, the program searches through all files, regardless of the file extension - one could suggest adding a fourth parameter to the program, that lets the user determine which types of files that are to be parsed.
 
