@@ -38,43 +38,40 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
         }
     }
 
+    // NOTE: not final lambda/stream - this is implemented in JavaGrepImp
+    // as a ticket required the function signature to change from List<File> to Stream<File>
     @Override
-    public List<String> readLines(File inputFile) throws IOException {
+    public Stream<String> readLines(File inputFile) throws IOException {
 
         System.out.println("lambda (readLines) override...");
 
         String filename = inputFile.getPath();
         List<String> allLines = new ArrayList<String>();
 
+        // TODO - use the implementation from JavaGrepImp class here...
         // stream to add all lines in a file to a list of lines
-       try (Stream<String> stream = Files.lines(Paths.get(filename))) {
-           stream.forEach(allLines::add);
-       } catch (IOException ex){
-           ex.printStackTrace();
-       }
+       Stream<String> stringStream = Files.lines(Paths.get(filename));
+           stringStream.forEach(allLines::add);
 
-       return allLines;
+        return stringStream;
     }
 
+    // NOTE: not final lambda/stream - this is implemented in JavaGrepImp
+    // as a ticket required the function signature to change from List<File> to Stream<File>
     @Override
-    public List<File> listFiles(String rootDir, List<File> listOfFiles) throws IOException{
+    public Stream<File> listFiles(String rootDir, List<File> listOfFiles) throws IOException{
 
         System.out.println("lambda (listFiles) override...");
 
         String directory = rootDir;
-        List<File> validFiles = listOfFiles;
 
+        // TODO - use the implementation from JavaGrepImp class here...
         // stream api walking through files in a directory
         // filter if valid file, and add the filepath to the list of valid files
-        try (Stream<Path> stream = Files.walk(Paths.get(directory))) {
-            stream.map(Path::normalize)
-                    .filter(path-> Files.isRegularFile(path))
-                    .forEach(path -> validFiles.add(path.toFile()));
+        Stream<File> fileStream = Files.walk(Paths.get(directory))
+                .filter(Files::isRegularFile)
+                .map(Path::toFile);
 
-        } catch (IOException ex){
-            ex.printStackTrace();
-        }
-
-        return validFiles;
+        return fileStream;
     }
 }

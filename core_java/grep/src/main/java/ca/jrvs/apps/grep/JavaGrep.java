@@ -2,7 +2,9 @@ package ca.jrvs.apps.grep;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Stream;
 
 public interface JavaGrep {
 
@@ -21,7 +23,7 @@ public interface JavaGrep {
 	 * @return files under the rootDir
 	 * @throws IOException if a given files list is not a list of files
 	 */
-	List<File> listFiles(String rootDir, List<File> files) throws IOException;
+	Stream<File> listFiles(String rootDir, List<File> files) throws IOException;
 
 	/**
 	 *
@@ -31,7 +33,7 @@ public interface JavaGrep {
 	 * @return lines
 	 * @throws IOException if a given inputFile is not a file
 	 */
-	List<String> readLines(File inputFile) throws IOException;
+	Stream<String> readLines(File inputFile) throws IOException;
 
 	/**
 	 *

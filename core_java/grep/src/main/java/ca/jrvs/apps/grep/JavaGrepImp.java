@@ -5,10 +5,14 @@ import org.slf4j.LoggerFactory;
 import org.apache.log4j.BasicConfigurator;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.io.IOException;
+import java.util.stream.Stream;
 
 public class JavaGrepImp implements JavaGrep {
 
@@ -47,87 +51,69 @@ public class JavaGrepImp implements JavaGrep {
 	@Override
 	public void process() throws IOException {
 
-		List<File> emptyList = new ArrayList<File>();
-		List<File> listFilesRecursively = listFiles(rootPath, emptyList);
-		List<String> matchedLines = new ArrayList<String>();
-
-		// iterate through all files in root dir and its subdirectories
-		for (File file : listFilesRecursively) {
-			// read all lines in that file
-			for (String line : readLines(file)) {
-				// add lines in that file that match with the regex to list, and write to outfile
-				if (containsPattern(line) == true) {
-					matchedLines.add(line);
-				}
-			}
-		}
-
-		writeToFile(matchedLines);
-
 		System.out.println("root dir: " + rootPath);
 		System.out.println("regex: " + regex);
 		System.out.println("outfile: " + outFile);
 
-		// TODO remove print statements
-		// prints out file paths found from recursive decent
-		for(int i = 0; i < listFilesRecursively.size(); i++){
-			System.out.println("file path: " + listFilesRecursively.get(i));
-		}
+		List<File> emptyList = new ArrayList<File>();
+		Stream<File> listFilesRecursively = listFiles(rootPath, emptyList);
+		List<String> matchedLinesList = new ArrayList<String>();
 
-		// prints out all lines in the files from recursive decent that match with the regex
-		for(int i = 0; i < matchedLines.size(); i++){
-			System.out.println("matched line: " + matchedLines.get(i));
-		}
+		// ticket pseudocode implemented using streams
+		listFilesRecursively.forEach(file -> {
+			try {
+				Stream<String> matchedLinesStream = readLines(file).filter(line -> containsPattern(line));
+				matchedLinesStream.forEach(line -> matchedLinesList.add(line));
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+		});
+
+		writeToFile(matchedLinesList);
 
 		// logger test
 		logger.debug("Sample debug message");
 
 	}
 
-	// adds all files in a directory (recursive decent) to a list
-	// NOTE: function signature changed from template to properly do recursion
+	// adds all files in a directory (stream walking) to a stream of files
+	// NOTE: function signature was initially changed from template to properly do recursion
 	@Override
-	public List<File> listFiles(String rootDir, List<File> listOfFiles) throws IOException {
+	public Stream<File> listFiles(String rootDir, List<File> listOfFiles) throws IOException {
 
-		// store files in root dir in an array
-		File root = new File(rootDir);
-		File[] list = root.listFiles();
+		String directory = rootDir;
+		List<File> validFiles = listOfFiles;
 
-		// if not a directory, add it to list
-		if(root.isDirectory() == false){
-			listOfFiles.add(root);
-			return listOfFiles;
-		}
+		// stream walking through files in a directory
+		// filter if valid file, and add the filepath to the list of valid files
+		try (Stream<Path> stream = Files.walk(Paths.get(directory))) {
+			stream.map(Path::normalize)
+					.filter(path-> Files.isRegularFile(path))
+					.forEach(path -> validFiles.add(path.toFile()));
 
-		// recursion on the list
-		for(File file : list){
-			listFiles(file.getPath(), listOfFiles);
-		}
-
-		return listOfFiles;
-	}
-
-	// adds all lines in a given file to a list
-	@Override
-	public List<String> readLines(File inputFile) throws IOException {
-
-		List<String> allLines = new ArrayList<String>();
-
-		// standard buffered reader to read all lines in a file
-		BufferedReader myReader;
-		try{
-			myReader = new BufferedReader(new FileReader(inputFile));
-			String line = myReader.readLine();
-			while (line != null){
-				allLines.add(line);
-				line = myReader.readLine();
-			}
-			myReader.close();
 		} catch (IOException ex){
 			ex.printStackTrace();
 		}
 
-		return allLines;
+		// console output, for README...
+		validFiles.forEach(file -> System.out.println("filepath: " + file));
+
+		// stream walking through files in a directory
+		// filter if valid file, and map path to file
+		return Files.walk(Paths.get(directory))
+				.filter(Files::isRegularFile)
+				.map(Path::toFile);
+	}
+
+	// adds all lines in a given file to a stream of lines
+	@Override
+	public Stream<String> readLines(File inputFile) throws IOException {
+
+		// file path
+		String filepath = inputFile.getPath();
+
+		// stream to add all lines in a file to a stream of lines
+		return Files.lines(Paths.get(filepath));
 	}
 
 	// regex line check
@@ -141,7 +127,7 @@ public class JavaGrepImp implements JavaGrep {
 		return false;
 	}
 
-	// write to out file if line matched the regex
+	// write to outFile if line matched the regex
 	@Override
 	public void writeToFile(List<String> lines) throws IOException {
 
@@ -152,6 +138,7 @@ public class JavaGrepImp implements JavaGrep {
 			// write to file if line matches with regex
 			for(int i = 0; i < lines.size(); i++){
 				myWriter.write(lines.get(i) + "\n");
+				System.out.println("matched line: " + lines.get(i));
 			}
 
 			myWriter.close();
