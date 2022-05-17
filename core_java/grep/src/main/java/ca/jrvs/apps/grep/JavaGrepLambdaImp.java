@@ -18,11 +18,11 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
 
     public static void main(String[] args) {
         if(args.length != 3){
-            throw new IllegalArgumentException("USAGE: JavaGrepLambda regex rootPath outFile");
+            throw new IllegalArgumentException("USAGE: JavaGrepLambdaImp regex rootPath outFile");
         }
 
         else{
-            System.out.println("-- JavaGrepLambdaImp Class --");
+            System.out.println("--- JavaGrepLambdaImp Class ---");
         }
 
         JavaGrepLambdaImp javaGrepLambdaImp = new JavaGrepLambdaImp();
@@ -38,40 +38,46 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
         }
     }
 
-    // NOTE: not final lambda/stream - this is implemented in JavaGrepImp
-    // as a ticket required the function signature to change from List<File> to Stream<File>
+    // NOTE: not final lambda/stream readLines - this is implemented in JavaGrepImp as a ticket required the function signature to change from List<File> to Stream<File>
     @Override
     public Stream<String> readLines(File inputFile) throws IOException {
 
         System.out.println("lambda (readLines) override...");
 
-        String filename = inputFile.getPath();
-        List<String> allLines = new ArrayList<String>();
+        // file path
+        String filepath = inputFile.getPath();
 
-        // TODO - use the implementation from JavaGrepImp class here...
-        // stream to add all lines in a file to a list of lines
-       Stream<String> stringStream = Files.lines(Paths.get(filename));
-           stringStream.forEach(allLines::add);
-
-        return stringStream;
+        // stream to add all lines in a file to a stream of lines
+        return Files.lines(Paths.get(filepath));
     }
 
-    // NOTE: not final lambda/stream - this is implemented in JavaGrepImp
-    // as a ticket required the function signature to change from List<File> to Stream<File>
+    // NOTE: not final lambda/stream listFiles - this is implemented in JavaGrepImp as a ticket required the function signature to change from List<File> to Stream<File>
     @Override
-    public Stream<File> listFiles(String rootDir, List<File> listOfFiles) throws IOException{
+    public Stream<File> listFiles(String rootDir) throws IOException{
 
         System.out.println("lambda (listFiles) override...");
 
         String directory = rootDir;
+        List<File> validFiles = new ArrayList<File>();
 
-        // TODO - use the implementation from JavaGrepImp class here...
-        // stream api walking through files in a directory
+        // stream walking through files in a directory
         // filter if valid file, and add the filepath to the list of valid files
-        Stream<File> fileStream = Files.walk(Paths.get(directory))
+        try (Stream<Path> tempStream = Files.walk(Paths.get(directory))) {
+            tempStream.map(Path::normalize)
+                    .filter(path-> Files.isRegularFile(path))
+                    .forEach(path -> validFiles.add(path.toFile()));
+
+        } catch (IOException ex){
+            ex.printStackTrace();
+        }
+
+        // console output, for README...
+        validFiles.forEach(file -> System.out.println("filepath: " + file));
+
+        // stream walking through files in a directory
+        // filter if valid file, and map path to file
+        return Files.walk(Paths.get(directory))
                 .filter(Files::isRegularFile)
                 .map(Path::toFile);
-
-        return fileStream;
     }
 }

@@ -25,11 +25,11 @@ public class JavaGrepImp implements JavaGrep {
 	public static void main(String[] args){
 
 		if(args.length != 3){
-			throw new IllegalArgumentException("USAGE: JavaGrep regex rootPath outFile");
+			throw new IllegalArgumentException("USAGE: JavaGrepImp regex rootPath outFile");
 		}
 
 		else{
-			System.out.println("-- JavaGrepImp Class --");
+			System.out.println("--- JavaGrepImp Class ---");
 		}
 
 		BasicConfigurator.configure();
@@ -55,20 +55,21 @@ public class JavaGrepImp implements JavaGrep {
 		System.out.println("regex: " + regex);
 		System.out.println("outfile: " + outFile);
 
-		List<File> emptyList = new ArrayList<File>();
-		Stream<File> listFilesRecursively = listFiles(rootPath, emptyList);
+		Stream<File> listFilesRecursively = listFiles(rootPath);
 		List<String> matchedLinesList = new ArrayList<String>();
 
-		// ticket pseudocode implemented using streams
+		// ticket pseudocode implemented using lambda/streams
 		listFilesRecursively.forEach(file -> {
 			try {
+				// read all lines in a file and filter by regex pattern
 				Stream<String> matchedLinesStream = readLines(file).filter(line -> containsPattern(line));
 				matchedLinesStream.forEach(line -> matchedLinesList.add(line));
-			} catch (IOException e) {
-				throw new RuntimeException(e);
+			} catch (IOException ex) {
+				throw new RuntimeException(ex);
 			}
 		});
 
+		// write matched lines to outFile
 		writeToFile(matchedLinesList);
 
 		// logger test
@@ -79,15 +80,15 @@ public class JavaGrepImp implements JavaGrep {
 	// adds all files in a directory (stream walking) to a stream of files
 	// NOTE: function signature was initially changed from template to properly do recursion
 	@Override
-	public Stream<File> listFiles(String rootDir, List<File> listOfFiles) throws IOException {
+	public Stream<File> listFiles(String rootDir) throws IOException {
 
 		String directory = rootDir;
-		List<File> validFiles = listOfFiles;
+		List<File> validFiles = new ArrayList<File>();
 
 		// stream walking through files in a directory
 		// filter if valid file, and add the filepath to the list of valid files
-		try (Stream<Path> stream = Files.walk(Paths.get(directory))) {
-			stream.map(Path::normalize)
+		try (Stream<Path> tempStream = Files.walk(Paths.get(directory))) {
+			tempStream.map(Path::normalize)
 					.filter(path-> Files.isRegularFile(path))
 					.forEach(path -> validFiles.add(path.toFile()));
 
@@ -144,6 +145,7 @@ public class JavaGrepImp implements JavaGrep {
 			myWriter.close();
 			System.out.println("Successfully wrote to the file!");
 		} catch (IOException ex){
+			logger.error("Error: Unable to write to file", ex);
 			ex.printStackTrace();
 		}
 	}

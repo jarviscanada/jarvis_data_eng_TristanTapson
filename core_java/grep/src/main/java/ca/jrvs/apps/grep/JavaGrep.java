@@ -23,7 +23,7 @@ public interface JavaGrep {
 	 * @return files under the rootDir
 	 * @throws IOException if a given files list is not a list of files
 	 */
-	Stream<File> listFiles(String rootDir, List<File> files) throws IOException;
+	Stream<File> listFiles(String rootDir) throws IOException;
 
 	/**
 	 *
