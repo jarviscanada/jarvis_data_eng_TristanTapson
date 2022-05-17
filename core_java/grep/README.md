@@ -47,10 +47,10 @@ The process method uses helper functions to get our desired output of a single f
 Due to the nature of this program, many files can be processed, varying in size. To ensure this app is able to process large amounts of data with a small memory heap, Stream APIs are used; the behaviour of stream chain processing helps in reducing the number of operations and iterations on data elements, thus reducing required memory and time.
 
 ## Test 
-To test the java program, work was completed with IntelliJ in a linux virtual machine, primarily operated using the Command Line Interface; the end goal of the project is to provide a fast and efficient way to parse through a directory for key information using the concepts of regular expressions. Also applied to testing was the debugger found in IntelliJ, which was crucial in finding an issue with the listFiles function where it was not traversing subdirectories.
+To test the java program, work was completed with IntelliJ in a linux virtual machine, primarily operated using the Command Line Interface; the end goal of the project is to provide a fast and efficient way to parse through a directory for key information using the concepts of regular expressions. Also applied to testing was the debugger found in IntelliJ, which was crucial in finding an issue with the listFiles function where it was not traversing subdirectories correctly.
 
 <p align="center">
-    <img width="560" src="./assets/sampleOutput.PNG" alt="">
+    <img width="500" src="./assets/sampleOutput.PNG" alt="">
 </p>
 <p align="center">
     <i>sample output for a regular expression looking for lines containing Romeo, followed by Juliet</i>
