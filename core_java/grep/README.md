@@ -2,7 +2,7 @@
 
 ## Introduction
 
-To filter through a directory of files is a task that can be difficult to do, especially if you are looking for specific information in said file. To do so, regular expressions can be used as a metric to filter through files that contain this parameter. With the use of docker provisioning alongside Java and Java Stream API's, this program is able to provide its end user a list of files in a given directory (and it's subdirectories) all files that contain a specified regular expression.
+To filter through a directory of files is a task that can be difficult to do, especially if you are looking for specific information in said file. To do so, regular expressions can be used as a metric to filter through files that contain this parameter. With the use of docker provisioning alongside Java and Java Stream APIs, this program is able to provide its end user a list of files in a given directory (and it's subdirectories) all files that contain a specified regular expression.
 
 Technologies used: Git, IntelliJ, Linux, Maven, Docker, Jar, Java, Stream APIs
 
@@ -21,8 +21,8 @@ docker run --rm \
 tristantapson8/grep [regex] [rootPath] [outFile]
 ```
 
-## Implemenation
-To implement the project, Java and Stream API's were used. Within the ***JavaGrepImp.java*** file, is a runner method called `process`, which dictates the entire flow of the program, using various helper methods. Below is the pseudocode for process:
+## Implementation
+To implement the project, Java and Stream APIs were used. Within the ***JavaGrepImp.java*** file, is a runner method called `process`, which dictates the entire flow of the program, using various helper methods. Below is the pseudocode for process:
 
 ```
 matchedLines = []
