@@ -130,11 +130,11 @@ For the purpose of this assignment, the app code (scripts & sql files) is stored
 
 ## Improvements
 Listed below are three improvements that could be added to the application to improve it:
-- **handle hardware updates**
+- **Handle Hardware Updates:**
 Computer hardware may be updated, and it would be useful to have a script that allows for a user to update these changes within the database tables.
 
-- **database creation**
+- **Database Creation:**
 Although we are to assume the appropriate database has been created, it is also recommended that we create the database before hand (either using a script or sql create) if the project is ported onto other machines. 
 
-- **single run script**
+- **Single Run Script:**
 By having a single run script in addition to including the afformentioned database creation change, we could entirely automate the process. In addition, it would also be good practice to create either a terminal output or log file that will let the user know which part of the cluster agent program failed, assuming we are structuring our single run script to use all the scripts we have initially created for this program.
