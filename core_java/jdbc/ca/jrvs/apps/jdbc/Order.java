@@ -187,20 +187,20 @@ public class Order implements DataTransferObject {
         this.orderLines = orderLines;
     }
 
+    // NOTE: toString method reformatted for README screenshot...
     @Override
     public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", customerFirstName='" + customerFirstName + '\'' +
-                ", customerLastName='" + customerLastName + '\'' +
-                ", customerEmail='" + customerEmail + '\'' +
-                ", creationDate=" + creationDate +
-                ", totalDue=" + totalDue +
-                ", status='" + status + '\'' +
-                ", salespersonFirstName='" + salespersonFirstName + '\'' +
-                ", salespersonLastName='" + salespersonLastName + '\'' +
-                ", salespersonEmail='" + salespersonEmail + '\'' +
-                ", orderLines=" + orderLines.toString() +
+        return "Order (id=" + id + "){\n" +
+                "customerFirstName='" + customerFirstName + '\'' + "\n" +
+                "customerLastName='" + customerLastName + '\'' + "\n" +
+                "customerEmail='" + customerEmail + '\'' + "\n" +
+                "creationDate=" + creationDate + "\n" +
+                "totalDue=" + totalDue + "\n" +
+                "status='" + status + '\'' + "\n" +
+                "salespersonFirstName='" + salespersonFirstName + '\'' + "\n" +
+                "salespersonLastName='" + salespersonLastName + '\'' + "\n" +
+                "salespersonEmail='" + salespersonEmail + '\'' + "\n" +
+                "orderLines=" + orderLines.toString() + "\n" +
                 '}';
     }
 }

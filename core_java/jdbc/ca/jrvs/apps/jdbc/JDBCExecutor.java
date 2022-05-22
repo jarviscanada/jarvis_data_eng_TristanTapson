@@ -8,13 +8,15 @@ import java.sql.Statement;
 public class JDBCExecutor {
 
     public static void main(String[] args) {
-        System.out.println("JDBC Executor Class!");
+        System.out.println("--- JDBC Executor Class ---");
         DatabaseConnectionManager dcm = new DatabaseConnectionManager("localhost", "hplussport", "postgres", "db_password");
         try{
             Connection connection = dcm.getConnection();
             OrderDAO orderDAO = new OrderDAO(connection);
-            Order order = orderDAO.findById(1001);
-            System.out.println(order);
+            Order order1 = orderDAO.findById(1000);
+            Order order2 = orderDAO.findById(1001);
+            System.out.println(order1);
+            System.out.println(order2);
 
             /*Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM CUSTOMER");
