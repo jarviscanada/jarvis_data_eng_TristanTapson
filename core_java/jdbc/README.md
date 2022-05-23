@@ -51,7 +51,7 @@ Once the docker is running, log in to the database, and then execute the downloa
 Lastly, the ***JDBCExecutor*** class is used to establish a connection to our database. Queries can now be performed on the database using DAO objects - in this project, we are using CRUD (Create, Read, Update, Delete) operations to manage and manipulate our stored data. To make sure these functions were fully operational, the methods were tested within the ***JDBCExececutor*** class, while querying the psql database afterwards to ensure that the operation had performed as intended.
 
 <p align="center">
-    <img width="510" height="350" src="./assets/sampleOutput.PNG" alt="">
+    <img width="510" height="260" src="./assets/sampleOutput.PNG" alt="">
 </p>
 <p align="center">
     <i>sample query of persisted order data within the database</i>
