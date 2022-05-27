@@ -7,7 +7,7 @@ package ca.jrvs.practice.codingChallenge;
  */
 
 public class ReverseLinkedList {
-    
+
     /**
      * Big-O:
      * Justification:
