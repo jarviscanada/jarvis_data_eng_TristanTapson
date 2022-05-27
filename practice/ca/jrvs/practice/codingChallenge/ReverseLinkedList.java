@@ -2,8 +2,9 @@ package ca.jrvs.practice.codingChallenge;
 
 /**
  * ticket: https://www.notion.so/Reverse-Linked-List-3111660b5d8c4af08ffb52be1d28d3ff
- * description:
- * Given the head of a singly linked list, reverse the list, and return the reversed list.
+ *
+ * description: Given the head of a singly linked list, reverse the list, and
+ *              return the reversed list.
  */
 
 public class ReverseLinkedList {
@@ -27,7 +28,7 @@ public class ReverseLinkedList {
                 next.printAll();
             }
             if(next == null){
-                System.out.println("");
+                System.out.println("null");
             }
         }
   }

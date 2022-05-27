@@ -5,10 +5,13 @@ import java.util.Map;
 
 /**
  * ticket: https://www.notion.so/jarvisdev/Valid-Anagram-b8708bd705574ecfa14ebf5cbb759c95
- * description:
- * Given two strings s and t, return true if t is an anagram of s, and false otherwise.
  *
- * An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+ * description: An Anagram is a word or phrase formed by rearranging the letters
+ *              of a different word or phrase, typically using all the original
+ *              letters exactly once.
+ *
+ *              Given two strings s and t, return true if t is an anagram of s,
+ *              and false otherwise.
  */
 public class ValidAnagram {
 

@@ -4,10 +4,14 @@ import static java.lang.Character.toLowerCase;
 
 /**
  * ticket: https://www.notion.so/jarvisdev/Valid-Palindrome-28f431e7be9f4e888658b9f3ebdca03f
- * description:
- * A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
  *
- * Given a string s, return true if it is a palindrome, or false otherwise.
+ * description: A phrase is a palindrome if, after converting all uppercase
+ *              letters into lowercase letters and removing all non-alphanumeric
+ *              characters, it reads the same forward and backward. Alphanumeric
+ *              characters include letters and numbers.
+ *
+ *              Given a string s, return true if it is a palindrome, or false
+ *              otherwise.
  */
 public class ValidPalindrome {
 
