@@ -20,7 +20,7 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_TristanTap
 **Core Java Apps** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/core_java)]:
       
   - Twitter App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam.
-  - JDBC App: Implemented a JDBC app that connected to a postgreSQL database. CRUD (Create, Read, Update, Delete) operations could also be perfomed to update the database, and manipulate and modify relevant information; here, the Data Access Object (DAO) design pattern is used, and queried using SQL.
+  - JDBC App: Implemented a JDBC app that connects to a postgreSQL database. CRUD (Create, Read, Update, Delete) operations are performed to update the database, and they manipulate and modify relevant information; here, the Data Access Object (DAO) design pattern is used while the database is queried using SQL.
   - Grep App: Created a grep app in Java that allows for the search of files within a root directories and its subdirectories, returning all lines containing a specified regular expression. The app is very similar to the grep command in Linux, and also uses stream APIs and lambda notation to handle insufficient memory.
 
 **Springboot App** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/springboot)]: Not Started
