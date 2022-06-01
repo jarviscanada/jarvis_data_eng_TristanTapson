@@ -1,6 +1,6 @@
 # Tristan Tapson . Jarvis Consulting
 
-I am a recent McMaster University Computer Science graduate looking to practice my skills in a professional environment; currently, I am working for Jarvis Consulting as a software developer. Since high school, I have always enjoy the wide range of problems that programming can let me solve, as well as the many complexed challenges that accompany working towards a well structured solution. I have also tutored high school students in mathematics and programming. Coding is an excellent tool to utilize in solving many various problems that we encounter in our lives, and can also be used to make our lives substantially easier if applied correctly.
+I am a recent McMaster University Computer Science graduate looking to practice my skills in a professional environment; currently, I am working for Jarvis Consulting as a software developer. Since high school, I have always enjoyed the wide range of problems that programming can let me solve, as well as the many complexed challenges that accompany working towards a well structured solution. I have also tutored high school students in mathematics and programming. Coding is an excellent tool to utilize in solving many various problems that we encounter in our lives, and can also be used to make our lives substantially easier if applied correctly.
 
 ## Skills
 
