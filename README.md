@@ -15,13 +15,13 @@ I am a recent McMaster University Computer Science graduate looking to practice 
 Project source code: [https://github.com/jarviscanada/jarvis_data_eng_TristanTapson](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson)
 
 
-**Cluster Monitor** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/linux_sql)]: Developed a linux cluster monitoring agent that stored key hardware information and usage within a database within a client-server architecture. A postgreSQL database is provisioned on a client machine using docker, and a bash agent collects relevant information to be stored within the database tables. In addition, the afformention inforation is retrived at periodical intervals with Crontab, and the database is queried using SQL.
+**Cluster Monitor** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/linux_sql)]: Developed a linux cluster monitoring agent that stored key hardware information and usage within a database within a client-server architecture. A postgreSQL database is provisioned on a client machine using docker, and a bash agent collects relevant information to be stored within the database tables. In addition, the afformention inforation is retrived at periodical intervals with Crontab, and the database is queried using SQL.
 
 **Core Java Apps** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/core_java)]:
       
   - Twitter App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam.
-  - JDBC App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam.
-  - Grep App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam.
+  - JDBC App: Implemented a JDBC app that connected to a postgreSQL database. CRUD (Create, Read, Update, Delete) operations could also be perfomed to update the database, and manipulate and modify relevant information; here, the Data Access Object (DAO) design pattern is used, and queried using SQL.
+  - Grep App: Created a grep app in Java that allows for the search of files within a root directories and its subdirectories, returning all lines containing a specified regular expression. The app is very similar to the grep command in Linux, and also uses stream APIs and lambda notation to handle insufficient memory.
 
 **Springboot App** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/springboot)]: Not Started
 
@@ -35,7 +35,7 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_TristanTap
 
 
 ## Highlighted Projects
-**Personal Webpage** [[GitHub](https://github.com/tristantapson8/tristantapson8.github.io)]: Built a personal webpage to display my skills in an interactive format, as well as showcase my skills in web development; tools used were HTML and CSS. Website can be found at https://tristantapson8.github.io/
+**Personal Webpage** [[GitHub](https://github.com/tristantapson8/tristantapson8.github.io)]: Built a personal webpage to display my skills in an interactive format, as well as to showcase my skills in web development; tools used were HTML and CSS. Website can be found at: https://tristantapson8.github.io/
 
 
 ## Professional Experiences
