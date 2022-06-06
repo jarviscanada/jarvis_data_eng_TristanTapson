@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UserMention {
 
     @JsonProperty("id")
-    private long id;
+    private Long id;
 
     @JsonProperty("id_str")
     private String id_str;
@@ -55,11 +55,11 @@ public class UserMention {
         this.id_str = id_str;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

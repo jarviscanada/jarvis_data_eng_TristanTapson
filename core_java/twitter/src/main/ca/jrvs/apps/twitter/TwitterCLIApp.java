@@ -74,7 +74,7 @@ public class TwitterCLIApp {
         TwitterDao dao = new TwitterDao(helper);
         //dao.create(myTweet);
         //dao.findById("1532776590240796679");
-        dao.deleteById("1533767166012669957");
+        dao.deleteById("1533777523007533056");
     }
 
     public static final String sampleJson =
@@ -83,7 +83,7 @@ public class TwitterCLIApp {
                    "   \"created_at\":\"Mon Feb 18 21:24:39 +0000 2019\",\n" +
                    "   \"id\":1097607853932564480,\n" +
                    "   \"id_str\":\"1097607853932564480\",\n" +
-                   "   \"text\":\"test with loc223 !!!!!\",\n" +
+                   "   \"text\":\"test with loc223 (dao)\",\n" +
                    "   \"entities\":{\n" +
                    "      \"hashtags\":[],\n" +
                    "      \"user_mentions\":[]\n" +
