@@ -5,11 +5,13 @@ import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import oauth.signpost.exception.OAuthCommunicationException;
 import oauth.signpost.exception.OAuthExpectationFailedException;
 import oauth.signpost.exception.OAuthMessageSignerException;
+import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
@@ -36,7 +38,7 @@ public class TwitterHttpHelper implements HttpHelper{
      * @param tokenSecret
      */
     public TwitterHttpHelper(String consumerKey, String consumerSecret,
-        String accessToken, String tokenSecret){
+                             String accessToken, String tokenSecret){
         consumer = new CommonsHttpOAuthConsumer(consumerKey, consumerSecret);
         consumer.setTokenWithSecret(accessToken, tokenSecret);
 
@@ -49,9 +51,10 @@ public class TwitterHttpHelper implements HttpHelper{
 
         HttpPost postRequest = new HttpPost(uri);
         consumer.sign(postRequest);
-        HttpResponse response = httpClient.execute(postRequest);
-        System.out.println(EntityUtils.toString(response.getEntity()));
-        return response;
+
+        httpClient = HttpClientBuilder.create().build();
+        //System.out.println(EntityUtils.toString(request.getEntity()));
+        return httpClient.execute(postRequest);
 
     }
 
@@ -60,8 +63,9 @@ public class TwitterHttpHelper implements HttpHelper{
 
         HttpGet getRequest = new HttpGet(uri);
         consumer.sign(getRequest);
-        HttpResponse response = httpClient.execute(getRequest);
-        System.out.println(EntityUtils.toString(response.getEntity()));
-        return response;
+
+        httpClient = HttpClientBuilder.create().build();
+        //System.out.println(EntityUtils.toString(request.getEntity()));
+        return httpClient.execute(getRequest);
     }
 }
