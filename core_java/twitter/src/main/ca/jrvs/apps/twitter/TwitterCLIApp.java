@@ -27,7 +27,7 @@ public class TwitterCLIApp {
         // TODO: test using JUnit, rather than main...
         //          clean this up later after implementing JUnit testing...
 
-        System.out.println("--- TwitterCLIApp class! ---");
+        System.out.println("--- TwitterCLIApp Class ---");
 
         // env vars test
         System.out.println("consumer_key = " + CONSUMER_KEY);
@@ -73,8 +73,8 @@ public class TwitterCLIApp {
 
         TwitterDao dao = new TwitterDao(helper);
         //dao.create(myTweet);
-        //dao.findById("1532776590240796679");
-        dao.deleteById("1533777523007533056");
+        //dao.findById("1533925395942330368");
+        //dao.deleteById("1534010613181071362");
     }
 
     public static final String sampleJson =

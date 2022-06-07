@@ -3,6 +3,7 @@ package src.main.ca.jrvs.apps.twitter.dao.helper;
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import oauth.signpost.exception.OAuthCommunicationException;
+import oauth.signpost.exception.OAuthException;
 import oauth.signpost.exception.OAuthExpectationFailedException;
 import oauth.signpost.exception.OAuthMessageSignerException;
 import org.apache.http.HttpRequest;
@@ -17,9 +18,6 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.net.URI;
 
-/** TODO: make the get/post request modular b/c they are similar
- *          also include a try/catch in the http get/post functions after modularizing
- */
 public class TwitterHttpHelper implements HttpHelper{
 
     /**
@@ -39,6 +37,7 @@ public class TwitterHttpHelper implements HttpHelper{
      */
     public TwitterHttpHelper(String consumerKey, String consumerSecret,
                              String accessToken, String tokenSecret){
+        // set up OAuth
         consumer = new CommonsHttpOAuthConsumer(consumerKey, consumerSecret);
         consumer.setTokenWithSecret(accessToken, tokenSecret);
 
@@ -49,23 +48,33 @@ public class TwitterHttpHelper implements HttpHelper{
     @Override
     public HttpResponse httpPost(URI uri) throws OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException, IOException {
 
+        // create an http POST request, then sign and send the request
         HttpPost postRequest = new HttpPost(uri);
         consumer.sign(postRequest);
-
         httpClient = HttpClientBuilder.create().build();
-        //System.out.println(EntityUtils.toString(request.getEntity()));
-        return httpClient.execute(postRequest);
+
+        // try-catch block for request execution
+        try {
+            return httpClient.execute(postRequest);
+        } catch (IOException ex){
+            throw new RuntimeException("Failed to execute POST request", ex);
+        }
 
     }
 
     @Override
     public HttpResponse httpGet(URI uri) throws OAuthMessageSignerException, OAuthExpectationFailedException, OAuthCommunicationException, IOException {
 
+        // create an http GET request, then sign and send the request
         HttpGet getRequest = new HttpGet(uri);
         consumer.sign(getRequest);
-
         httpClient = HttpClientBuilder.create().build();
-        //System.out.println(EntityUtils.toString(request.getEntity()));
-        return httpClient.execute(getRequest);
+
+        // try-catch block for request execution
+        try {
+            return httpClient.execute(getRequest);
+        } catch (IOException ex){
+            throw new RuntimeException("Failed to execute GET request", ex);
+        }
     }
 }
