@@ -9,14 +9,18 @@ import oauth.signpost.exception.OAuthMessageSignerException;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import src.main.ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import src.main.ca.jrvs.apps.twitter.example.JsonParser;
+import src.main.ca.jrvs.apps.twitter.example.dto.Company;
 import src.main.ca.jrvs.apps.twitter.model.Tweet;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+
+import static src.main.ca.jrvs.apps.twitter.example.JsonParser.toJson;
 
 @Component
 public class TwitterDao implements CrdDao<Tweet, String> {
@@ -92,6 +96,7 @@ public class TwitterDao implements CrdDao<Tweet, String> {
         } catch (IOException ex){
             throw new RuntimeException("Unable to convert JSON str to tweet object", ex);
         }
+
     }
 
     @Override
@@ -122,18 +127,22 @@ public class TwitterDao implements CrdDao<Tweet, String> {
         return formattedStr;
     }
 
+
     // creates tweet object from json, and prints the tweet object as pretty json
     public Tweet tweetFormatter(HttpResponse response) throws IOException {
 
+        // TODO: delete print statements?
+
         // request headers as unformatted json string
         String jsonStr = EntityUtils.toString(response.getEntity());
-        System.out.println(jsonStr);
+        System.out.println("JSON: " + jsonStr);
 
         // create tweet object from json, and print the pretty json string
         Tweet tweet = JsonParser.toObjectFromJson(jsonStr, Tweet.class);
         String prettyJson = JsonParser.toJson(tweet,true,true);
-        System.out.println(prettyJson);
+        System.out.println("Pretty JSON: " + prettyJson);
 
         return tweet;
     }
 }
+

@@ -9,11 +9,15 @@ import com.google.gdata.util.common.base.PercentEscaper;
 import com.sun.jndi.toolkit.url.Uri;
 import src.main.ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper;
 import src.main.ca.jrvs.apps.twitter.example.JsonParser;
+import src.main.ca.jrvs.apps.twitter.example.dto.Company;
 import src.main.ca.jrvs.apps.twitter.model.*;
+import src.main.ca.jrvs.apps.twitter.service.TwitterService;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
+import static src.main.ca.jrvs.apps.twitter.example.JsonParser.toJson;
+
 
 public class TwitterCLIApp {
 
@@ -36,6 +40,7 @@ public class TwitterCLIApp {
         HttpHelper helper = new TwitterHttpHelper(CONSUMER_KEY,
                 CONSUMER_SECRET, ACCESS_TOKEN, TOKEN_SECRET);
         TwitterDao dao = new TwitterDao(helper);
+        TwitterService service = new TwitterService(dao);
 
     }
 }
