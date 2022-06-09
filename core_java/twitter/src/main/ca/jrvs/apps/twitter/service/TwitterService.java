@@ -54,11 +54,7 @@ public class TwitterService implements Service {
     public Tweet showTweet(String id, String[] fields) throws OAuthMessageSignerException, OAuthExpectationFailedException, URISyntaxException, IOException, OAuthCommunicationException {
 
         validateShowTweet(id, fields);
-
-        // TODO: fields? 
-        // List<String> fieldsList = Arrays.asList(fields);
-        // Tweet myTweet = (Tweet) dao.findById(id);
-        
+        // TODO: fields?
         return (Tweet) dao.findById(id);
     }
 
@@ -86,13 +82,13 @@ public class TwitterService implements Service {
     public List<Tweet> deleteTweets(String[] ids) throws OAuthMessageSignerException, OAuthExpectationFailedException, URISyntaxException, IOException, OAuthCommunicationException {
 
         validateDeleteTweets(ids);
-        List<Tweet> idList = new ArrayList<>();
+        List<Tweet> deletedTweets = new ArrayList<>();
 
         for(String id : ids){
-            idList.add((Tweet) dao.deleteById(id));
+            deletedTweets.add((Tweet) dao.deleteById(id));
         }
 
-        return idList;
+        return deletedTweets;
     }
 
     private void validateDeleteTweets(String[] ids) throws RuntimeException {

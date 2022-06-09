@@ -37,7 +37,7 @@ public class TwitterController implements Controller{
         String tweetText = args[1];
         String latlong = args[2];
 
-        // add the coordinates to a list using string split and lambda expressions
+        // add the coordinates to a list using string split and lambda expressions (try-catch this)
         List<Float> coords = new ArrayList<>();
         List<String> tempCoords = Stream.of(latlong.split(COORD_SEP))
                         .collect(Collectors.toList());
@@ -88,7 +88,7 @@ public class TwitterController implements Controller{
                     .collect(Collectors.toList());
 
             String[] fields = tempFields.stream().toArray(size -> new String[size]);
-            
+
             // create tweet using Service class
             Tweet formattedTweet = service.showTweet(tweetId, fields);
 
@@ -131,7 +131,7 @@ public class TwitterController implements Controller{
     }
 
     // valid float
-    public boolean validFloat(String floatStr) {
+    public boolean validFloat(String floatStr) throws RuntimeException {
         try {
             Float.parseFloat(floatStr);
             return true;
@@ -162,7 +162,7 @@ public class TwitterController implements Controller{
                 myTweet.setEntities(formattedTweet.getEntities());
                 break;
             case "coordinates":
-                // TODO: show/delete don't show the tweet coords, but create does?
+                // TODO: show/delete doesnt show the tweet coords, but create does?
                 // System.out.println("get coords: " + formattedTweet.getCoordinates());
                 myTweet.setCoordinates(formattedTweet.getCoordinates());
                 break;

@@ -58,12 +58,10 @@ public class TwitterDao implements CrdDao<Tweet, String> {
     @Override
     public Tweet create(Tweet entity) throws URISyntaxException, OAuthMessageSignerException, OAuthExpectationFailedException, IOException, OAuthCommunicationException {
 
-        System.out.println("creating tweet using DAO...");
-
         // POST (create) uri formatting
         String uriStr = API_BASE_URI + POST_PATH + QUERY_SYM
                 + STATUS + EQUAL + stringFormatter(entity.getText());
-        System.out.println("POST request uri: " + uriStr);
+        System.out.println("POST (update) request uri: " + uriStr);
         URI uri = new URI(uriStr);
 
         // post tweet using httpHelper class
@@ -80,11 +78,9 @@ public class TwitterDao implements CrdDao<Tweet, String> {
     @Override
     public Tweet findById(String s) throws URISyntaxException, OAuthMessageSignerException, OAuthExpectationFailedException, IOException, OAuthCommunicationException {
 
-        System.out.println("find tweet by id using DAO...");
-
         // GET uri formatting
         String uriStr = API_BASE_URI + SHOW_PATH + QUERY_SYM + ID + EQUAL + s;
-        System.out.println("GET request uri: " + uriStr);
+        System.out.println("GET (show) request uri: " + uriStr);
         URI uri = new URI(uriStr);
 
         // get tweet using httpHelper class
@@ -102,11 +98,9 @@ public class TwitterDao implements CrdDao<Tweet, String> {
     @Override
     public Tweet deleteById(String s) throws URISyntaxException, OAuthMessageSignerException, OAuthExpectationFailedException, IOException, OAuthCommunicationException {
 
-        System.out.println("delete tweet by id using DAO...");
-
         // POST (destroy) uri formatting
         String uriStr = API_BASE_URI + DELETE_PATH + SLASH + s + DOT_JSON;
-        System.out.println("POST request uri: " + uriStr);
+        System.out.println("POST (destroy) request uri: " + uriStr);
         URI uri = new URI(uriStr);
 
         // delete tweet using httpHelper class
