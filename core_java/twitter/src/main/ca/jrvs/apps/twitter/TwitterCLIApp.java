@@ -1,6 +1,7 @@
 package src.main.ca.jrvs.apps.twitter;
 
 import org.springframework.http.HttpMethod;
+import src.main.ca.jrvs.apps.twitter.controller.TwitterController;
 import src.main.ca.jrvs.apps.twitter.dao.CrdDao;
 import src.main.ca.jrvs.apps.twitter.dao.TwitterDao;
 import src.main.ca.jrvs.apps.twitter.dao.helper.HttpHelper;
@@ -41,6 +42,23 @@ public class TwitterCLIApp {
                 CONSUMER_SECRET, ACCESS_TOKEN, TOKEN_SECRET);
         TwitterDao dao = new TwitterDao(helper);
         TwitterService service = new TwitterService(dao);
+        TwitterController controller = new TwitterController(service);
 
+        String[] myArgsPost = {"post", "test post controller @tapsonte #test", "43:79"};
+        String[] myArgsShow = {"show", "1534784886027984897", "created_at,text,coordinates"};
+        String[] myArgsDelete = {"delete", "1534794763572060160,1534794822816505856"};
+
+        //Tweet test = controller.postTweet(myArgsPost);
+        Tweet test = controller.showTweet(myArgsShow);
+        //Tweet test = controller.deleteTweet(myArgsDelete);
+        String jsonTest = JsonParser.toJson(test,true,false);
+        System.out.println(jsonTest);
+
+        /*
+        List<Tweet> delTweets = controller.deleteTweet(myArgsDelete);
+        for (Tweet tweet : delTweets) {
+            String jsonTest = JsonParser.toJson(tweet, true, false);
+            System.out.println(jsonTest);
+        }*/
     }
 }

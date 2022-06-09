@@ -6,7 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class Coordinates {
 
     @JsonProperty("coordinates")
@@ -17,6 +17,14 @@ public class Coordinates {
 
     // getters and setters
 
+    public List<Float> getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(List<Float> coordinates) {
+        this.coordinates = coordinates;
+    }
+
     public String getType() {
         return type;
     }
@@ -25,11 +33,5 @@ public class Coordinates {
         this.type = type;
     }
 
-    public List<Float> getCoordinates() {
-        return coordinates;
-    }
 
-    public void setCoordinates(List<Float> coordinates) {
-        this.coordinates = coordinates;
-    }
 }

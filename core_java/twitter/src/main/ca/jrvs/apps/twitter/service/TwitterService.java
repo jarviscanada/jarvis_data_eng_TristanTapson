@@ -39,7 +39,6 @@ public class TwitterService implements Service {
         Float latitude = tweet.getCoordinates().getCoordinates().get(1);
 
         // check tweet text length
-        System.out.println("Attempting to validate tweet using Service...");
         if (text.length() > 140) {
             throw new RuntimeException("Tweet length exceeds 140 characters");
         }

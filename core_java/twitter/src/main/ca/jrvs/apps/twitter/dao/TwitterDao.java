@@ -135,14 +135,13 @@ public class TwitterDao implements CrdDao<Tweet, String> {
 
         // request headers as unformatted json string
         String jsonStr = EntityUtils.toString(response.getEntity());
-        System.out.println("JSON: " + jsonStr);
+        //System.out.println("JSON: " + jsonStr);
 
         // create tweet object from json, and print the pretty json string
         Tweet tweet = JsonParser.toObjectFromJson(jsonStr, Tweet.class);
         String prettyJson = JsonParser.toJson(tweet,true,true);
-        System.out.println("Pretty JSON: " + prettyJson);
+        //System.out.println("Pretty JSON: " + prettyJson);
 
         return tweet;
     }
 }
-

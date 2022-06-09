@@ -34,8 +34,8 @@ public class TwitterDaoTest {
     public TwitterDaoTest() throws IOException {
     }
 
-    @Ignore("temp ignore")
-    @Test
+    //@Ignore("temp ignore")
+    //@Test
     public void create() throws URISyntaxException, OAuthMessageSignerException, OAuthExpectationFailedException, IOException, OAuthCommunicationException {
 
         // env vars test
@@ -49,10 +49,11 @@ public class TwitterDaoTest {
         // create method test
         System.out.println("JUNIT test: TwitterDAO.create");
         dao.create(myTweet);
+        //System.out.println(myTweet.getCoordinates().getCoordinates().toString());
 
     }
 
-    @Ignore("temp ignore")
+    //@Ignore("temp ignore")
     @Test
     public void findById() throws URISyntaxException, OAuthMessageSignerException, OAuthExpectationFailedException, IOException, OAuthCommunicationException {
 
@@ -66,12 +67,12 @@ public class TwitterDaoTest {
         // TODO: assert testing, rather than compile testing...
         // findById method test
         System.out.println("JUNIT test: TwitterDAO.findById");
-        dao.findById("1533718066793693184");
+        dao.findById("1534776932298067969");
 
     }
 
     //@Ignore("temp ignore")
-    @Test
+    //@Test
     public void deleteById() throws URISyntaxException, OAuthMessageSignerException, OAuthExpectationFailedException, IOException, OAuthCommunicationException {
 
         // env vars test
@@ -95,12 +96,51 @@ public class TwitterDaoTest {
                     "   \"created_at\":\"Mon Feb 18 21:24:39 +0000 2019\",\n" +
                     "   \"id\":1097607853932564480,\n" +
                     "   \"id_str\":\"1097607853932564480\",\n" +
-                    "   \"text\":\"test with loc223 (JUnit)\",\n" +
+                    "   \"text\":\"test with loc223 @tapsonte #test Unit Test\",\n" +
                     "   \"entities\":{\n" +
-                    "      \"hashtags\":[],\n" +
-                    "      \"user_mentions\":[]\n" +
+                    "      \"hashtags\":[\n" +
+                    "         {\n" +
+                    "            \"text\":\"documentation\",\n" +
+                    "            \"indices\":[\n" +
+                    "               211,\n" +
+                    "               225\n" +
+                    "            ]\n" +
+                    "         },\n" +
+                    "         {\n" +
+                    "            \"text\":\"parsingJSON\",\n" +
+                    "            \"indices\":[\n" +
+                    "               226,\n" +
+                    "               238\n" +
+                    "            ]\n" +
+                    "         },\n" +
+                    "         {\n" +
+                    "            \"text\":\"GeoTagged\",\n" +
+                    "            \"indices\":[\n" +
+                    "               239,\n" +
+                    "               249\n" +
+                    "            ]\n" +
+                    "         }\n" +
+                    "      ],\n" +
+                    "      \"user_mentions\":[\n" +
+                    "         {\n" +
+                    "            \"name\":\"Twitter API\",\n" +
+                    "            \"indices\":[\n" +
+                    "               4,\n" +
+                    "               15\n" +
+                    "            ],\n" +
+                    "            \"screen_name\":\"twitterapi\",\n" +
+                    "            \"id\":6253282,\n" +
+                    "            \"id_str\":\"6253282\"\n" +
+                    "         }\n" +
+                    "      ]\n" +
                     "   },\n" +
-                    "   \"coordinates\":null,\n" +
+                    "   \"coordinates\":{\n" +
+                    "      \"coordinates\":[\n" +
+                    "         -75.14310264,\n" +
+                    "         40.05701649\n" +
+                    "      ],\n" +
+                    "      \"type\":\"Point\"\n" +
+                    "   },\n" +
                     "   \"retweet_count\":0,\n" +
                     "   \"favorite_count\":0,\n" +
                     "   \"favorited\":false,\n" +
