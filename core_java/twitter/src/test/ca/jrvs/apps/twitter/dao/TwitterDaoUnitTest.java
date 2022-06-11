@@ -35,6 +35,8 @@ public class TwitterDaoUnitTest {
     @InjectMocks
     TwitterDao dao;
 
+    // TODO: create & delete, and code cleanup
+
     @Before
     public void setUp() throws Exception {
         // env vars
@@ -53,9 +55,6 @@ public class TwitterDaoUnitTest {
 
         myTweet = JsonParser.toObjectFromJson(sampleJson, Tweet.class);
 
-        mockHelper = new TwitterHttpHelper(CONSUMER_KEY,
-                CONSUMER_SECRET, ACCESS_TOKEN, TOKEN_SECRET);
-        dao = new TwitterDao(mockHelper);
     }
 
     @After
@@ -63,7 +62,7 @@ public class TwitterDaoUnitTest {
         // TODO: null vars
     }
 
-    @Test
+    //@Test
     public void create() throws OAuthMessageSignerException, OAuthExpectationFailedException, URISyntaxException, IOException, OAuthCommunicationException {
 
         Tweet sampleTweet = JsonParser.toObjectFromJson(sampleJson, Tweet.class);
@@ -81,23 +80,44 @@ public class TwitterDaoUnitTest {
         assertNotNull(tweet);
     }
 
-    //@Test
+    @Test
     public void findById() throws OAuthMessageSignerException, OAuthExpectationFailedException, URISyntaxException, IOException, OAuthCommunicationException {
 
-        String id = "1535400180819820547";
+        //TODO: mockito fix (basically its creating a "mock" instance of HttpHelper via the @Mock tag
 
-        //lenient().when(mockHelper.httpGet(isNotNull())).thenThrow(new RuntimeException());
-        try{
+        String id = "1535458118318047235";
+
+        /* exception is expected here (unnecessary code...)
+        when(mockHelper.httpGet(isNotNull())).thenThrow(new RuntimeException("mock"));
+        if(mockHelper == null){
+            System.out.println("null");
+        }
+        else{
+            System.out.println("not null");
+        }*/
+
+        try {
             dao.findById(id);
-        } catch (RuntimeException ex){
+            fail();
+        } catch (RuntimeException e) {
             assertTrue(true);
         }
 
-        TwitterDao spyDao = Mockito.spy(dao);
-        Tweet tweet = spyDao.findById(id);
+        when(mockHelper.httpGet(isNotNull())).thenReturn(null);
+        TwitterDao spyDAO = Mockito.spy(dao);
+        Tweet expectedTweet = JsonParser.toObjectFromJson(sampleJson, Tweet.class);
 
-        // assertion test to see if tweet object was found
-        assertNotNull(tweet);
+        // mock tweet
+        doReturn(expectedTweet).when(spyDAO).tweetFormatter(any());
+        // actual tweet
+        Tweet spyTweet = spyDAO.findById(id);
+
+        // TODO: more assertion tests?
+        // assertion tests
+        assertNotNull(spyTweet);
+        assertNotNull(expectedTweet.getText());
+        assertEquals(expectedTweet, spyTweet); // expectedTweet and spyTweet should be the same
+
     }
 
     //@Test
@@ -111,6 +131,7 @@ public class TwitterDaoUnitTest {
             assertTrue(true);
         }
 
+        when(mockHelper.httpGet(isNotNull())).thenReturn(null);
         TwitterDao spyDao = Mockito.spy(dao);
         Tweet tweet = spyDao.deleteById(id);
 
