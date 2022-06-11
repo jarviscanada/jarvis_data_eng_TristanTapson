@@ -130,6 +130,7 @@ public class TwitterController implements Controller{
         return deletedTweets;
     }
 
+    // TODO : delete this method, business logic should only be handled in service
     // valid float
     public boolean validFloat(String floatStr) throws RuntimeException {
         try {

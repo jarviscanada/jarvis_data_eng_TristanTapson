@@ -1,38 +1,42 @@
-package src.test.ca.jrvs.apps.twitter.service;
+package src.test.ca.jrvs.apps.twitter.dao;
 
 import oauth.signpost.exception.OAuthCommunicationException;
 import oauth.signpost.exception.OAuthExpectationFailedException;
 import oauth.signpost.exception.OAuthMessageSignerException;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 import src.main.ca.jrvs.apps.twitter.dao.TwitterDao;
 import src.main.ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import src.main.ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper;
 import src.main.ca.jrvs.apps.twitter.example.JsonParser;
 import src.main.ca.jrvs.apps.twitter.model.Tweet;
-import src.main.ca.jrvs.apps.twitter.service.TwitterService;
+
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.isNotNull;
+import static org.mockito.Mockito.*;
 
-public class TwitterServiceIntTest {
+@RunWith(MockitoJUnitRunner.class)
+public class TwitterDaoUnitTest {
 
     Tweet myTweet;
-    HttpHelper helper;
+    @Mock
+    HttpHelper mockHelper;
+    @InjectMocks
     TwitterDao dao;
-    TwitterService service;
-
-    // constructor
-    public TwitterServiceIntTest() throws IOException {};
 
     @Before
     public void setUp() throws Exception {
-
         // env vars
         String CONSUMER_KEY = System.getenv("consumerKey");
         String CONSUMER_SECRET = System.getenv("consumerSecret");
@@ -49,58 +53,69 @@ public class TwitterServiceIntTest {
 
         myTweet = JsonParser.toObjectFromJson(sampleJson, Tweet.class);
 
-        helper = new TwitterHttpHelper(CONSUMER_KEY,
+        mockHelper = new TwitterHttpHelper(CONSUMER_KEY,
                 CONSUMER_SECRET, ACCESS_TOKEN, TOKEN_SECRET);
-        dao = new TwitterDao(helper);
-        service = new TwitterService(dao);
+        dao = new TwitterDao(mockHelper);
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         // TODO: null vars
     }
 
-    @Ignore
     @Test
-    public void postTweet() throws OAuthMessageSignerException, OAuthExpectationFailedException, URISyntaxException, IOException, OAuthCommunicationException {
+    public void create() throws OAuthMessageSignerException, OAuthExpectationFailedException, URISyntaxException, IOException, OAuthCommunicationException {
 
-        // postTweet method test
-        System.out.println("JUnit test: TwitterService.postTweet");
-        Tweet tweet = service.postTweet(myTweet);
-        System.out.println(JsonParser.toJson(tweet, true, false));
+        Tweet sampleTweet = JsonParser.toObjectFromJson(sampleJson, Tweet.class);
 
-    }
-
-    @Ignore
-    @Test
-    public void showTweet() throws OAuthMessageSignerException, OAuthExpectationFailedException, URISyntaxException, IOException, OAuthCommunicationException {
-
-        String id = "1535451574331396097";
-        String field1 = "created_at";
-        String field2 = "text";
-        String[] fields = {field1, field2};
-
-        // showTweet method test
-        System.out.println("JUnit test: TwitterService.showTweet");
-        Tweet tweet = service.showTweet(id, fields);
-        System.out.println(JsonParser.toJson(tweet, true, false));
-
-    }
-
-    @Ignore
-    @Test
-    public void deleteTweets() throws OAuthMessageSignerException, OAuthExpectationFailedException, URISyntaxException, IOException, OAuthCommunicationException {
-
-        String id1 = "1535451550738530306";
-        String id2 = "1535451574331396097";
-        String[] ids = {id1, id2};
-
-        // deleteTweets method test
-        System.out.println("JUnit test: TwitterService.deleteTweets");
-        List<Tweet> deletedTweets = service.deleteTweets(ids);
-        for(Tweet tweet : deletedTweets) {
-            System.out.println(JsonParser.toJson(tweet, true, false));
+        try{
+            dao.create(sampleTweet);
+        } catch (RuntimeException ex){
+            assertTrue(true);
         }
+
+        TwitterDao spyDao = Mockito.spy(dao);
+        Tweet tweet = spyDao.create(sampleTweet);
+
+        // assertion test to see if tweet object was created
+        assertNotNull(tweet);
+    }
+
+    //@Test
+    public void findById() throws OAuthMessageSignerException, OAuthExpectationFailedException, URISyntaxException, IOException, OAuthCommunicationException {
+
+        String id = "1535400180819820547";
+
+        //lenient().when(mockHelper.httpGet(isNotNull())).thenThrow(new RuntimeException());
+        try{
+            dao.findById(id);
+        } catch (RuntimeException ex){
+            assertTrue(true);
+        }
+
+        TwitterDao spyDao = Mockito.spy(dao);
+        Tweet tweet = spyDao.findById(id);
+
+        // assertion test to see if tweet object was found
+        assertNotNull(tweet);
+    }
+
+    //@Test
+    public void deleteById() throws URISyntaxException, OAuthMessageSignerException, OAuthExpectationFailedException, IOException, OAuthCommunicationException {
+
+        String id = "1535447651608674304";
+
+        try{
+            dao.deleteById(id);
+        } catch (RuntimeException ex){
+            assertTrue(true);
+        }
+
+        TwitterDao spyDao = Mockito.spy(dao);
+        Tweet tweet = spyDao.deleteById(id);
+
+        // assertion test to see if tweet object was deleted
+        assertNotNull(tweet);
     }
 
     // sample pretty JSON string

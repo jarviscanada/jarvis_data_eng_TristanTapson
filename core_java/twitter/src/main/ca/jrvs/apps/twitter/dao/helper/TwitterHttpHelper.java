@@ -19,7 +19,6 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.net.URI;
 
-@Component
 public class TwitterHttpHelper implements HttpHelper{
 
     /**

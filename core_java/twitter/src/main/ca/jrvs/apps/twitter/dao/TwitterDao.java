@@ -126,6 +126,9 @@ public class TwitterDao implements CrdDao<Tweet, String> {
     public Tweet tweetFormatter(HttpResponse response) throws IOException {
 
         // TODO: delete print statements?
+        if(response.getEntity() == null){
+            throw new RuntimeException("Empty response");
+        }
 
         // request headers as unformatted json string
         String jsonStr = EntityUtils.toString(response.getEntity());

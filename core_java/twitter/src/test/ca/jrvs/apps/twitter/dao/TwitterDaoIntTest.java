@@ -5,6 +5,8 @@ import oauth.signpost.exception.OAuthExpectationFailedException;
 import oauth.signpost.exception.OAuthMessageSignerException;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import src.main.ca.jrvs.apps.twitter.dao.TwitterDao;
@@ -18,74 +20,78 @@ import java.net.URISyntaxException;
 
 import static org.junit.Assert.*;
 
-public class TwitterDaoTest {
+public class TwitterDaoIntTest {
 
-    private static String CONSUMER_KEY = System.getenv("consumerKey");
-    private static String CONSUMER_SECRET = System.getenv("consumerSecret");
-    private static String ACCESS_TOKEN = System.getenv("accessToken");
-    private static String TOKEN_SECRET = System.getenv("tokenSecret");
-
-    HttpHelper helper = new TwitterHttpHelper(CONSUMER_KEY,
-            CONSUMER_SECRET, ACCESS_TOKEN, TOKEN_SECRET);
-    Tweet myTweet = JsonParser.toObjectFromJson(sampleJson, Tweet.class);
-    TwitterDao dao = new TwitterDao(helper);
+    Tweet myTweet;
+    HttpHelper helper;
+    TwitterDao dao;
 
     // constructor
-    public TwitterDaoTest() throws IOException {
-    }
+    public TwitterDaoIntTest() throws IOException {};
 
-    //@Ignore("temp ignore")
-    //@Test
-    public void create() throws URISyntaxException, OAuthMessageSignerException, OAuthExpectationFailedException, IOException, OAuthCommunicationException {
+    @Before
+    public void setUp() throws IOException {
+
+        // env vars
+        String CONSUMER_KEY = System.getenv("consumerKey");
+        String CONSUMER_SECRET = System.getenv("consumerSecret");
+        String ACCESS_TOKEN = System.getenv("accessToken");
+        String TOKEN_SECRET = System.getenv("tokenSecret");
 
         // env vars test
+        System.out.println("");
         System.out.println("consumer_key = " + CONSUMER_KEY);
         System.out.println("consumer_key_secret = " + CONSUMER_SECRET);
         System.out.println("access_token = " + ACCESS_TOKEN);
         System.out.println("access_token_secret = " + TOKEN_SECRET);
         System.out.println("");
 
-        // TODO: assert testing, rather than compile testing...
+        myTweet = JsonParser.toObjectFromJson(sampleJson, Tweet.class);
+
+        helper = new TwitterHttpHelper(CONSUMER_KEY,
+                CONSUMER_SECRET, ACCESS_TOKEN, TOKEN_SECRET);
+        dao = new TwitterDao(helper);
+    }
+
+    @After
+    public void tearDown(){
+        // TODO: null vars
+    }
+
+    @Ignore
+    @Test
+    public void create() throws URISyntaxException, OAuthMessageSignerException, OAuthExpectationFailedException, IOException, OAuthCommunicationException {
+
         // create method test
-        System.out.println("JUNIT test: TwitterDAO.create");
-        dao.create(myTweet);
-        //System.out.println(myTweet.getCoordinates().getCoordinates().toString());
+        Tweet tweet = dao.create(myTweet);
+        System.out.println("JUnit test: TwitterDAO.create");
+        System.out.println(JsonParser.toJson(tweet, true, false));
 
     }
 
-    //@Ignore("temp ignore")
+    @Ignore
     @Test
     public void findById() throws URISyntaxException, OAuthMessageSignerException, OAuthExpectationFailedException, IOException, OAuthCommunicationException {
 
-        // env vars test
-        System.out.println("consumer_key = " + CONSUMER_KEY);
-        System.out.println("consumer_key_secret = " + CONSUMER_SECRET);
-        System.out.println("access_token = " + ACCESS_TOKEN);
-        System.out.println("access_token_secret = " + TOKEN_SECRET);
-        System.out.println("");
+        String id = "1534859668211777536";
 
-        // TODO: assert testing, rather than compile testing...
         // findById method test
-        System.out.println("JUNIT test: TwitterDAO.findById");
-        dao.findById("1534776932298067969");
+        Tweet tweet = dao.findById(id);
+        System.out.println("JUnit test: TwitterDAO.findById");
+        System.out.println(JsonParser.toJson(tweet, true, false));
 
     }
 
-    //@Ignore("temp ignore")
-    //@Test
+    @Ignore
+    @Test
     public void deleteById() throws URISyntaxException, OAuthMessageSignerException, OAuthExpectationFailedException, IOException, OAuthCommunicationException {
 
-        // env vars test
-        System.out.println("consumer_key = " + CONSUMER_KEY);
-        System.out.println("consumer_key_secret = " + CONSUMER_SECRET);
-        System.out.println("access_token = " + ACCESS_TOKEN);
-        System.out.println("access_token_secret = " + TOKEN_SECRET);
-        System.out.println("");
+        String id = "1535399801759711232";
 
-        // TODO: assert testing, rather than compile testing...
         // deleteById method test
-        System.out.println("JUNIT test: TwitterDAO.deleteById");
-        dao.deleteById("1534028002513801216");
+        Tweet tweet = dao.deleteById(id);
+        System.out.println("JUnit test: TwitterDAO.deleteById");
+        System.out.println(JsonParser.toJson(tweet, true, false));
 
     }
 
@@ -96,7 +102,7 @@ public class TwitterDaoTest {
                     "   \"created_at\":\"Mon Feb 18 21:24:39 +0000 2019\",\n" +
                     "   \"id\":1097607853932564480,\n" +
                     "   \"id_str\":\"1097607853932564480\",\n" +
-                    "   \"text\":\"test with loc223 @tapsonte #test Unit Test\",\n" +
+                    "   \"text\":\"test with loc223\",\n" +
                     "   \"entities\":{\n" +
                     "      \"hashtags\":[\n" +
                     "         {\n" +
