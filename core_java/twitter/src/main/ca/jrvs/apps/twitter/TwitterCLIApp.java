@@ -59,7 +59,7 @@ public class TwitterCLIApp {
 
     public static void main(String[] args) throws Exception {
 
-        HttpHelper helper = new TwitterHttpHelper(CONSUMER_KEY,
+        TwitterHttpHelper helper = new TwitterHttpHelper(CONSUMER_KEY,
                 CONSUMER_SECRET, ACCESS_TOKEN, TOKEN_SECRET);
         TwitterDao dao = new TwitterDao(helper);
         TwitterService service = new TwitterService(dao);

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import src.main.ca.jrvs.apps.twitter.dao.helper.HttpHelper;
+import src.main.ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper;
 import src.main.ca.jrvs.apps.twitter.example.JsonParser;
 import src.main.ca.jrvs.apps.twitter.example.dto.Company;
 import src.main.ca.jrvs.apps.twitter.model.Tweet;

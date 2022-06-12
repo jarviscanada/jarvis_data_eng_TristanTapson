@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
 public class TwitterDaoIntTest {
 
     Tweet myTweet;
-    HttpHelper helper;
+    TwitterHttpHelper helper;
     TwitterDao dao;
 
     // constructor

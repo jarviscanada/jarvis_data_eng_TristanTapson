@@ -1,8 +1,5 @@
-package src.test.ca.jrvs.apps.twitter.dao;
+package src.test.ca.jrvs.apps.twitter.controller;
 
-import oauth.signpost.exception.OAuthCommunicationException;
-import oauth.signpost.exception.OAuthExpectationFailedException;
-import oauth.signpost.exception.OAuthMessageSignerException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,30 +8,31 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import src.main.ca.jrvs.apps.twitter.dao.TwitterDao;
-import src.main.ca.jrvs.apps.twitter.dao.helper.HttpHelper;
-import src.main.ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper;
+import src.main.ca.jrvs.apps.twitter.controller.TwitterController;
+import src.main.ca.jrvs.apps.twitter.dao.CrdDao;
 import src.main.ca.jrvs.apps.twitter.example.JsonParser;
 import src.main.ca.jrvs.apps.twitter.model.Tweet;
+import src.main.ca.jrvs.apps.twitter.service.Service;
+import src.main.ca.jrvs.apps.twitter.service.TwitterService;
 
-
-import java.io.IOException;
-import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.isNotNull;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TwitterDaoUnitTest {
+public class TwitterControllerUnitTest {
 
     Tweet sampleTweet;
 
     @Mock
-    HttpHelper mockHelper;
+    Service mockService;
     @InjectMocks
-    TwitterDao dao;
+    TwitterController controller;
 
     @Before
     public void setUp() throws Exception {
@@ -58,90 +56,101 @@ public class TwitterDaoUnitTest {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown() throws Exception {
         sampleTweet = null;
     }
 
     @Test
-    public void create() throws OAuthMessageSignerException, OAuthExpectationFailedException, URISyntaxException, IOException, OAuthCommunicationException {
+    public void postTweet() throws Exception {
 
-        when(mockHelper.httpPost(isNotNull())).thenReturn(null);
-        TwitterDao spyDao = Mockito.spy(dao);
-        Tweet expectedTweet = JsonParser.toObjectFromJson(sampleJson, Tweet.class); // myTweet in setUp
+        String COLON = ":";
+        String longitude = sampleTweet.getCoordinates().getCoordinates().get(0).toString();
+        String latitude = sampleTweet.getCoordinates().getCoordinates().get(1).toString();
+        String[] myArgsPost = {"post", sampleTweet.getText(), longitude+COLON+latitude};
 
-        // actual tweet
-        doReturn(expectedTweet).when(spyDao).tweetFormatter(any());
-        // mock tweet
-        Tweet spyTweet = spyDao.create(sampleTweet);
-
-        // assertion tests
+        // mock tweet (test creation)
+        when(mockService.postTweet(any())).thenReturn(new Tweet());
+        TwitterController spyController = Mockito.spy(controller);
+        Tweet spyTweet = spyController.postTweet(myArgsPost);
         assertNotNull(spyTweet);
-        assertNotNull(expectedTweet);
 
-        // expectedTweet and spyTweet should be the same
-        assertEquals(expectedTweet, spyTweet);
-    }
+        // break case (invalid coordinate string as command line argument)
+        String breakCoordinates = "43a:79b";
+        String[] myArgsPostBreak = {"post", sampleTweet.getText(), breakCoordinates};
 
-    @Test
-    public void findById() throws OAuthMessageSignerException, OAuthExpectationFailedException, URISyntaxException, IOException, OAuthCommunicationException {
-
-        // TODO: NOTE - mockito? (basically its creating a "mock" instance of HttpHelper via the @Mock tag
-
-        String id = sampleTweet.getId().toString();
-
-        /* exception is expected here (unnecessary code...)
-        when(mockHelper.httpGet(isNotNull())).thenThrow(new RuntimeException("mock"));
-        if(mockHelper == null){
-            System.out.println("null");
-        }
-        else{
-            System.out.println("not null");
-        }
-
-        try {
-            dao.findById(id);
+        // exception expected here (assert statement is reachable)
+        try{
+            controller.postTweet(myArgsPostBreak);
             fail();
-        } catch (RuntimeException e) {
+        } catch (RuntimeException ex){
             assertTrue(true);
-        }*/
-
-        when(mockHelper.httpGet(isNotNull())).thenReturn(null);
-        TwitterDao spyDao = Mockito.spy(dao);
-        Tweet expectedTweet = JsonParser.toObjectFromJson(sampleJson, Tweet.class); // sampleTweet in setUp
-
-        // actual tweet
-        doReturn(expectedTweet).when(spyDao).tweetFormatter(any());
-        // mock tweet
-        Tweet spyTweet = spyDao.findById(id);
-
-        // assertion tests
-        assertNotNull(spyTweet);
-        assertNotNull(expectedTweet);
-
-        // expectedTweet and spyTweet should be the same
-        assertEquals(expectedTweet, spyTweet);
+        }
     }
 
     @Test
-    public void deleteById() throws URISyntaxException, OAuthMessageSignerException, OAuthExpectationFailedException, IOException, OAuthCommunicationException {
+    public void showTweet() throws Exception {
 
-        String id = sampleTweet.getId().toString();
+        String COMMA = ",";
+        String field1 = "created_at";
+        String field2 = "text";
+        String field3 = "id";
 
-        when(mockHelper.httpPost(isNotNull())).thenReturn(null);
-        TwitterDao spyDao = Mockito.spy(dao);
-        Tweet expectedTweet = JsonParser.toObjectFromJson(sampleJson, Tweet.class); // sampleTweet in setUp
+        List<String> fieldList = Arrays.asList(field1, field2, field3);
+        String fields = String.join(COMMA, fieldList);
+        String[] myArgsShow = {"show", sampleTweet.getId().toString(), fields};
 
-        // actual tweet
-        doReturn(expectedTweet).when(spyDao).tweetFormatter(any());
-        // mock tweet
-        Tweet spyTweet = spyDao.deleteById(id);
-
-        // assertion tests
+        // mock tweet (test showing)
+        when(mockService.showTweet(any(), any())).thenReturn(new Tweet());
+        TwitterController spyController = Mockito.spy(controller);
+        Tweet spyTweet = spyController.showTweet(myArgsShow);
         assertNotNull(spyTweet);
-        assertNotNull(expectedTweet);
 
-        // expectedTweet and spyTweet should be the same
-        assertEquals(expectedTweet, spyTweet);
+        // break case (invalid field string as command line argument)
+        List<String> breakFields = new ArrayList<>();
+        breakFields.add("invalid_field1");
+        breakFields.add("invalid_field2");
+        String breakStr = String.join(COMMA, fieldList);
+        String[] myArgsShowBreak = {"show", sampleTweet.getId().toString(), breakStr};
+
+        // exception expected here (assert statement is reachable)
+        try{
+            controller.postTweet(myArgsShowBreak);
+            fail();
+        } catch (RuntimeException ex){
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    public void deleteTweet() throws Exception {
+
+        String COMMA = ",";
+        String id1 = sampleTweet.getId().toString();
+
+        List<String> idList = Arrays.asList(id1);
+        String ids = String.join(COMMA, idList);
+        System.out.println(ids);
+        String[] myArgsDelete = {"delete", ids};
+
+        // mock tweet (test deletion)
+        when(mockService.deleteTweets(any())).thenReturn(new ArrayList<Tweet>());
+        TwitterController spyController = Mockito.spy(controller);
+        List<Tweet> spyTweets = spyController.deleteTweet(myArgsDelete);
+        assertNotNull(spyTweets);
+
+        // break case (invalid id string as command line argument)
+        List<String> breakIds = new ArrayList<>();
+        breakIds.add("1097607853932564480_ABC");
+        String breakStr = String.join(COMMA, breakIds);
+        String[] myArgsDeleteBreak = {"delete", breakStr};
+
+        // exception expected here (assert statement is reachable)
+        try{
+            controller.postTweet(myArgsDeleteBreak);
+            fail();
+        } catch (RuntimeException ex){
+            assertTrue(true);
+        }
     }
 
     // sample pretty JSON string

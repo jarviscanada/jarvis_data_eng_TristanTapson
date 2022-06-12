@@ -1,4 +1,4 @@
-package src.test.ca.jrvs.apps.twitter.dao;
+package src.test.ca.jrvs.apps.twitter.service;
 
 import oauth.signpost.exception.OAuthCommunicationException;
 import oauth.signpost.exception.OAuthExpectationFailedException;
@@ -11,30 +11,33 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import src.main.ca.jrvs.apps.twitter.dao.CrdDao;
 import src.main.ca.jrvs.apps.twitter.dao.TwitterDao;
-import src.main.ca.jrvs.apps.twitter.dao.helper.HttpHelper;
-import src.main.ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper;
 import src.main.ca.jrvs.apps.twitter.example.JsonParser;
 import src.main.ca.jrvs.apps.twitter.model.Tweet;
-
+import src.main.ca.jrvs.apps.twitter.service.TwitterService;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.isNotNull;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TwitterDaoUnitTest {
+public class TwitterServiceUnitTest {
 
     Tweet sampleTweet;
+    List<String> fieldsList;
+    List<String> idsList;
 
     @Mock
-    HttpHelper mockHelper;
+    CrdDao mockDao;
     @InjectMocks
-    TwitterDao dao;
+    TwitterService service;
 
     @Before
     public void setUp() throws Exception {
@@ -53,95 +56,97 @@ public class TwitterDaoUnitTest {
         System.out.println("access_token_secret = " + TOKEN_SECRET);
         System.out.println("");
 
-        // sample tweet created from Json string
+        // sample tweet created from Json string, sample field and id lists
         sampleTweet = JsonParser.toObjectFromJson(sampleJson, Tweet.class);
+        fieldsList = Arrays.asList("created_at", "id", "text");
+        idsList = Arrays.asList(sampleTweet.getId().toString());
     }
 
     @After
-    public void tearDown() {
+    public void tearDown() throws Exception {
         sampleTweet = null;
+        fieldsList = null;
+        idsList = null;
     }
 
     @Test
-    public void create() throws OAuthMessageSignerException, OAuthExpectationFailedException, URISyntaxException, IOException, OAuthCommunicationException {
+    public void postTweet() throws OAuthMessageSignerException, OAuthExpectationFailedException, URISyntaxException, IOException, OAuthCommunicationException {
 
-        when(mockHelper.httpPost(isNotNull())).thenReturn(null);
-        TwitterDao spyDao = Mockito.spy(dao);
-        Tweet expectedTweet = JsonParser.toObjectFromJson(sampleJson, Tweet.class); // myTweet in setUp
+        // mock tweet (test creation)
+        when(mockDao.create(any())).thenReturn(new Tweet());
+        TwitterService spyService = Mockito.spy(service);
+        Tweet spyTweet = spyService.postTweet(sampleTweet);
+        assertNotNull(spyTweet);
 
         // actual tweet
-        doReturn(expectedTweet).when(spyDao).tweetFormatter(any());
-        // mock tweet
-        Tweet spyTweet = spyDao.create(sampleTweet);
+        Tweet breakTweet = sampleTweet;
+        // break case (set tweet text to have invalid text (140+ characters via lorem text))
+        breakTweet.setText("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et mag");
 
-        // assertion tests
-        assertNotNull(spyTweet);
-        assertNotNull(expectedTweet);
-
-        // expectedTweet and spyTweet should be the same
-        assertEquals(expectedTweet, spyTweet);
-    }
-
-    @Test
-    public void findById() throws OAuthMessageSignerException, OAuthExpectationFailedException, URISyntaxException, IOException, OAuthCommunicationException {
-
-        // TODO: NOTE - mockito? (basically its creating a "mock" instance of HttpHelper via the @Mock tag
-
-        String id = sampleTweet.getId().toString();
-
-        /* exception is expected here (unnecessary code...)
-        when(mockHelper.httpGet(isNotNull())).thenThrow(new RuntimeException("mock"));
-        if(mockHelper == null){
-            System.out.println("null");
-        }
-        else{
-            System.out.println("not null");
-        }
-
-        try {
-            dao.findById(id);
+        // exception expected here (assert statement is reachable)
+        try{
+            service.postTweet(breakTweet);
             fail();
-        } catch (RuntimeException e) {
+        } catch (RuntimeException ex){
             assertTrue(true);
-        }*/
-
-        when(mockHelper.httpGet(isNotNull())).thenReturn(null);
-        TwitterDao spyDao = Mockito.spy(dao);
-        Tweet expectedTweet = JsonParser.toObjectFromJson(sampleJson, Tweet.class); // sampleTweet in setUp
-
-        // actual tweet
-        doReturn(expectedTweet).when(spyDao).tweetFormatter(any());
-        // mock tweet
-        Tweet spyTweet = spyDao.findById(id);
-
-        // assertion tests
-        assertNotNull(spyTweet);
-        assertNotNull(expectedTweet);
-
-        // expectedTweet and spyTweet should be the same
-        assertEquals(expectedTweet, spyTweet);
+        }
     }
 
     @Test
-    public void deleteById() throws URISyntaxException, OAuthMessageSignerException, OAuthExpectationFailedException, IOException, OAuthCommunicationException {
+    public void showTweet() throws OAuthMessageSignerException, OAuthExpectationFailedException, URISyntaxException, IOException, OAuthCommunicationException {
 
         String id = sampleTweet.getId().toString();
+        String[] fieldsArr = fieldsList.stream().toArray(String[]::new);
 
-        when(mockHelper.httpPost(isNotNull())).thenReturn(null);
-        TwitterDao spyDao = Mockito.spy(dao);
-        Tweet expectedTweet = JsonParser.toObjectFromJson(sampleJson, Tweet.class); // sampleTweet in setUp
+        // mock tweet (test showing)
+        when(mockDao.findById(any())).thenReturn(new Tweet());
+        TwitterService spyService = Mockito.spy(service);
+        Tweet spyTweet = spyService.showTweet(id, fieldsArr);
+        assertNotNull(spyTweet);
 
         // actual tweet
-        doReturn(expectedTweet).when(spyDao).tweetFormatter(any());
-        // mock tweet
-        Tweet spyTweet = spyDao.deleteById(id);
+        Tweet breakTweet = sampleTweet;
+        String breakId = breakTweet.getId().toString();
+        // break case (set fields array to have an invalid field)
+        List<String> breakFields = new ArrayList<>();
+        breakFields.add("invalid_field");
+        String[] breakArr = breakFields.stream().toArray(String[]::new);
 
-        // assertion tests
-        assertNotNull(spyTweet);
-        assertNotNull(expectedTweet);
+        // exception expected here (assert statement is reachable)
+        try{
+            service.showTweet(breakId, breakArr);
+            fail();
+        } catch (RuntimeException ex){
+            assertTrue(true);
+        }
+    }
 
-        // expectedTweet and spyTweet should be the same
-        assertEquals(expectedTweet, spyTweet);
+    @Test
+    public void deleteTweets() throws OAuthMessageSignerException, OAuthExpectationFailedException, URISyntaxException, IOException, OAuthCommunicationException {
+
+        String id = sampleTweet.getId().toString();
+        String[] idsArr = idsList.stream().toArray(String[]::new);
+
+        // mock tweet (test deletion)
+        when(mockDao.deleteById(any())).thenReturn(new Tweet());
+        TwitterService spyService = Mockito.spy(service);
+        List<Tweet> spyTweets = spyService.deleteTweets(idsArr);
+        assertNotNull(spyTweets);
+
+        // actual tweet
+        Tweet breakTweet = sampleTweet;
+        // break case (set ids array to have an invalid id)
+        List<String> breakIds = new ArrayList<>();
+        breakIds.add("1097607853932564480_ABC");
+        String[] breakArr = breakIds.stream().toArray(String[]::new);
+
+        // exception expected here (assert statement is reachable)
+        try{
+            service.deleteTweets(breakArr);
+            fail();
+        } catch (RuntimeException ex){
+            assertTrue(true);
+        }
     }
 
     // sample pretty JSON string
@@ -151,7 +156,7 @@ public class TwitterDaoUnitTest {
                     "   \"created_at\":\"Mon Feb 18 21:24:39 +0000 2019\",\n" +
                     "   \"id\":1097607853932564480,\n" +
                     "   \"id_str\":\"1097607853932564480\",\n" +
-                    "   \"text\":\"test with loc223\",\n" +
+                    "   \"text\":\"test with loc223 J\",\n" +
                     "   \"entities\":{\n" +
                     "      \"hashtags\":[\n" +
                     "         {\n" +

@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
 public class TwitterServiceIntTest {
 
     Tweet myTweet;
-    HttpHelper helper;
+    TwitterHttpHelper helper;
     TwitterDao dao;
     TwitterService service;
 
@@ -68,7 +68,6 @@ public class TwitterServiceIntTest {
         System.out.println("JUnit test: TwitterService.postTweet");
         Tweet tweet = service.postTweet(myTweet);
         System.out.println(JsonParser.toJson(tweet, true, false));
-
     }
 
     @Ignore
@@ -84,7 +83,6 @@ public class TwitterServiceIntTest {
         System.out.println("JUnit test: TwitterService.showTweet");
         Tweet tweet = service.showTweet(id, fields);
         System.out.println(JsonParser.toJson(tweet, true, false));
-
     }
 
     @Ignore

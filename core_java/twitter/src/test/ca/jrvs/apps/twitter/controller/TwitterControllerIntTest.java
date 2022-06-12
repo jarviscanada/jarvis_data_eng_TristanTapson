@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 
 public class TwitterControllerIntTest {
 
-    HttpHelper helper;
+    TwitterHttpHelper helper;
     TwitterDao dao;
     TwitterService service;
     TwitterController controller;
