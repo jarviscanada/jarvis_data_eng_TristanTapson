@@ -9,11 +9,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import src.main.ca.jrvs.apps.twitter.controller.TwitterController;
-import src.main.ca.jrvs.apps.twitter.dao.CrdDao;
 import src.main.ca.jrvs.apps.twitter.example.JsonParser;
 import src.main.ca.jrvs.apps.twitter.model.Tweet;
 import src.main.ca.jrvs.apps.twitter.service.Service;
-import src.main.ca.jrvs.apps.twitter.service.TwitterService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,14 +41,6 @@ public class TwitterControllerUnitTest {
         String ACCESS_TOKEN = System.getenv("accessToken");
         String TOKEN_SECRET = System.getenv("tokenSecret");
 
-        // env vars test
-        System.out.println("");
-        System.out.println("consumer_key = " + CONSUMER_KEY);
-        System.out.println("consumer_key_secret = " + CONSUMER_SECRET);
-        System.out.println("access_token = " + ACCESS_TOKEN);
-        System.out.println("access_token_secret = " + TOKEN_SECRET);
-        System.out.println("");
-
         // sample tweet created from Json string
         sampleTweet = JsonParser.toObjectFromJson(sampleJson, Tweet.class);
     }
@@ -63,10 +53,10 @@ public class TwitterControllerUnitTest {
     @Test
     public void postTweet() throws Exception {
 
-        String COLON = ":";
+        String  COORD_SEP = ":";
         String longitude = sampleTweet.getCoordinates().getCoordinates().get(0).toString();
         String latitude = sampleTweet.getCoordinates().getCoordinates().get(1).toString();
-        String[] myArgsPost = {"post", sampleTweet.getText(), longitude+COLON+latitude};
+        String[] myArgsPost = {"post", sampleTweet.getText(), longitude + COORD_SEP + latitude};
 
         // mock tweet (test creation)
         when(mockService.postTweet(any())).thenReturn(new Tweet());

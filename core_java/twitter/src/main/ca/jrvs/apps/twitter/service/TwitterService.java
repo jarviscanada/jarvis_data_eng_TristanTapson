@@ -10,12 +10,12 @@ import src.main.ca.jrvs.apps.twitter.model.Tweet;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@org.springframework.stereotype.Service
 public class TwitterService implements Service {
 
     private CrdDao dao;
@@ -54,7 +54,6 @@ public class TwitterService implements Service {
     public Tweet showTweet(String id, String[] fields) throws OAuthMessageSignerException, OAuthExpectationFailedException, URISyntaxException, IOException, OAuthCommunicationException {
 
         validateShowTweet(id, fields);
-        // TODO: fields?
         return (Tweet) dao.findById(id);
     }
 

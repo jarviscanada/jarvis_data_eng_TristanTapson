@@ -1,18 +1,15 @@
 package src.main.ca.jrvs.apps.twitter.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
-import src.main.ca.jrvs.apps.twitter.example.JsonParser;
 import src.main.ca.jrvs.apps.twitter.model.*;
 import src.main.ca.jrvs.apps.twitter.service.Service;
 
-import java.time.temporal.Temporal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@org.springframework.stereotype.Controller
 public class TwitterController implements Controller{
 
     private static final String COORD_SEP = ":";
@@ -92,7 +89,6 @@ public class TwitterController implements Controller{
             // create tweet using Service class
             Tweet formattedTweet = service.showTweet(tweetId, fields);
 
-            //System.out.println(Arrays.toString(fields));
             for (String fldStr : fields) {
                 handleFieldCases(fldStr, myTweet, formattedTweet);
             }
@@ -124,13 +120,11 @@ public class TwitterController implements Controller{
                 .collect(Collectors.toList());
 
         String[] ids = tempFields.stream().toArray(size -> new String[size]);
-        //System.out.println(Arrays.toString(ids));
 
         List<Tweet> deletedTweets = service.deleteTweets(ids);
         return deletedTweets;
     }
 
-    // TODO : delete this method, business logic should only be handled in service
     // valid float
     public boolean validFloat(String floatStr) throws RuntimeException {
         try {
@@ -163,8 +157,6 @@ public class TwitterController implements Controller{
                 myTweet.setEntities(formattedTweet.getEntities());
                 break;
             case "coordinates":
-                // TODO: show/delete doesnt show the tweet coords, but create does?
-                // System.out.println("get coords: " + formattedTweet.getCoordinates());
                 myTweet.setCoordinates(formattedTweet.getCoordinates());
                 break;
             case "retweet_count":

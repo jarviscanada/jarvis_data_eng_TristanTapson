@@ -17,8 +17,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static org.junit.Assert.*;
-
 public class TwitterHttpHelperIntTest {
 
     HttpHelper helper;

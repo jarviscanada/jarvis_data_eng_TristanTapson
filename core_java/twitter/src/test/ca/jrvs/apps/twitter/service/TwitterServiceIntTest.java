@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import src.main.ca.jrvs.apps.twitter.dao.TwitterDao;
-import src.main.ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import src.main.ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper;
 import src.main.ca.jrvs.apps.twitter.example.JsonParser;
 import src.main.ca.jrvs.apps.twitter.model.Tweet;
@@ -17,8 +16,6 @@ import src.main.ca.jrvs.apps.twitter.service.TwitterService;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class TwitterServiceIntTest {
 

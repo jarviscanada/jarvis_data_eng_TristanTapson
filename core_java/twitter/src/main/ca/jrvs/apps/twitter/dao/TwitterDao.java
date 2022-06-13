@@ -1,29 +1,22 @@
 package src.main.ca.jrvs.apps.twitter.dao;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gdata.util.common.base.PercentEscaper;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import oauth.signpost.exception.OAuthCommunicationException;
 import oauth.signpost.exception.OAuthExpectationFailedException;
 import oauth.signpost.exception.OAuthMessageSignerException;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Component;
+
 import src.main.ca.jrvs.apps.twitter.dao.helper.HttpHelper;
-import src.main.ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper;
 import src.main.ca.jrvs.apps.twitter.example.JsonParser;
-import src.main.ca.jrvs.apps.twitter.example.dto.Company;
 import src.main.ca.jrvs.apps.twitter.model.Tweet;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static src.main.ca.jrvs.apps.twitter.example.JsonParser.toJson;
-
-@Component
+@org.springframework.stereotype.Repository
 public class TwitterDao implements CrdDao<Tweet, String> {
 
     // URI constants
@@ -54,8 +47,6 @@ public class TwitterDao implements CrdDao<Tweet, String> {
         this.httpHelper = httpHelper;
     }
 
-    // creates a tweet using the http Post method, text info taken from the tweet entity
-    // NOTE: gets rid of need of constructing the URI in main, all done here
     @Override
     public Tweet create(Tweet entity) throws URISyntaxException, OAuthMessageSignerException, OAuthExpectationFailedException, IOException, OAuthCommunicationException {
 
@@ -133,12 +124,12 @@ public class TwitterDao implements CrdDao<Tweet, String> {
 
         // request headers as unformatted json string
         String jsonStr = EntityUtils.toString(response.getEntity());
-        //System.out.println("JSON: " + jsonStr);
+        // System.out.println("JSON: " + jsonStr);
 
         // create tweet object from json, and print the pretty json string
         Tweet tweet = JsonParser.toObjectFromJson(jsonStr, Tweet.class);
         String prettyJson = JsonParser.toJson(tweet,true,true);
-        //System.out.println("Pretty JSON: " + prettyJson);
+        // System.out.println("Pretty JSON: " + prettyJson);
 
         return tweet;
     }

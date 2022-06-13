@@ -2,26 +2,21 @@ package src.main.ca.jrvs.apps.twitter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
+
 import src.main.ca.jrvs.apps.twitter.controller.Controller;
 import src.main.ca.jrvs.apps.twitter.controller.TwitterController;
 import src.main.ca.jrvs.apps.twitter.dao.CrdDao;
 import src.main.ca.jrvs.apps.twitter.dao.TwitterDao;
 import src.main.ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import src.main.ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper;
-import com.google.gdata.util.common.base.PercentEscaper;
-import com.sun.jndi.toolkit.url.Uri;
-import src.main.ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper;
 import src.main.ca.jrvs.apps.twitter.example.JsonParser;
-import src.main.ca.jrvs.apps.twitter.example.dto.Company;
 import src.main.ca.jrvs.apps.twitter.model.*;
 import src.main.ca.jrvs.apps.twitter.service.Service;
 import src.main.ca.jrvs.apps.twitter.service.TwitterService;
 
-import java.net.URI;
 import java.util.*;
-import static src.main.ca.jrvs.apps.twitter.example.JsonParser.toJson;
 
+@org.springframework.stereotype.Component
 public class TwitterCLIApp {
 
     private Controller controller;
@@ -57,13 +52,16 @@ public class TwitterCLIApp {
                     "Arguments:\n" +
                     "tweet_ids - A comma-separated list of tweets.\n";
 
+    private static String ARGUMENT_USAGE = "Usage:\n" +
+            "TwitterApp post|show|delete [options]";
+
     public static void main(String[] args) throws Exception {
 
-        TwitterHttpHelper helper = new TwitterHttpHelper(CONSUMER_KEY,
+        HttpHelper helper = new TwitterHttpHelper(CONSUMER_KEY,
                 CONSUMER_SECRET, ACCESS_TOKEN, TOKEN_SECRET);
-        TwitterDao dao = new TwitterDao(helper);
-        TwitterService service = new TwitterService(dao);
-        TwitterController controller = new TwitterController(service);
+        CrdDao dao = new TwitterDao(helper);
+        Service service = new TwitterService(dao);
+        Controller controller = new TwitterController(service);
         TwitterCLIApp twitterCLIApp = new TwitterCLIApp(controller);
 
         // run the TwitterCLI app
@@ -73,7 +71,9 @@ public class TwitterCLIApp {
 
     public void run(String[] args) throws Exception {
 
-        //System.out.println(Arrays.toString(args));
+        if(args.length == 0){
+            throw new IllegalArgumentException(ARGUMENT_USAGE);
+        }
 
         // cases, method type as first argument
         String method = args[0];
@@ -107,24 +107,20 @@ public class TwitterCLIApp {
                     printPrettyJson(deletedTweet);
                 }
                 break;
+
+            default:
+                throw new IllegalArgumentException(ARGUMENT_USAGE);
         }
     }
 
     // print environment variables
     public void printEnvironment(){
         System.out.println("\n--- TwitterCLIApp Class ---");
-
-        // env vars
-        System.out.println("consumer_key = " + CONSUMER_KEY);
-        System.out.println("consumer_secret = " + CONSUMER_SECRET);
-        System.out.println("access_token = " + ACCESS_TOKEN);
-        System.out.println("token_secret = " + TOKEN_SECRET);
-        System.out.println("");
     }
 
     // print command line args
     public void printArgs(String[] args){
-        System.out.print("jrvs/twitter_app ");
+        System.out.print("TwitterApp");
         for(String argument : args){
             System.out.print(" " + argument);
         }

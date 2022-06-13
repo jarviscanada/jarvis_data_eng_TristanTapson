@@ -12,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import src.main.ca.jrvs.apps.twitter.dao.CrdDao;
-import src.main.ca.jrvs.apps.twitter.dao.TwitterDao;
 import src.main.ca.jrvs.apps.twitter.example.JsonParser;
 import src.main.ca.jrvs.apps.twitter.model.Tweet;
 import src.main.ca.jrvs.apps.twitter.service.TwitterService;

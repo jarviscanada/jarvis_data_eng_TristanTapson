@@ -3,22 +3,19 @@ package src.main.ca.jrvs.apps.twitter.dao.helper;
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import oauth.signpost.exception.OAuthCommunicationException;
-import oauth.signpost.exception.OAuthException;
 import oauth.signpost.exception.OAuthExpectationFailedException;
 import oauth.signpost.exception.OAuthMessageSignerException;
-import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URI;
 
+@org.springframework.stereotype.Component
 public class TwitterHttpHelper implements HttpHelper{
 
     /**
@@ -28,7 +25,7 @@ public class TwitterHttpHelper implements HttpHelper{
     private HttpClient httpClient;
 
     /**
-     * Constructor
+     * Parameterized Constructor
      * Setup dependencies using secrets
      *
      * @param consumerKey
@@ -41,6 +38,23 @@ public class TwitterHttpHelper implements HttpHelper{
         // set up OAuth
         consumer = new CommonsHttpOAuthConsumer(consumerKey, consumerSecret);
         consumer.setTokenWithSecret(accessToken, tokenSecret);
+
+        // default single connection
+        httpClient = new DefaultHttpClient();
+    }
+
+    /**
+     * Default Constructor (to handle springboot error)
+     */
+    public TwitterHttpHelper () {
+
+        TwitterHttpHelper tempHelper = new TwitterHttpHelper(System.getenv("consumerKey"),
+                System.getenv("consumerSecret"), System.getenv("accessToken"),
+                System.getenv("tokenSecret"));
+
+        // set up OAuth
+        consumer = new CommonsHttpOAuthConsumer(tempHelper.consumer.getConsumerKey(), tempHelper.consumer.getConsumerSecret());
+        consumer.setTokenWithSecret(tempHelper.consumer.getToken(),tempHelper.consumer.getTokenSecret());
 
         // default single connection
         httpClient = new DefaultHttpClient();
@@ -60,7 +74,6 @@ public class TwitterHttpHelper implements HttpHelper{
         } catch (IOException ex){
             throw new RuntimeException("Failed to execute POST request", ex);
         }
-
     }
 
     @Override
