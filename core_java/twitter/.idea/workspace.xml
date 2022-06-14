@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d7733135-cf8d-4ba3-a7dc-c69f2549f96a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/twitter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/twitter.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +66,7 @@
       <recent name="ca.jrvs.apps.twitter.dao.helper" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ca.jrvs.apps.twitter.TwitterCLIApp">
+  <component name="RunManager" selected="Application.ca.jrvs.apps.twitter.spring.TwitterCLISpringBoot">
     <configuration name="ca.jrvs.apps.twitter.TwitterCLIApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
         <env name="consumerKey" value="EOTsX46pqeC7BiNST8izfBe9J" />
@@ -78,6 +80,66 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="ca.jrvs.apps.twitter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ca.jrvs.apps.twitter.spring.TwitterCLIBean" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="consumerKey" value="EOTsX46pqeC7BiNST8izfBe9J" />
+        <env name="consumerSecret" value="w2ed4NJOdFlVf2KS6E6I4Gnd2vbrbP992phoSHDJpRV6fwxA2q" />
+        <env name="accessToken" value="1529109922499239936-LJ1ZAjrbTgcKKHqHmya4JTeeNZMTFc" />
+        <env name="tokenSecret" value="LYRtmSX4hHFhTyTDyGVC4Oc7I9GFs4ikKvo7enxXDtP9F" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.twitter.spring.TwitterCLIBean" />
+      <module name="twitter" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;show&quot; &quot;1534859668211777536&quot;" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.jrvs.apps.twitter.spring.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ca.jrvs.apps.twitter.spring.TwitterCLIComponentScan" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="consumerKey" value="EOTsX46pqeC7BiNST8izfBe9J" />
+        <env name="consumerSecret" value="w2ed4NJOdFlVf2KS6E6I4Gnd2vbrbP992phoSHDJpRV6fwxA2q" />
+        <env name="accessToken" value="1529109922499239936-LJ1ZAjrbTgcKKHqHmya4JTeeNZMTFc" />
+        <env name="tokenSecret" value="LYRtmSX4hHFhTyTDyGVC4Oc7I9GFs4ikKvo7enxXDtP9F" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.twitter.spring.TwitterCLIComponentScan" />
+      <module name="twitter" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;show&quot; &quot;1534859668211777536&quot;" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.jrvs.apps.twitter.spring.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ca.jrvs.apps.twitter.spring.TwitterCLISpringBoot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="consumerKey" value="EOTsX46pqeC7BiNST8izfBe9J" />
+        <env name="consumerSecret" value="w2ed4NJOdFlVf2KS6E6I4Gnd2vbrbP992phoSHDJpRV6fwxA2q" />
+        <env name="accessToken" value="1529109922499239936-LJ1ZAjrbTgcKKHqHmya4JTeeNZMTFc" />
+        <env name="tokenSecret" value="LYRtmSX4hHFhTyTDyGVC4Oc7I9GFs4ikKvo7enxXDtP9F" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.twitter.spring.TwitterCLISpringBoot" />
+      <module name="twitter" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;show&quot; &quot;1534859668211777536&quot;" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.jrvs.apps.twitter.spring.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -107,86 +169,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TwitterDaoIntTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="twitter" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ca.jrvs.apps.twitter.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ca.jrvs.apps.twitter.dao" />
-      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.twitter.dao.TwitterDaoIntTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <envs>
-        <env name="consumerKey" value="EOTsX46pqeC7BiNST8izfBe9J" />
-        <env name="consumerSecret" value="w2ed4NJOdFlVf2KS6E6I4Gnd2vbrbP992phoSHDJpRV6fwxA2q" />
-        <env name="accessToken" value="1529109922499239936-LJ1ZAjrbTgcKKHqHmya4JTeeNZMTFc" />
-        <env name="tokenSecret" value="LYRtmSX4hHFhTyTDyGVC4Oc7I9GFs4ikKvo7enxXDtP9F" />
-      </envs>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TwitterHttpHelperIntTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="twitter" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ca.jrvs.apps.twitter.dao.helper.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ca.jrvs.apps.twitter.dao.helper" />
-      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelperIntTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <envs>
-        <env name="consumerKey" value="EOTsX46pqeC7BiNST8izfBe9J" />
-        <env name="consumerSecret" value="w2ed4NJOdFlVf2KS6E6I4Gnd2vbrbP992phoSHDJpRV6fwxA2q" />
-        <env name="accessToken" value="1529109922499239936-LJ1ZAjrbTgcKKHqHmya4JTeeNZMTFc" />
-        <env name="tokenSecret" value="LYRtmSX4hHFhTyTDyGVC4Oc7I9GFs4ikKvo7enxXDtP9F" />
-      </envs>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TwitterServiceIntTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="twitter" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ca.jrvs.apps.twitter.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ca.jrvs.apps.twitter.service" />
-      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.twitter.service.TwitterServiceIntTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <envs>
-        <env name="consumerKey" value="EOTsX46pqeC7BiNST8izfBe9J" />
-        <env name="consumerSecret" value="w2ed4NJOdFlVf2KS6E6I4Gnd2vbrbP992phoSHDJpRV6fwxA2q" />
-        <env name="accessToken" value="1529109922499239936-LJ1ZAjrbTgcKKHqHmya4JTeeNZMTFc" />
-        <env name="tokenSecret" value="LYRtmSX4hHFhTyTDyGVC4Oc7I9GFs4ikKvo7enxXDtP9F" />
-      </envs>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
+      <item itemvalue="Application.ca.jrvs.apps.twitter.spring.TwitterCLISpringBoot" />
+      <item itemvalue="Application.ca.jrvs.apps.twitter.spring.TwitterCLIComponentScan" />
+      <item itemvalue="Application.ca.jrvs.apps.twitter.spring.TwitterCLIBean" />
       <item itemvalue="Application.ca.jrvs.apps.twitter.TwitterCLIApp" />
       <item itemvalue="JUnit.TwitterControllerIntTest" />
-      <item itemvalue="JUnit.TwitterServiceIntTest" />
-      <item itemvalue="JUnit.TwitterDaoIntTest" />
-      <item itemvalue="JUnit.TwitterHttpHelperIntTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ca.jrvs.apps.twitter.spring.TwitterCLISpringBoot" />
+        <item itemvalue="Application.ca.jrvs.apps.twitter.spring.TwitterCLIComponentScan" />
+        <item itemvalue="Application.ca.jrvs.apps.twitter.spring.TwitterCLIBean" />
         <item itemvalue="Application.ca.jrvs.apps.twitter.TwitterCLIApp" />
         <item itemvalue="JUnit.TwitterControllerIntTest" />
-        <item itemvalue="JUnit.TwitterServiceIntTest" />
-        <item itemvalue="JUnit.TwitterDaoIntTest" />
-        <item itemvalue="JUnit.TwitterHttpHelperIntTest" />
       </list>
     </recent_temporary>
   </component>
