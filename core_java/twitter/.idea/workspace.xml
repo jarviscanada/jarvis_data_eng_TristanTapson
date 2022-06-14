@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d7733135-cf8d-4ba3-a7dc-c69f2549f96a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/ca/jrvs/apps/twitter/model/Tweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ca/jrvs/apps/twitter/model/Tweet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +48,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
     "create.test.in.the.same.root": "true",
-    "last_directory_selection": "/home/centos/dev/jarvis_data_eng_TristanTapson/core_java/twitter/src/test/ca/jrvs/apps/twitter/dao",
+    "last_directory_selection": "/home/centos/dev/jarvis_data_eng_TristanTapson/core_java/twitter/src/test/ca/jrvs/apps/twitter",
     "last_opened_file_path": "/home/centos/dev/jarvis_data_eng_TristanTapson/core_java/twitter",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
@@ -59,11 +58,12 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="ca.jrvs.apps.twitter.service" />
       <recent name="ca.jrvs.apps.twitter.dao" />
       <recent name="ca.jrvs.apps.twitter.dao.helper" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TwitterDaoIntTest">
+  <component name="RunManager" selected="JUnit.TwitterServiceIntTest">
     <configuration name="ca.jrvs.apps.twitter.example.TwitterApiTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
         <env name="consumerKey" value="EOTsX46pqeC7BiNST8izfBe9J" />
@@ -127,13 +127,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TwitterServiceIntTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="twitter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.jrvs.apps.twitter.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ca.jrvs.apps.twitter.service" />
+      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.twitter.service.TwitterServiceIntTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <envs>
+        <env name="consumerKey" value="EOTsX46pqeC7BiNST8izfBe9J" />
+        <env name="consumerSecret" value="w2ed4NJOdFlVf2KS6E6I4Gnd2vbrbP992phoSHDJpRV6fwxA2q" />
+        <env name="accessToken" value="1529109922499239936-LJ1ZAjrbTgcKKHqHmya4JTeeNZMTFc" />
+        <env name="tokenSecret" value="LYRtmSX4hHFhTyTDyGVC4Oc7I9GFs4ikKvo7enxXDtP9F" />
+      </envs>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.ca.jrvs.apps.twitter.example.TwitterApiTest" />
+      <item itemvalue="JUnit.TwitterServiceIntTest" />
       <item itemvalue="JUnit.TwitterDaoIntTest" />
       <item itemvalue="JUnit.TwitterHttpHelperIntTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TwitterServiceIntTest" />
         <item itemvalue="JUnit.TwitterDaoIntTest" />
         <item itemvalue="JUnit.TwitterHttpHelperIntTest" />
         <item itemvalue="Application.ca.jrvs.apps.twitter.example.TwitterApiTest" />
