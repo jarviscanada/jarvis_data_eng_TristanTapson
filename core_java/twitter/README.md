@@ -112,14 +112,13 @@ Testing was done for the app using integration testing to ensure that the projec
     <img src="./assets/samplePost.PNG" alt="">
 </p>
 <p align="center">
-    <i>sample output for a post tweet operation</i>
 </p>
 
 <p align="center">
     <img src="./assets/twitterPost.PNG" alt="">
 </p>
 <p align="center">
-    <i>tweet created from post tweet operation </i>
+    <i>output and tweet created from post tweet operation </i>
 </p>
 
 ## Deployment
