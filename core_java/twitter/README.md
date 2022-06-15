@@ -5,7 +5,7 @@ Twitter is a popular social media app that is used to express one's own personal
 
 Technologies used: Docker, Git, HTTP Clients, IntelliJ, Java, JUnit, Linux, Maven, Mockito, Postman, SpringBoot, Twitter REST API
 
-> **_NOTE:_** This app is used to manage your own personal Twitter account through the command. To use this application in its entirety, access to a Twitter Developer account is needed, along with its accompanying API keys and access tokens. To apply for a Twitter Developer account, you can do so here at the following link:
+> **_NOTE:_** This app is used to manage your own personal Twitter account through the command line. To use this application in its entirety, access to a Twitter Developer account is needed, along with its accompanying API keys and access tokens. To apply for a Twitter Developer account, you can do so here at the following link:
  https://developer.twitter.com/en/portal/dashboard
 
 ## Quick Start
