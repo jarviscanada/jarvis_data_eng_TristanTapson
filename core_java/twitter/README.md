@@ -63,7 +63,7 @@ Next, to run the program, we do so by running the docker container, denoting the
     tristantapson8/twitter delete 1200145224103841792,1276568976764686343
     ```
 
-## Design (TODO: UML diagram)
+## Design
 
 <p align="center">
     <img src="./assets/UMLDiagram.PNG" alt="">
