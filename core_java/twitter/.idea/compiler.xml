@@ -9,5 +9,16 @@
         <module name="twitter" />
       </profile>
     </annotationProcessing>
+<<<<<<< HEAD
+=======
+    <bytecodeTargetLevel>
+      <module name="twitter" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="twitter" options="-parameters" />
+    </option>
+>>>>>>> b7fa6bd60a6438291306dfc8986dcbde2d85b290
   </component>
 </project>

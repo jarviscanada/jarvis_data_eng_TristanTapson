@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="ExternalStorageConfigurationManager" enabled="true" />
+=======
+>>>>>>> b7fa6bd60a6438291306dfc8986dcbde2d85b290
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
