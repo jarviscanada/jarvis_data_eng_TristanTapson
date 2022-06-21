@@ -89,6 +89,8 @@ To manage our Twitter account, the app uses the well known MVC architecture. For
 ### Models
 The models for this project are implemented with POJOs (Plain old java objects); classes containing private member variables and public getters and setters. We are creating a `Tweet` object which has a long list of root-level and fundamental attributes. These tweet objects are passed throughout the program, and ultimately end up being converted to a formatted JSON string that is easily readable for an end user. Since the full version of a tweet object is complicated, a simplified version of the full tweet object is used for this project which contains the following properties:
 
+***Tweet Object***
+
 | Attribute | Type |  Description |
 | --------- | ---- | ------------ |
 | created_at |	String	| UTC time when this Tweet was created |
