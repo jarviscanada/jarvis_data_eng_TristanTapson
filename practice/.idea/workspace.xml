@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2442c389-ed93-4a9d-8109-75ba00c81072" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../profile/profile.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../profile/profile.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="2442c389-ed93-4a9d-8109-75ba00c81072" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,13 +30,13 @@
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/centos/dev/jarvis_data_eng_TristanTapson/profile/profile.yaml"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/centos/dev/jarvis_data_eng_TristanTapson/profile/profile.yaml&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.MissingNumber">
     <configuration name="ContainsDuplicate" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ca.jrvs.practice.codingChallenge.ContainsDuplicate" />
