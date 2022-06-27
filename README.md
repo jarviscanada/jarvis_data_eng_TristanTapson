@@ -4,11 +4,11 @@ I am a recent McMaster University Computer Science graduate looking to practice 
 
 ## Skills
 
-**Proficient:** Java, Linux/Bash, RDBMS/SQL, Agile/Scrum, Git
+**Proficient:** Java, Linux/Bash, C/C++, Object Oriented Programming (OOP), Git
 
-**Competent:** C/C++, HTML/CSS, Algorithms, Object Oriented Programming (OOP), Unit Testing
+**Competent:** RDBMS/SQL, HTML/CSS, Algorithms, Agile/Scrum, Unit Testing, IntelliJ IDE
 
-**Familiar:** Python, Haskell, Elm, Concurrent Programming, Docker
+**Familiar:** Python, Haskell, Elm, Concurrent Programming, Docker, Spring Framework
 
 ## Jarvis Projects
 
@@ -19,7 +19,7 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_TristanTap
 
 **Core Java Apps** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/core_java)]:
       
-  - Twitter App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam.
+  - Twitter App: Developed an app that allows for CRUD (Create, Read, Update, Delete) operations to manage a personal twitter account through the command line, alongside the use of HttpClient and the Twitter REST API. Tested with JUnit and Mockito, various integration tests and unit tests were done to ensure that to project is working correctly. In addition, spring framework is also applied to handle dependency management and injection concerns.
   - JDBC App: Implemented a JDBC app that connects to a postgreSQL database. CRUD (Create, Read, Update, Delete) operations are performed to update the database, and they manipulate and modify relevant information; here, the Data Access Object (DAO) design pattern is used while the database is queried using SQL.
   - Grep App: Created a grep app in Java that allows for the search of files within a root directory and its subdirectories, returning all lines containing a specified regular expression. The app is very similar to the grep command in Linux, and also uses stream APIs and lambda notation to handle insufficient memory.
 
