@@ -7,7 +7,7 @@ package ca.jrvs.practice.codingChallenge;
  *              end of the list and return its head.
  * */
 
-public class removeNthNodeFromEndOfList {
+public class RemoveNthNodeFromEndOfList {
 
     // Definition for singly-linked list
     public static class ListNode {
@@ -63,7 +63,7 @@ public class removeNthNodeFromEndOfList {
         // removing the only element
         if(n == 1 && size == 1) return null;
 
-        // removing the end element
+            // removing the end element
         else if (n == 1){
             while(current != null){
 
