@@ -4,7 +4,12 @@ import ca.jrvs.apps.trading.model.config.MarketDataConfig;
 import ca.jrvs.apps.trading.model.domain.IexQuote;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -25,7 +30,27 @@ public class MarketDataDaoIntTest {
     }
 
     @Test
-    public void findByTicker(){
+    public void findAllById() throws IOException {
+
+        // happy path
+        List<IexQuote> quoteList = dao.findAllById(Arrays.asList("AAPL", "FB"));
+        assertEquals(2, quoteList.size());
+        assertEquals("AAPL", quoteList.get(0).getSymbol());
+
+        // sad path
+        try{
+            dao.findAllById(Arrays.asList("AAPL", "FB2"));
+            // fail(); // probably need to do a service logic check on invalid tickers later
+        } catch (IllegalArgumentException e){
+            //System.out.println("illegal");
+            assertTrue(true);
+        } catch (Exception e){
+            fail();
+        }
+    }
+
+    @Test
+    public void findById(){
         String ticker = "AAPL";
         IexQuote iexQuote = dao.findById(ticker).get();
         assertEquals(ticker, iexQuote.getSymbol());

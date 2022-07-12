@@ -1,10 +1,21 @@
 package ca.jrvs.apps.trading.dao;
 
+import ca.jrvs.apps.trading.example.JsonParser;
 import ca.jrvs.apps.trading.model.config.MarketDataConfig;
 import ca.jrvs.apps.trading.model.domain.IexQuote;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import jdk.internal.org.objectweb.asm.TypeReference;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.conn.HttpClientConnectionManager;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +24,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.swing.text.html.Option;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.io.IOException;
+import java.rmi.RemoteException;
+import java.util.*;
 
 @Repository
 public class MarketDataDao implements CrudRepository<IexQuote, String> {
@@ -45,7 +56,11 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
     public Optional<IexQuote> findById(String ticker) throws IllegalArgumentException, DataRetrievalFailureException{
 
         Optional<IexQuote> iexQuote;
-        List<IexQuote> quotes  = findAllById(Collections.singletonList(ticker));
+        List<IexQuote> quotes = findAllById(Collections.singletonList(ticker));
+
+        for(IexQuote quote : quotes){
+            System.out.println(quote.toString());
+        }
 
         if(quotes.size() == 0){
             return Optional.empty();
@@ -69,8 +84,56 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
      */
     @Override
     public List<IexQuote> findAllById(Iterable<String> tickers) throws IllegalArgumentException, DataRetrievalFailureException {
-        return null;
+        List<IexQuote> quoteList = new LinkedList<>();
+
+        //String uri = IEX_BATCH_URL;
+        String tickerStr = String.join(",", tickers);
+        String uri = String.format(IEX_BATCH_URL, tickerStr);
+
+        System.out.println("Tickers: " + tickerStr);
+        System.out.println("URI: " + uri);
+
+        // HTTP response
+        String response = executeHttpGet(uri)
+                    .orElseThrow(() -> new IllegalArgumentException("Invalid ticker"));
+
+        // Array of JSON documents
+        JSONObject IexQuotesJson = new JSONObject(response);
+
+        // Get number of documents
+        if (IexQuotesJson.length() == 0) {
+            throw new IllegalArgumentException("Invalid ticker");
+        }
+
+
+        // String s = IexQuotesJson.toString();
+
+        //String json;
+        for(Object quoteValue : IexQuotesJson.toMap().values()) { // .keySet() or .values() ??
+            //System.out.println(quoteValue.toString());
+            try {
+
+                String json = new ObjectMapper().writeValueAsString(quoteValue);
+                String jsonSubstring = json.substring(9, json.length()-1);
+                System.out.println("VAL_AS_JSON: " + jsonSubstring);
+                IexQuote quote = JsonParser.toObjectFromJson(jsonSubstring, IexQuote.class);
+
+                quoteList.add(quote);
+
+            } catch (IOException ex) {
+                throw new RuntimeException("Unable to convert JSON str to IexQuote object", ex);
+            }
+        }
+
+        // TODO quote object isnt fully working? fix for findById
+        for(IexQuote quote : quoteList){
+            System.out.println(quote.toString());
+        }
+
+        return quoteList;
     }
+
+    // TODO: incorporate status response...
 
     /**
      * Execute a get and return http entity/body as a string
@@ -82,8 +145,24 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
      */
     private Optional<String> executeHttpGet(String url) throws DataRetrievalFailureException {
 
-        Optional<String> s = Optional.of(url);
-        return s;
+        String responseStr;
+        //Optional<String> s = Optional.of(url);
+
+        HttpGet getRequest = new HttpGet(url);
+        try {
+            CloseableHttpResponse response = getHttpClient().execute(getRequest);
+            if(response.getEntity() == null){
+                throw new RuntimeException("Empty response");
+            }
+
+            responseStr = EntityUtils.toString(response.getEntity());
+            //System.out.println("GET: " + responseStr);
+        } catch(IOException ex){
+            throw new RuntimeException("Failed to execute GET request", ex);
+        }
+
+        Optional<String> optionalStr = Optional.of(responseStr);
+        return optionalStr;
     }
 
     /**
