@@ -42,7 +42,6 @@ public class MarketDataDaoIntTest {
             dao.findAllById(Arrays.asList("AAPL", "FB2"));
             // fail(); // probably need to do a service logic check on invalid tickers later
         } catch (IllegalArgumentException e){
-            //System.out.println("illegal");
             assertTrue(true);
         } catch (Exception e){
             fail();

@@ -33,6 +33,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
 
     private static final String IEX_BATCH_PATCH = "stock/market/batch?symbols=%s&types=quote&token=";
     private final String IEX_BATCH_URL;
+    private final int MAPPER_OFFSET = 14;
 
     private Logger logger = LoggerFactory.getLogger(MarketDataDao.class);
     private HttpClientConnectionManager httpClientConnectionManager;
@@ -90,34 +91,37 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
         String tickerStr = String.join(",", tickers);
         String uri = String.format(IEX_BATCH_URL, tickerStr);
 
-        System.out.println("Tickers: " + tickerStr);
+        System.out.println("TICKERS: " + tickerStr);
         System.out.println("URI: " + uri);
 
         // HTTP response
         String response = executeHttpGet(uri)
                     .orElseThrow(() -> new IllegalArgumentException("Invalid ticker"));
 
+        // System.out.println("RESP: " + response.toString());
+
         // Array of JSON documents
         JSONObject IexQuotesJson = new JSONObject(response);
+        System.out.println("JSON_OBJ: " +  IexQuotesJson.toString());
+        // logger.info("JSON OBJ: " + IexQuotesJson.toString());
 
         // Get number of documents
         if (IexQuotesJson.length() == 0) {
             throw new IllegalArgumentException("Invalid ticker");
         }
 
-
-        // String s = IexQuotesJson.toString();
-
-        //String json;
-        for(Object quoteValue : IexQuotesJson.toMap().values()) { // .keySet() or .values() ??
-            //System.out.println(quoteValue.toString());
+        for(Object quoteValue : IexQuotesJson.toMap().values()) {
+            // System.out.println(quoteValue.toString());
             try {
 
-                String json = new ObjectMapper().writeValueAsString(quoteValue);
-                String jsonSubstring = json.substring(9, json.length()-1);
-                System.out.println("VAL_AS_JSON: " + jsonSubstring);
-                IexQuote quote = JsonParser.toObjectFromJson(jsonSubstring, IexQuote.class);
+                String json = new ObjectMapper()
+                        .writerWithDefaultPrettyPrinter()
+                        .writeValueAsString(quoteValue);
 
+                String jsonSubstring = json.substring(MAPPER_OFFSET, json.length()-1);
+                System.out.println("VAL_AS_JSON: " + jsonSubstring);
+                // logger.info("VAL_AS_JSON: " + jsonSubstring);
+                IexQuote quote = JsonParser.toObjectFromJson(jsonSubstring, IexQuote.class);
                 quoteList.add(quote);
 
             } catch (IOException ex) {
@@ -125,15 +129,12 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
             }
         }
 
-        // TODO quote object isnt fully working? fix for findById
-        for(IexQuote quote : quoteList){
-            System.out.println(quote.toString());
-        }
-
         return quoteList;
     }
 
     // TODO: incorporate status response...
+    //  also clean up prints & logger
+    //  also fix exception handling
 
     /**
      * Execute a get and return http entity/body as a string
