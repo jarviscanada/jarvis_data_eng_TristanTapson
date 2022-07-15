@@ -39,10 +39,12 @@ public class AppConfig {
         return config;
     }
 
-    
+
     @Bean
     HttpClientConnectionManager httpClientConnectionManager(){
         PoolingHttpClientConnectionManager manager = new PoolingHttpClientConnectionManager();
+        manager.setMaxTotal(50);
+        manager.setDefaultMaxPerRoute(50);
         return manager;
     }
 }
