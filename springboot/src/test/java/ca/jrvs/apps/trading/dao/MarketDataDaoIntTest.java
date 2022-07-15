@@ -40,7 +40,7 @@ public class MarketDataDaoIntTest {
         // sad path
         try{
             dao.findAllById(Arrays.asList("AAPL", "FB2"));
-            // fail(); // probably need to do a service logic check on invalid tickers later
+            fail(); // fixed - IllegalArgumentException caused by JSONException
         } catch (IllegalArgumentException e){
             assertTrue(true);
         } catch (Exception e){

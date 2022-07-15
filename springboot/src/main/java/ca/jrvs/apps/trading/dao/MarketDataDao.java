@@ -15,6 +15,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,9 +32,12 @@ import java.util.*;
 @Repository
 public class MarketDataDao implements CrudRepository<IexQuote, String> {
 
+    // TODO: clean up print/logger for assets screenshots later...
+
     private static final String IEX_BATCH_PATCH = "stock/market/batch?symbols=%s&types=quote&token=";
     private final String IEX_BATCH_URL;
     private final int MAPPER_OFFSET = 14;
+    private final int HTTP_OK = 200;
 
     private Logger logger = LoggerFactory.getLogger(MarketDataDao.class);
     private HttpClientConnectionManager httpClientConnectionManager;
@@ -50,7 +54,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
      *
      * @param ticker is a ticker
      * @throws IllegalArgumentException if a given ticker is invalid
-     * @throws DataRetrievalFailureException
+     * @throws DataRetrievalFailureException if HTTP request failed
      * @return IexQuote object
      */
     @Override
@@ -85,9 +89,8 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
      */
     @Override
     public List<IexQuote> findAllById(Iterable<String> tickers) throws IllegalArgumentException, DataRetrievalFailureException {
-        List<IexQuote> quoteList = new LinkedList<>();
 
-        //String uri = IEX_BATCH_URL;
+        List<IexQuote> quoteList = new LinkedList<>();
         String tickerStr = String.join(",", tickers);
         String uri = String.format(IEX_BATCH_URL, tickerStr);
 
@@ -101,40 +104,41 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
         // System.out.println("RESP: " + response.toString());
 
         // Array of JSON documents
-        JSONObject IexQuotesJson = new JSONObject(response);
-        System.out.println("JSON_OBJ: " +  IexQuotesJson.toString());
-        // logger.info("JSON OBJ: " + IexQuotesJson.toString());
+        try {
+            JSONObject IexQuotesJson = new JSONObject(response);
+            System.out.println("JSON_OBJ: " +  IexQuotesJson.toString());
+            // logger.info("JSON OBJ: " + IexQuotesJson.toString());
 
-        // Get number of documents
-        if (IexQuotesJson.length() == 0) {
-            throw new IllegalArgumentException("Invalid ticker");
-        }
+            // Get number of documents
+            if (IexQuotesJson.length() == 0) {
+                throw new IllegalArgumentException("Invalid ticker");
+            }
 
-        for(Object quoteValue : IexQuotesJson.toMap().values()) {
-            // System.out.println(quoteValue.toString());
-            try {
+            for(Object quoteValue : IexQuotesJson.toMap().values()) {
+                // System.out.println(quoteValue.toString());
+                try {
 
-                String json = new ObjectMapper()
+                    String json = new ObjectMapper()
                         .writerWithDefaultPrettyPrinter()
                         .writeValueAsString(quoteValue);
 
-                String jsonSubstring = json.substring(MAPPER_OFFSET, json.length()-1);
-                System.out.println("VAL_AS_JSON: " + jsonSubstring);
-                // logger.info("VAL_AS_JSON: " + jsonSubstring);
-                IexQuote quote = JsonParser.toObjectFromJson(jsonSubstring, IexQuote.class);
-                quoteList.add(quote);
+                    String jsonSubstring = json.substring(MAPPER_OFFSET, json.length()-1);
+                    System.out.println("VAL_AS_JSON: " + jsonSubstring);
+                    // logger.info("VAL_AS_JSON: " + jsonSubstring);
+                    IexQuote quote = JsonParser.toObjectFromJson(jsonSubstring, IexQuote.class);
+                    quoteList.add(quote);
 
-            } catch (IOException ex) {
-                throw new RuntimeException("Unable to convert JSON str to IexQuote object", ex);
+                } catch (IOException ex) {
+                    throw new RuntimeException("Unable to convert JSON str to IexQuote object", ex);
+                }
             }
+
+        } catch (JSONException ex){
+            throw new IllegalArgumentException("Invalid ticker", ex);
         }
 
         return quoteList;
     }
-
-    // TODO: incorporate status response...
-    //  also clean up prints & logger
-    //  also fix exception handling
 
     /**
      * Execute a get and return http entity/body as a string
@@ -142,24 +146,31 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
      *
      * @param url resource URL
      * @return http response body or Optional.empty for 404 response
-     * @throws  DataRetrievalFailureException if HTTP failed or status code is unexpected
+     * @throws DataRetrievalFailureException if HTTP failed or status code is unexpected
      */
     private Optional<String> executeHttpGet(String url) throws DataRetrievalFailureException {
 
         String responseStr;
-        //Optional<String> s = Optional.of(url);
+        int status;
 
         HttpGet getRequest = new HttpGet(url);
         try {
             CloseableHttpResponse response = getHttpClient().execute(getRequest);
+            status = response.getStatusLine().getStatusCode();
+            // System.out.println("STATUS_CODE: " + status);
+
             if(response.getEntity() == null){
-                throw new RuntimeException("Empty response");
+                // throw new RuntimeException("Empty response");
+                return Optional.empty();
+            }
+            if(status != HTTP_OK){
+                throw new DataRetrievalFailureException("Unexpected HTTP status: " + status);
             }
 
             responseStr = EntityUtils.toString(response.getEntity());
-            //System.out.println("GET: " + responseStr);
+            // System.out.println("GET: " + responseStr);
         } catch(IOException ex){
-            throw new RuntimeException("Failed to execute GET request", ex);
+            throw new DataRetrievalFailureException("Failed to execute GET request", ex);
         }
 
         Optional<String> optionalStr = Optional.of(responseStr);
