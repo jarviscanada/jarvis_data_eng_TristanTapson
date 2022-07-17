@@ -28,7 +28,6 @@ public class Application implements CommandLineRunner {
 
     @Autowired
     private QuoteService quoteService;
-    private QuoteController controller;
 
     // main
     public static void main(String[] args) throws Exception{
@@ -38,7 +37,7 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        // testing - not sure if CLI should be single or multi ticker(s) ??
+        // testing in console using quoteService, along with external swagger UI
         String ticker = args[0];
         quoteService.findIexQuoteByTicker(ticker);
     }
