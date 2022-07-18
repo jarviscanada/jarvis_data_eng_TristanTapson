@@ -32,6 +32,7 @@ public class QuoteServiceIntTest {
 
     private Quote savedQuote1 = new Quote();
     private Quote savedQuote2 = new Quote();
+    private Quote savedQuote3 = new Quote();
 
     @Before
     public void setUp() throws Exception {
@@ -50,16 +51,26 @@ public class QuoteServiceIntTest {
         savedQuote2.setId("goog");
         savedQuote2.setLastPrice(10.1d);
 
+        savedQuote3.setAskPrice(10d);
+        savedQuote3.setAskSize(10);
+        savedQuote3.setBidPrice(10.2d);
+        savedQuote3.setBidSize(10);
+        savedQuote3.setId("msft");
+        savedQuote3.setLastPrice(10.1d);
+
     }
 
     @Test
     public void updateMarketData(){
 
+        List<Quote> quotes = new LinkedList<>();
+
         long before = quoteDao.count();
         quoteService.saveQuote(savedQuote1);
-        quoteService.updateMarketData();
-        //assertEquals(before + 1, quoteDao.count());
+        quoteService.saveQuote(savedQuote2);
+        quotes = quoteService.updateMarketData();
 
+        assertEquals(before + 2, quoteDao.count());
     }
 
     @Test
@@ -68,12 +79,13 @@ public class QuoteServiceIntTest {
         List<String> goodTickers = new LinkedList<>();
         List<String> badTickers = new LinkedList<>();
 
+        goodTickers.add("AAPL");
+        goodTickers.add("GOOG");
         goodTickers.add("MSFT");
-        goodTickers.add("AMZN");
 
         // happy path
         quoteService.saveQuotes(goodTickers);
-        assertEquals(2, quoteDao.count());
+        assertEquals(3, quoteDao.count());
 
         // TODO - sad path
     }
@@ -107,7 +119,19 @@ public class QuoteServiceIntTest {
         }
     }
 
+    @Test
+    public void findAllQuotes(){
+
+        long before = quoteDao.count();
+        quoteService.saveQuote(savedQuote1);
+        quoteService.saveQuote(savedQuote3);
+        quoteService.updateMarketData();
+        List<Quote> quotes = (List<Quote>) quoteService.findAllQuotes();
+        assertEquals(before + 2, quotes.size());
+    }
+
     @After
     public void tearDown() throws Exception {
+        // quoteDao.deleteAll();
     }
 }

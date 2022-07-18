@@ -33,7 +33,7 @@ public class TestConfig {
 
     @Bean
     public DataSource dataSource(){
-        System.out.println("Creating apacheDataSource...");
+        System.out.println("Creating test apacheDataSource...");
         String url = System.getenv("PSQL_URL");
         System.out.println(url);
         String user = System.getenv("PSQL_USER");

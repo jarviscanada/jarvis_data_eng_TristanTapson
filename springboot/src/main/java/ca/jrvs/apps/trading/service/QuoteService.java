@@ -28,6 +28,7 @@ public class QuoteService {
 
     }
 
+    // TODO - clean up print/logger later...
 
     @Autowired
     public QuoteService(QuoteDao quoteDao, MarketDataDao marketDataDao){
@@ -41,10 +42,12 @@ public class QuoteService {
      * - for each ticker get iexQuote
      * - convert iexQuote to quote entity
      * - persist quote to database
+     * @return the list of updated quotes against IEX source
      */
-    public void updateMarketData(){
+    public List<Quote> updateMarketData(){
 
         Iterable<Quote> quotes = findAllQuotes();
+        List<Quote> updatedQuotes = new LinkedList<>();
 
         // TODO - make this more efficient with lambdas
 
@@ -52,15 +55,28 @@ public class QuoteService {
             IexQuote iexQuote = findIexQuoteByTicker(quote.getTicker());
             //System.out.println("IEX: " + iq.toString());
             Quote updatedQuote = buildQuoteFromIexQuote(iexQuote);
-            quoteDao.deleteById(quote.getTicker()); // delete previous entry
-            quoteDao.save(updatedQuote);            // save updated entry
+            deleteQuoteById(quote);      // delete previous entry
+            saveQuote(updatedQuote);     // save updated entry
+            updatedQuotes.add(updatedQuote);
+
+            System.out.println();
+            System.out.println(updatedQuote.getTicker() + " - updated market data");
+            System.out.println("ticker: " + updatedQuote.getTicker());
+            System.out.println("lastprice: " + updatedQuote.getLastPrice());
+            System.out.println("bidprice: " + updatedQuote.getBidPrice());
+            System.out.println("bidsize: " + updatedQuote.getBidSize());
+            System.out.println("askprice: " + updatedQuote.getAskPrice());
+            System.out.println("id: " + updatedQuote.getId());
+            System.out.println();
         }
+
+        return updatedQuotes;
     }
 
     /**
      * Helper method to map an IexQuote to a Quote entity
      * @param iexQuote
-     * @return
+     * @return quote entity from iexQuote
      */
     protected static Quote buildQuoteFromIexQuote(IexQuote iexQuote){
 
@@ -87,6 +103,7 @@ public class QuoteService {
 
         // TODO - maybe restructure this section later? also may need to consider case sensitivity with tickers...
 
+        // update quote against IEXQuote
         if(iexQuote.getLatestPrice() != null){
             quote.setLastPrice(iexQuote.getLatestPrice());
         }
@@ -102,13 +119,6 @@ public class QuoteService {
         if(iexQuote.getIexAskSize() != null){
             quote.setAskSize(iexQuote.getIexAskSize());
         }
-
-        /*System.out.println(quote.getTicker());
-        System.out.println(quote.getLastPrice());
-        System.out.println(quote.getBidPrice());
-        System.out.println(quote.getBidSize());
-        System.out.println(quote.getAskPrice());
-        System.out.println(quote.getAskSize());*/
 
         return quote;
     }
@@ -146,7 +156,15 @@ public class QuoteService {
     }
 
     /**
-     * Find all quotes form the quote table
+     * Delete a quote from the quote table by id
+     * @param quote to be deleted
+     */
+    public void deleteQuoteById(Quote quote){
+        quoteDao.deleteById(quote.getTicker());
+    }
+
+    /**
+     * Find all quotes from the quote table
      * @return a list of quotes
      */
     public Iterable<Quote> findAllQuotes(){
@@ -163,5 +181,12 @@ public class QuoteService {
     public IexQuote findIexQuoteByTicker(String ticker){
         return marketDataDao.findById(ticker)
                 .orElseThrow(() -> new IllegalArgumentException(ticker +  "is invalid"));
+    }
+
+    // controller helper function
+    public Quote saveQuoteByTickerId(String tickerId) {
+        Quote quote = buildQuoteFromIexQuote(findIexQuoteByTicker(tickerId));
+        saveQuote(quote);
+        return quote;
     }
 }

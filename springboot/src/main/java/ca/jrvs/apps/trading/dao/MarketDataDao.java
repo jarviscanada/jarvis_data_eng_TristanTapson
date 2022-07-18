@@ -64,7 +64,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
         List<IexQuote> quotes = findAllById(Collections.singletonList(ticker));
 
         for(IexQuote quote : quotes){
-            System.out.println(quote.toString());
+            // System.out.println(quote.toString());
         }
 
         if(quotes.size() == 0){
@@ -94,7 +94,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
         String tickerStr = String.join(",", tickers);
         String uri = String.format(IEX_BATCH_URL, tickerStr);
 
-        System.out.println("TICKERS: " + tickerStr);
+        System.out.println("Ticker(s): " + tickerStr);
         System.out.println("URI: " + uri);
 
         // HTTP response
@@ -106,7 +106,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
         // Array of JSON documents
         try {
             JSONObject IexQuotesJson = new JSONObject(response);
-            System.out.println("JSON_OBJ: " +  IexQuotesJson.toString());
+            System.out.println("JSON_Object: " +  IexQuotesJson.toString());
             // logger.info("JSON OBJ: " + IexQuotesJson.toString());
 
             // Get number of documents
@@ -123,7 +123,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
                         .writeValueAsString(quoteValue);
 
                     String jsonSubstring = json.substring(MAPPER_OFFSET, json.length()-1);
-                    System.out.println("VAL_AS_JSON: " + jsonSubstring);
+                    // System.out.println("VAL_AS_JSON: " + jsonSubstring); -- json
                     // logger.info("VAL_AS_JSON: " + jsonSubstring);
                     IexQuote quote = JsonParser.toObjectFromJson(jsonSubstring, IexQuote.class);
                     quoteList.add(quote);

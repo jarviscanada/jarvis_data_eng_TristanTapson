@@ -1,11 +1,6 @@
 package ca.jrvs.apps.trading;
 
-
-import ca.jrvs.apps.trading.controller.QuoteController;
-import ca.jrvs.apps.trading.dao.MarketDataDao;
-import ca.jrvs.apps.trading.dao.QuoteDao;
 import ca.jrvs.apps.trading.model.config.MarketDataConfig;
-import ca.jrvs.apps.trading.service.QuoteService;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.http.conn.HttpClientConnectionManager;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
@@ -15,7 +10,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
@@ -40,7 +34,7 @@ public class AppConfig {
 
     @Bean
     public DataSource dataSourceA(){
-        System.out.println("Creating apacheDataSource...(A)");
+        System.out.println("Creating app apacheDataSource...");
         String url = System.getenv("PSQL_URL");
         System.out.println(url);
         String user = System.getenv("PSQL_USER");
@@ -51,21 +45,6 @@ public class AppConfig {
         basicDataSource.setPassword(password);
         return basicDataSource;
     }
-
-    @Bean
-    public DataSource dataSource(){
-        System.out.println("Creating apacheDataSource...");
-        String url = System.getenv("PSQL_URL");
-        System.out.println(url);
-        String user = System.getenv("PSQL_USER");
-        String password = System.getenv("PSQL_PASSWORD");
-        BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setUrl(url);
-        basicDataSource.setUsername(user);
-        basicDataSource.setPassword(password);
-        return basicDataSource;
-    }
-
 
     @Bean
     public HttpClientConnectionManager httpClientConnectionManagerA(){

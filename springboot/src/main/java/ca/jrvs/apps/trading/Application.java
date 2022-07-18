@@ -38,7 +38,8 @@ public class Application implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         // testing in console using quoteService, along with external swagger UI
-        String ticker = args[0];
-        quoteService.findIexQuoteByTicker(ticker);
+        // String ticker = args[0];
+        // quoteService.findIexQuoteByTicker(ticker);
+        quoteService.updateMarketData(); // fixed in swagger UI
     }
 }
