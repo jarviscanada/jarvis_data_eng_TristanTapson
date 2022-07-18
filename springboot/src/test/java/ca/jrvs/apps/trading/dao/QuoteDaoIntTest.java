@@ -3,7 +3,6 @@ package ca.jrvs.apps.trading.dao;
 import ca.jrvs.apps.trading.TestConfig;
 import ca.jrvs.apps.trading.model.domain.Quote;
 import com.google.common.collect.Iterables;
-import com.sun.org.apache.xpath.internal.operations.Quo;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,7 +35,7 @@ public class QuoteDaoIntTest {
     // TODO - clean up print/logger before starting quoteService
 
     @Before
-    public void insertOne(){
+    public void setUp(){
         savedQuote1.setAskPrice(10d);
         savedQuote1.setAskSize(10);
         savedQuote1.setBidPrice(10.2d);
@@ -69,13 +68,8 @@ public class QuoteDaoIntTest {
     }
 
     @Test
-    public void makeUpdateValues(){
-        //quoteDao.makeUpdateValues(savedQuote);
-        assertEquals(savedQuote1.getTicker(), "aapl");
-    }
-
-    @Test
     public void findAll(){
+
         Iterable<Quote> quoteList = quoteDao.findAll();
         for(Quote quote : quoteList){
             // System.out.println(quote.getTicker());
@@ -129,11 +123,7 @@ public class QuoteDaoIntTest {
     }
 
     @After
-    public void deleteOne(){
-        quoteDao.deleteById(savedQuote1.getId());
-        quoteDao.deleteById(savedQuote2.getId());
-        quoteDao.deleteById(savedQuote3.getId());
-        quoteDao.deleteById(savedQuote4.getId());
-        //quoteDao.deleteAll();
+    public void tearDown(){
+        quoteDao.deleteAll();
     }
 }

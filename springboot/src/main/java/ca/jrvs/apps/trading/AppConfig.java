@@ -26,29 +26,52 @@ public class AppConfig {
     private Logger logger = LoggerFactory.getLogger(AppConfig.class);
 
     public static void main(String[] args) throws Exception{
-        System.out.println(System.getenv("IEX_PUB_TOKEN"));
-    }
-
-    @Bean
-    public MarketDataConfig marketDataConfig(){
-
-        String host = "https://cloud.iexapis.com/v1/";
         String token = System.getenv("IEX_PUB_TOKEN");
+        // System.out.println(token);
+    }
 
-        MarketDataConfig config = new MarketDataConfig();
-        config.setHost(host);
-        config.setToken(token);
+    @Bean
+    public MarketDataConfig marketDataConfigA(){
+        MarketDataConfig marketDataConfig = new MarketDataConfig();
+        marketDataConfig.setHost("https://cloud.iexapis.com/v1/");
+        marketDataConfig.setToken(System.getenv("IEX_PUB_TOKEN"));
+        return marketDataConfig;
+    }
 
-        return config;
+    @Bean
+    public DataSource dataSourceA(){
+        System.out.println("Creating apacheDataSource...(A)");
+        String url = System.getenv("PSQL_URL");
+        System.out.println(url);
+        String user = System.getenv("PSQL_USER");
+        String password = System.getenv("PSQL_PASSWORD");
+        BasicDataSource basicDataSource = new BasicDataSource();
+        basicDataSource.setUrl(url);
+        basicDataSource.setUsername(user);
+        basicDataSource.setPassword(password);
+        return basicDataSource;
+    }
+
+    @Bean
+    public DataSource dataSource(){
+        System.out.println("Creating apacheDataSource...");
+        String url = System.getenv("PSQL_URL");
+        System.out.println(url);
+        String user = System.getenv("PSQL_USER");
+        String password = System.getenv("PSQL_PASSWORD");
+        BasicDataSource basicDataSource = new BasicDataSource();
+        basicDataSource.setUrl(url);
+        basicDataSource.setUsername(user);
+        basicDataSource.setPassword(password);
+        return basicDataSource;
     }
 
 
-
     @Bean
-    HttpClientConnectionManager httpClientConnectionManager(){
-        PoolingHttpClientConnectionManager manager = new PoolingHttpClientConnectionManager();
-        manager.setMaxTotal(50);
-        manager.setDefaultMaxPerRoute(50);
-        return manager;
+    public HttpClientConnectionManager httpClientConnectionManagerA(){
+        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
+        cm.setMaxTotal(50);
+        cm.setDefaultMaxPerRoute(50);
+        return cm;
     }
 }
