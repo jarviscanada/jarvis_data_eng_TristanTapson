@@ -137,7 +137,7 @@ public class QuoteServiceIntTest {
         // sad path - invalid ticker
         try {
             quoteService.findIexQuoteByTicker(badTicker);
-        } catch (DataRetrievalFailureException e) {
+        } catch (DataRetrievalFailureException ex) {
             assertTrue(true);
         }
     }
