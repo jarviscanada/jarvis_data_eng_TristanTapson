@@ -4,6 +4,7 @@ import ca.jrvs.apps.trading.dao.MarketDataDao;
 import ca.jrvs.apps.trading.dao.QuoteDao;
 import ca.jrvs.apps.trading.model.domain.IexQuote;
 import ca.jrvs.apps.trading.model.domain.Quote;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,19 +54,20 @@ public class QuoteService {
 
         for(Quote quote: quotes) {
             IexQuote iexQuote = findIexQuoteByTicker(quote.getTicker());
-            //System.out.println("IEX: " + iq.toString());
+            // System.out.println("IEX: " + iq.toString());
             Quote updatedQuote = buildQuoteFromIexQuote(iexQuote);
-            deleteQuoteById(quote);      // delete previous entry
-            saveQuote(updatedQuote);     // save updated entry
+            deleteQuoteById(quote);      // delete previous entry from quote table
+            saveQuote(updatedQuote);     // save updated entry to quote table
             updatedQuotes.add(updatedQuote);
 
             System.out.println();
-            System.out.println(updatedQuote.getTicker() + " - updated market data");
+            System.out.println(updatedQuote.getTicker() + ": updated market data...");
             System.out.println("ticker: " + updatedQuote.getTicker());
             System.out.println("lastprice: " + updatedQuote.getLastPrice());
             System.out.println("bidprice: " + updatedQuote.getBidPrice());
             System.out.println("bidsize: " + updatedQuote.getBidSize());
             System.out.println("askprice: " + updatedQuote.getAskPrice());
+            System.out.println("asksize: " + updatedQuote.getAskSize());
             System.out.println("id: " + updatedQuote.getId());
             System.out.println();
         }
@@ -140,8 +142,12 @@ public class QuoteService {
         Quote quote = new Quote();
 
         for(String ticker : tickers){
-            quote = buildQuoteFromIexQuote(findIexQuoteByTicker(ticker));
-            quoteDao.save(quote);   // save updated entry
+            try {
+                quote = buildQuoteFromIexQuote(findIexQuoteByTicker(ticker));
+                quoteDao.save(quote);   // save updated entry
+            } catch(DataRetrievalFailureException ex){
+                throw new IllegalArgumentException("Ticker not found", ex);
+            }
         }
 
         return quotes;

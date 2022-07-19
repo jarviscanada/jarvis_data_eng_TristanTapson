@@ -36,6 +36,8 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
 
     private static final String IEX_BATCH_PATCH = "stock/market/batch?symbols=%s&types=quote&token=";
     private final String IEX_BATCH_URL;
+
+    private final String COMMA = ",";
     private final int MAPPER_OFFSET = 14;
     private final int HTTP_OK = 200;
 
@@ -91,7 +93,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
     public List<IexQuote> findAllById(Iterable<String> tickers) throws IllegalArgumentException, DataRetrievalFailureException {
 
         List<IexQuote> quoteList = new LinkedList<>();
-        String tickerStr = String.join(",", tickers);
+        String tickerStr = String.join(COMMA, tickers);
         String uri = String.format(IEX_BATCH_URL, tickerStr);
 
         System.out.println("Ticker(s): " + tickerStr);
