@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -36,13 +37,17 @@ public class QuoteDaoIntTest {
 
     @Before
     public void setUp(){
+
+        // pre-clean quote table
+        quoteDao.deleteAll();
+
+        // sample quotes
         savedQuote1.setAskPrice(10d);
         savedQuote1.setAskSize(10);
         savedQuote1.setBidPrice(10.2d);
         savedQuote1.setBidSize(10);
         savedQuote1.setId("aapl");
         savedQuote1.setLastPrice(10.1d);
-        quoteDao.save(savedQuote1);
 
         savedQuote2.setAskPrice(10d);
         savedQuote2.setAskSize(10);
@@ -50,7 +55,6 @@ public class QuoteDaoIntTest {
         savedQuote2.setBidSize(10);
         savedQuote2.setId("goog");
         savedQuote2.setLastPrice(10.1d);
-        quoteDao.save(savedQuote2);
 
         savedQuote3.setAskPrice(10d);
         savedQuote3.setAskSize(10);
@@ -65,59 +69,78 @@ public class QuoteDaoIntTest {
         savedQuote4.setBidSize(10);
         savedQuote4.setId("msft");
         savedQuote4.setLastPrice(10.1d);
+
+        // initially add savedQuote1 and savedQuote2 to the quote table
+        quoteDao.save(savedQuote1);
+        quoteDao.save(savedQuote2);
     }
 
     @Test
     public void findAll(){
 
+        // tickers not null check
         Iterable<Quote> quoteList = quoteDao.findAll();
         for(Quote quote : quoteList){
-            // System.out.println(quote.getTicker());
-            // System.out.println(quote.getAskPrice());
             assertTrue(quote.getTicker() != null);
+
         }
 
+        // first ticker equal to first saved quote ticker, and quote table size check
+        assertEquals(quoteList.iterator().next().getTicker(), savedQuote1.getTicker());
         assertEquals(2, Iterables.size(quoteList));
     }
 
     @Test
     public void count(){
+
+        // quote table size check
         long count = quoteDao.count();
-        // System.out.println(count);
         assertEquals(2, count);
     }
 
     @Test
     public void findById(){
+
+        // happy path - ticker found in quote table
         Quote quote = quoteDao.findById(savedQuote1.getId()).get();
         assertEquals(savedQuote1.getId(), quote.getId());
+
+        // sad path - ticker not found in quote table
+        Quote sadQuote = savedQuote1;
+        sadQuote.setId("xyz");
+        try{
+            quoteDao.findById(sadQuote.getId());
+        } catch (EmptyResultDataAccessException ex){
+            assertTrue(true);
+        }
     }
 
     @Test
     public void existsById(){
+
+        // ticker exists by id
         String id = savedQuote1.getId();
         boolean exists = quoteDao.existsById(id);
-        // System.out.println(ex);
         assertEquals(exists, true);
     }
 
     @Test
     public void saveAll(){
 
+        // save a list of quotes to the quote table, and quote table size check
         List<Quote> quotes = new LinkedList<>();
+        long beforeCount = quoteDao.count();
         quotes.add(savedQuote3);
         quotes.add(savedQuote4);
-        Iterable<Quote> iterableQuotes = quoteDao.saveAll(quotes);
-        for(Quote quote : iterableQuotes){
-            assertTrue(quote.getId() != null);
-            // System.out.println(quote.getId());
-        }
 
-        assertEquals(2, Iterables.size(iterableQuotes));
+        Iterable<Quote> iterableQuotes = quoteDao.saveAll(quotes);
+        assertEquals(beforeCount + 2, beforeCount + Iterables.size(iterableQuotes));
     }
 
     @Test
     public void deleteAll(){
+
+        // delete all entries in the quote table, and quote table size check
         quoteDao.deleteAll();
         assertEquals(0, quoteDao.count());
     }
