@@ -53,9 +53,10 @@ public class QuoteService {
         // TODO - make this more efficient with lambdas
 
         for(Quote quote: quotes) {
+
             IexQuote iexQuote = findIexQuoteByTicker(quote.getTicker());
-            // System.out.println("IEX: " + iq.toString());
             Quote updatedQuote = buildQuoteFromIexQuote(iexQuote);
+
             deleteQuoteById(quote);      // delete previous entry from quote table
             saveQuote(updatedQuote);     // save updated entry to quote table
             updatedQuotes.add(updatedQuote);

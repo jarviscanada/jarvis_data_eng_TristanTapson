@@ -14,8 +14,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @SpringBootApplication(exclude = {JdbcTemplateAutoConfiguration.class,
         DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
@@ -37,9 +36,10 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        // TODO - The Investors Exchange is open Monday through Friday from 9:30am to 4:00pm Eastern Daylight Time (GMT-04:00).
+
         // testing in console using quoteService, along with external swagger UI
-        // String ticker = args[0];
-        // quoteService.findIexQuoteByTicker(ticker);
-        quoteService.updateMarketData(); // fixed in swagger UI
+        // update market upon start-up
+        // quoteService.updateMarketData();
     }
 }
