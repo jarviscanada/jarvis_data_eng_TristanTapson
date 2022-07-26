@@ -28,7 +28,7 @@ public class TraderDaoIntTest {
     @Autowired
     private TraderDao traderDao;
 
-    private Trader savedTrader = new Trader();
+    private Trader savedTrader1 = new Trader();
     private Trader savedTrader2 = new Trader();
 
     @Before
@@ -37,12 +37,12 @@ public class TraderDaoIntTest {
         // SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
 
-        savedTrader.setCountry("Canada");
-        savedTrader.setDob(date); // yyyy-dd-mm in swagger UI
-        savedTrader.setEmail("first@email.com");
-        savedTrader.setFirstName("First");
-        savedTrader.setLastName("Last");
-        traderDao.save(savedTrader);
+        savedTrader1.setCountry("Canada");
+        savedTrader1.setDob(date); // yyyy-dd-mm in swagger UI
+        savedTrader1.setEmail("first@email.com");
+        savedTrader1.setFirstName("First");
+        savedTrader1.setLastName("Last");
+        traderDao.save(savedTrader1);
 
         savedTrader2.setCountry("United States");
         savedTrader2.setDob(date); // yyyy-dd-mm in swagger UI
@@ -59,8 +59,8 @@ public class TraderDaoIntTest {
     public void findById(){
 
         // trader found in trader table
-        Trader trader = traderDao.findById(savedTrader.getId()).get();
-        assertEquals(savedTrader.getId(), trader.getId());
+        Trader trader = traderDao.findById(savedTrader1.getId()).get();
+        assertEquals(savedTrader1.getId(), trader.getId());
     }
 
     @Test
@@ -68,10 +68,10 @@ public class TraderDaoIntTest {
 
         // find all traders in trader table
         List<Trader> traders = Lists
-                .newArrayList(traderDao.findAllById(Arrays.asList(savedTrader.getId(), -1)));
+                .newArrayList(traderDao.findAllById(Arrays.asList(savedTrader1.getId(), -1)));
 
         assertEquals(1, traders.size());
-        assertEquals(savedTrader.getCountry(), traders.get(0).getCountry());
+        assertEquals(savedTrader1.getCountry(), traders.get(0).getCountry());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class TraderDaoIntTest {
         // finds all traders in trader table and store them in a list
         List<Trader> traders = traderDao.findAll();
         assertEquals(2, traders.size());
-        assertEquals(savedTrader.getFirstName(), traders.get(0).getFirstName());
+        assertEquals(savedTrader1.getFirstName(), traders.get(0).getFirstName());
 
         // trader id not null check
         for(Trader trader : traders){
@@ -92,7 +92,7 @@ public class TraderDaoIntTest {
     public void existsById(){
 
         // trader exists by id
-        Integer id = savedTrader.getId();
+        Integer id = savedTrader1.getId();
         boolean exists = traderDao.existsById(id);
         assertEquals(exists, true);
     }
