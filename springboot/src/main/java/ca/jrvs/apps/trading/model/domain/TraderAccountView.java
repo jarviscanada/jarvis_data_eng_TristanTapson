@@ -5,6 +5,12 @@ public class TraderAccountView {
     private Account account;
     private Trader trader;
 
+    // constructor
+    public TraderAccountView(Account account, Trader trader){
+        this.trader = trader;
+        this.account = account;
+    }
+
     // getters and setters
 
     public Account getAccount() {

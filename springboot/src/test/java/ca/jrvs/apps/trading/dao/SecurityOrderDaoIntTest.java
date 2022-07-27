@@ -102,9 +102,6 @@ public class SecurityOrderDaoIntTest {
         securityOrder2.setNotes("notes are fun");
         securityOrderDao.save(securityOrder2);
 
-
-
-
     }
 
     // TODO - fix date formatting? also test happy/sad paths
