@@ -1,9 +1,6 @@
 package ca.jrvs.apps.trading.service;
 
-import ca.jrvs.apps.trading.dao.AccountDao;
-import ca.jrvs.apps.trading.dao.PositionDao;
-import ca.jrvs.apps.trading.dao.SecurityOrderDao;
-import ca.jrvs.apps.trading.dao.TraderDao;
+import ca.jrvs.apps.trading.dao.*;
 import ca.jrvs.apps.trading.model.domain.Account;
 import ca.jrvs.apps.trading.model.domain.SecurityOrder;
 import ca.jrvs.apps.trading.model.domain.Trader;
@@ -93,6 +90,8 @@ public class TraderAccountService {
             throw new IllegalArgumentException("Trader id is empty");
         }
 
+        // TODO - check positions later when doing optional tickets
+
         Optional<Trader> trader;
 
         // get trader account by id
@@ -117,9 +116,9 @@ public class TraderAccountService {
 
                     // then delete them from the security_order table,
                     // on the condition (traderId == securityOrder accountId)
-                    for(SecurityOrder traderSO : securityOrders){
-                        if(traderId == traderSO.getAccountId()){
-                            securityOrderDao.deleteById(traderSO.getId());
+                    for(SecurityOrder securityOrder : securityOrders){
+                        if(traderId == securityOrder.getAccountId()){
+                            securityOrderDao.deleteById(securityOrder.getId());
                         }
                     }
                 }
@@ -135,5 +134,88 @@ public class TraderAccountService {
         }
     }
 
+    /**
+     * Deposit a fund to an account by traderId
+     * - validate user input
+     * - account = accountDao.findByTraderId
+     * - accountDao.updateAmountById
+     *
+     * @param traderId must not be null
+     * @param fund must be greater than 0
+     * @return updatedAccount
+     * @throws IllegalArgumentException if traderId is null or not found,
+     *                                  and fund is less than or equal to 0
+     */
+    public Account deposit(Integer traderId, Double fund){
 
+        // validate traderId
+        if(traderId == null){
+            throw new IllegalArgumentException("Trader id is empty");
+        }
+
+        // validate deposit amount
+        if(fund <= 0.0){
+            throw new IllegalArgumentException("Deposit amount cannot be zero or negative");
+        }
+
+        try {
+            accountDao.findById(traderId);
+        } catch (IncorrectResultSizeDataAccessException ex){
+            throw new IllegalArgumentException("Account not found");
+        } finally {
+
+            Optional<Account> account = accountDao.findById(traderId);
+
+            Double currentAmount = account.get().getAmount();
+            account.get().setAmount(currentAmount + fund);
+            accountDao.updateOne(account.get());
+            return account.get();
+        }
+    }
+
+    /**
+     * Withdraw a fund to an account by traderId
+     *
+     * - validate user input
+     * - account = accountDao.findByTraderId
+     * - accountDao.updateAmountById
+     *
+     * @param traderId trader ID
+     * @param fund can't be 0
+     * @return updated amount
+     * @throws IllegalArgumentException if traderId is null or not found, fund is less than or equal to 0,
+     *                                  and insufficient funds
+     */
+    public Account withdraw(Integer traderId, Double fund) {
+
+        // validate traderId
+        if(traderId == null){
+            throw new IllegalArgumentException("Trader id is empty");
+        }
+
+        // validate withdrawal amount
+        if(fund <= 0.0){
+            throw new IllegalArgumentException("Withdrawal amount cannot be zero or negative");
+        }
+
+        try {
+             accountDao.findById(traderId);
+        } catch (IncorrectResultSizeDataAccessException ex){
+            throw new IllegalArgumentException("Account not found");
+        } finally {
+
+            Optional<Account> account = accountDao.findById(traderId);
+            Double currentAmount = account.get().getAmount();
+
+            // validate fund sufficiency, and update balance if validated
+            if(currentAmount - fund < 0.0){
+                throw new IllegalArgumentException("Insufficient funds");
+            }
+            else {
+                account.get().setAmount(currentAmount - fund);
+                accountDao.updateOne(account.get());
+                return account.get();
+            }
+        }
+    }
 }

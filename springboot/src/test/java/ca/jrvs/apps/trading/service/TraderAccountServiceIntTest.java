@@ -16,6 +16,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 
@@ -87,6 +88,8 @@ public class TraderAccountServiceIntTest {
 
     }
 
+    // TODO - more sad path testing?
+
     @Test
     public void createTraderAndAccount(){
 
@@ -115,28 +118,72 @@ public class TraderAccountServiceIntTest {
         TraderAccountView view1 = traderAccountService.createTraderAndAccount(savedTrader1);
         TraderAccountView view2 = traderAccountService.createTraderAndAccount(savedTrader2);
 
+        Integer id1 = view1.getTrader().getId();
+        Integer id2 = view2.getTrader().getId();
+
         SecurityOrder securityOrderView1 = securityOrder1;
-        securityOrderView1.setAccountId(view1.getTrader().getId());
+        securityOrderView1.setAccountId(id1);
         securityOrderView1.setNotes("this is persisted");
         securityOrderDao.save(securityOrderView1);
 
         // security order to be deleted
         SecurityOrder securityOrderView2 = securityOrder2;
-        securityOrderView2.setAccountId(view2.getTrader().getId());
+        securityOrderView2.setAccountId(id2);
         securityOrderDao.save(securityOrderView2);
 
+        // table size check before deletion
         long before = securityOrderDao.count();
 
         // view is deleted by the correct trader id (traderId == accountId), and security_order table size check
-        assertEquals(securityOrderView2.getAccountId(), view2.getTrader().getId());
-        traderAccountService.deleteTraderById(view2.getTrader().getId());
+        assertEquals(securityOrderView2.getAccountId(), id2);
+        traderAccountService.deleteTraderById(id2);
         assertEquals(before-1, securityOrderDao.count());
 
-        // TODO - sad path
+    }
+
+    @Test
+    public void deposit(){
+
+        // happy path - valid deposit
+        TraderAccountView view1 = traderAccountService.createTraderAndAccount(savedTrader1);
+        Integer id1 = view1.getTrader().getId();
+        Double depositAmount = 375.20;
+
+        SecurityOrder securityOrderView1 = securityOrder1;
+        securityOrderView1.setAccountId(id1);
+        securityOrderView1.setNotes("this is persisted D");
+        securityOrderDao.save(securityOrderView1);
+
+        Account updatedAccount = traderAccountService.deposit(id1, depositAmount);
+        assertEquals(depositAmount, updatedAccount.getAmount());
+
+    }
+
+    @Test
+    public void withDraw(){
+
+        // happy path - valid withdrawal
+        TraderAccountView view1 = traderAccountService.createTraderAndAccount(savedTrader1);
+        Integer id1 = view1.getTrader().getId();
+        Double depositAmount = 375.20;
+        Double withdrawAmount = 50.0;
+        Double newBalance = depositAmount - withdrawAmount;
+
+        SecurityOrder securityOrderView1 = securityOrder1;
+        securityOrderView1.setAccountId(id1);
+        securityOrderView1.setNotes("this is persisted W");
+        securityOrderDao.save(securityOrderView1);
+
+        traderAccountService.deposit(id1, depositAmount);
+        Account updatedAccount = traderAccountService.withdraw(id1, withdrawAmount);
+        assertEquals(newBalance, updatedAccount.getAmount());
+
     }
 
     @After
     public void tearDown(){
-
+        //securityOrderDao.deleteAll();
+        //accountDao.deleteAll();
+        //traderDao.deleteAll();
     }
 }

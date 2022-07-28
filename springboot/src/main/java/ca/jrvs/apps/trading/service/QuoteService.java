@@ -61,7 +61,7 @@ public class QuoteService {
             saveQuote(updatedQuote);     // save updated entry to quote table
             updatedQuotes.add(updatedQuote);
 
-            System.out.println();
+            /*System.out.println();
             System.out.println(updatedQuote.getTicker() + ": updated market data...");
             System.out.println("ticker: " + updatedQuote.getTicker());
             System.out.println("lastprice: " + updatedQuote.getLastPrice());
@@ -70,7 +70,7 @@ public class QuoteService {
             System.out.println("askprice: " + updatedQuote.getAskPrice());
             System.out.println("asksize: " + updatedQuote.getAskSize());
             System.out.println("id: " + updatedQuote.getId());
-            System.out.println();
+            System.out.println();*/
         }
 
         return updatedQuotes;

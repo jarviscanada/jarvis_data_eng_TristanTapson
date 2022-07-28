@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 
 @Repository
 public class SecurityOrderDao extends JdbcCrudDao<SecurityOrder> {
@@ -56,7 +57,7 @@ public class SecurityOrderDao extends JdbcCrudDao<SecurityOrder> {
 
     @Override
     public <S extends SecurityOrder> Iterable<S> saveAll(Iterable<S> iterable) {
-        return null;
+        throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override

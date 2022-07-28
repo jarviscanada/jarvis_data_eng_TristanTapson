@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.PreparedStatement;
 
 @Repository
 public class AccountDao extends JdbcCrudDao<Account> {
@@ -47,14 +48,21 @@ public class AccountDao extends JdbcCrudDao<Account> {
         return Account.class;
     }
 
+    // added updateOne implementation to update account withdrawals/deposits
     @Override
     public int updateOne(Account entity) {
-        throw new UnsupportedOperationException("Not implemented");
+        String update_sql = "UPDATE " + getTableName() + " SET amount=?, trader_id=? WHERE " + ID_COLUMN + "=?";
+        return jdbcTemplate.update(update_sql, makeUpdateValues(entity));
+    }
+
+    private Object[] makeUpdateValues(Account account) {
+        Object[] accountObject = {account.getAmount(), account.getId(), account.getTraderId()};
+        return accountObject;
     }
 
     @Override
     public <S extends Account> Iterable<S> saveAll(Iterable<S> iterable) {
-        return null;
+        throw new UnsupportedOperationException("Not implemented");
     }
 
     @Override

@@ -111,6 +111,19 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
         return idsList;
     }
 
+    // TODO - Saves a list of quote objects to the database table - implemented elsewhere for the swagger UI...
+    @Override
+    public <S extends T> Iterable<S> saveAll(Iterable<S> iterable) {
+
+        List<T> entities = new LinkedList<>();
+        for(T entity : iterable){
+            save(entity);
+            entities.add(entity);
+        }
+
+        return (List<S>) entities;
+    }
+
     @Override
     public long count(){
         String count_sql = "SELECT COUNT(*) FROM " + getTableName();

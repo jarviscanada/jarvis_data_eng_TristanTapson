@@ -147,6 +147,6 @@ public class QuoteDaoIntTest {
 
     @After
     public void tearDown(){
-        quoteDao.deleteAll();
+        //quoteDao.deleteAll();
     }
 }
