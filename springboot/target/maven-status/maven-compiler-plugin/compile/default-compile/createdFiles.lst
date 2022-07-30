@@ -1,0 +1,5 @@
+ca/jrvs/apps/trading/example/JsonParser.class
+ca/jrvs/apps/trading/dao/MarketDataDao.class
+ca/jrvs/apps/trading/HelloWorld.class
+ca/jrvs/apps/trading/model/domain/IexQuote.class
+ca/jrvs/apps/trading/model/config/MarketDataConfig.class
