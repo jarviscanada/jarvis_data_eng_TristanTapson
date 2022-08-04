@@ -1,14 +1,14 @@
 # Tristan Tapson . Jarvis Consulting
 
-I am a recent McMaster University Computer Science graduate looking to practice my skills in a professional environment; currently, I am working for Jarvis Consulting as a software developer. Since high school, I have always enjoyed the wide range of problems that programming can let me solve, as well as the many complexed challenges that accompany working towards a well structured solution. I have also tutored high school students in mathematics and programming. Coding is an excellent tool to utilize in solving many various problems that we encounter in our lives, and can also be used to make our lives substantially easier if applied correctly.
+I am a recent McMaster University Computer Science graduate; currently, I am working for Jarvis Consulting as a software developer, where I am applying modern technology and industry standards to various real world problems and projects. Through programming, I am able to enjoy the wide range of problems that it can let me solve, as well as the many complexed challenges that accompany working towards a well structured solution. Pertaining to this, I have utilized many technologies (such as Java, RDBMS, Docker, Linux, Springboot) to complete my recent projects. I have also tutored high school students in mathematics and programming. Coding is an excellent tool to utilize in solving many various problems that we encounter in our lives, and can also be used to make our lives substantially easier if applied correctly.
 
 ## Skills
 
-**Proficient:** Java, Linux/Bash, C/C++, Object Oriented Programming (OOP), Git
+**Proficient:** Java, Linux/Bash, C/C++, OOP, Git
 
-**Competent:** RDBMS/SQL, HTML/CSS, Algorithms, Agile/Scrum, Unit Testing, IntelliJ IDE
+**Competent:** HTML/CSS, Agile/Scrum, JUnit Testing, IntelliJ IDE, Docker
 
-**Familiar:** Python, Haskell, Elm, Concurrent Programming, Docker, Spring Framework
+**Familiar:** Python, Haskell, Elm, Concurrent Programming, RDBMS/SQL, Spring Framework
 
 ## Jarvis Projects
 
@@ -21,9 +21,9 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_TristanTap
       
   - Twitter App: Developed an app that allows for CRUD (Create, Read, Update, Delete) operations to manage a personal twitter account through the command line, alongside the use of HttpClient and the Twitter REST API. Tested with JUnit and Mockito, various integration tests and unit tests were done to ensure that to project is working correctly. In addition, spring framework is also applied to handle dependency management and injection concerns.
   - JDBC App: Implemented a JDBC app that connects to a postgreSQL database. CRUD (Create, Read, Update, Delete) operations are performed to update the database, and they manipulate and modify relevant information; here, the Data Access Object (DAO) design pattern is used while the database is queried using SQL.
-  - Grep App: Created a grep app in Java that allows for the search of files within a root directory and its subdirectories, returning all lines containing a specified regular expression. The app is very similar to the grep command in Linux, and also uses stream APIs and lambda notation to handle insufficient memory.
+  - Grep App: Created a grep app in Java that allows for the search of files within a root directory and its subdirectories, returning all lines containing a specified regular expression. The app is very similar to the grep command in Linux, and also uses stream APIs and lambda notation to handle insufficient memory problems
 
-**Springboot App** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/springboot)]: Not Started
+**Springboot App** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/springboot)]: Built a trading platform with a three-tier architecture allowing users to manage their own personal trader accounts, and fetch stock information by the IEX Cloud API. The app uses the Spring framework and information is managed by CRUD operations via JDBC against a PostgreSQL database; it is deployed as a web servlet with the aid of Apache Tomcat and Swagger UI, where endpoints can be tested.
 
 **Python Data Analytics** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/python_data_anlytics)]: Not Started
 
@@ -40,7 +40,7 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_TristanTap
 
 ## Professional Experiences
 
-**Software Developer, Jarvis (2022-present)**: Worked as a software developer in a Scrum environment, while implementing mutiple projects using a variety of technologies to enhance my skillset towards industry standards.
+**Software Developer, Jarvis (2022-present)**: Worked as a software developer in a Scrum environment, while leading daily sprints and participating in sprint retros. Partook in master code reviews to ensure knowledge about current technologies is sufficient, while implementing mutiple projects using a variety of tools to enhance my skillset towards industry standards.
 
 **Math & Programming Tutor, Oxford Learning Centers (2020-2022)**: Worked closely with high school students in aiding them with math and programming homework help; focus involved problem solving at a high level, as well as efficient and effective communication.
 
