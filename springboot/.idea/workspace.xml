@@ -70,7 +70,7 @@
       <recent name="ca.jrvs.apps.trading.model.domain" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ca.jrvs.apps.trading in trading">
+  <component name="RunManager" selected="Application.ca.jrvs.apps.trading.Application">
     <configuration name="ca.jrvs.apps.trading.Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
         <env name="IEX_PUB_TOKEN" value="pk_5273e1f95462408e984b0b8c906f3189" />
@@ -187,9 +187,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ca.jrvs.apps.trading.Application" />
         <item itemvalue="JUnit.ca.jrvs.apps.trading in trading" />
         <item itemvalue="JUnit.ca.jrvs.apps.trading.dao in trading" />
-        <item itemvalue="Application.ca.jrvs.apps.trading.Application" />
         <item itemvalue="JUnit.TraderAccountServiceIntTest.withDraw" />
         <item itemvalue="JUnit.PositionDaoIntTest.saves" />
       </list>
