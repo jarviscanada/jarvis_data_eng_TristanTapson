@@ -25,14 +25,6 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_TristanTap
 
 **Springboot App** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/springboot)]: Built a trading platform with a three-tier architecture allowing users to manage their own personal trader accounts, and fetch stock information by the IEX Cloud API. The app uses the Spring framework and information is managed by CRUD operations via JDBC against a PostgreSQL database; it is deployed as a web servlet with the aid of Apache Tomcat and Swagger UI, where endpoints can be tested.
 
-**Python Data Analytics** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/python_data_anlytics)]: Not Started
-
-**Hadoop** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/hadoop)]: Not Started
-
-**Spark** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/spark)]: Not Started
-
-**Cloud/DevOps** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/cloud_devops)]: Not Started
-
 
 ## Highlighted Projects
 **Personal Webpage** [[GitHub](https://github.com/tristantapson8/tristantapson8.github.io)]: Built a personal webpage to display my skills in an interactive format, as well as to showcase my skills in web development; tools used were HTML and CSS. Website can be found at: https://tristantapson8.github.io/
