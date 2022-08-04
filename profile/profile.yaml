@@ -1,0 +1,93 @@
+#Preferred name (Characters only)
+name: "Tristan Tapson"
+# Your GitHub repo root URL
+github_repo_root_url: https://github.com/jarviscanada/jarvis_data_eng_TristanTapson
+
+# Introduce yourself, your academic and professional background.
+# What excites you about the software industry and your passion. At least 80 words
+summary: I am a recent McMaster University Computer Science graduate, and am currently working for Jarvis Consulting as a software developer, where I am applying modern technology and industry standards to various real world problems and projects. Through programming, I am able to enjoy working towards structured solutions for a wide range of complex challenges. I have experience working with many technologies such as Java, PostgreSQL, Docker, bash, and Spring Boot to complete my recent projects. I have also tutored high school students in mathematics and programming. Coding is an excellent tool for solving various problems that we encounter in our lives, and can also be used to make our lives substantially easier if applied correctly.
+# Group your skills by level.
+# Your skills can be anything software related (e.g. language, frameworks, methodologies, software, etc.).
+skills:
+  # At least 5 skills
+  proficient:
+    - Java
+    - Linux/Bash
+    - C/C++
+    - OOP
+    - Git
+  # At least 5 skills
+  competent:
+    - HTML/CSS
+    - Agile/Scrum
+    - JUnit Testing
+    - IntelliJ IDE
+    - Docker
+  # At least 5 skills
+  familiar:
+    - Python
+    - Haskell
+    - Elm
+    - Concurrent Programming
+    - RDBMS/SQL
+    - Spring Framework
+
+# List of Jarvis projects
+jarvis_projects:
+  - name: "Cluster Monitor"
+    git_url: "/linux_sql"
+    # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: "Developed a linux cluster monitoring agent that stored key hardware information and usage within a database within a client-server architecture. A postgreSQL database is provisioned on a client machine using docker, and a bash agent collects relevant information to be stored within the database tables. In addition, the afformention inforation is retrived at periodical intervals with Crontab, and the database is queried using SQL."
+  - name: "Core Java Apps"
+    git_url: "/core_java"
+    description:
+      - "Twitter App: Developed an app that allows for CRUD (Create, Read, Update, Delete) operations to manage a personal twitter account through the command line, alongside the use of HttpClient and the Twitter REST API. Tested with JUnit and Mockito, various integration tests and unit tests were done to ensure that to project is working correctly. In addition, spring framework is also applied to handle dependency management and injection concerns."
+      - "JDBC App: Implemented a JDBC app that connects to a postgreSQL database. CRUD (Create, Read, Update, Delete) operations are performed to update the database, and they manipulate and modify relevant information; here, the Data Access Object (DAO) design pattern is used while the database is queried using SQL."
+      - "Grep App: Created a grep app in Java that allows for the search of files within a root directory and its subdirectories, returning all lines containing a specified regular expression. The app is very similar to the grep command in Linux, and also uses stream APIs and lambda notation to handle insufficient memory problems"
+  - name: "Springboot App"
+    git_url: "/springboot"
+    description: "Built a trading platform with a three-tier architecture allowing users to manage their own personal trader accounts, and fetch stock information by the IEX Cloud API. The app uses the Spring framework and information is managed by CRUD operations via JDBC against a PostgreSQL database; it is deployed as a web servlet with the aid of Apache Tomcat and Swagger UI, where endpoints can be tested."
+
+# List of personal or academic projects
+# Feel free to add more projects
+highlighted_projects:
+  #project name
+  - name: "Personal Webpage"
+    #URL is optional
+    git_url: "https://github.com/tristantapson8/tristantapson8.github.io"
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: "Built a personal webpage to display my skills in an interactive format, as well as to showcase my skills in web development; tools used were HTML and CSS. Website can be found at: https://tristantapson8.github.io/"
+
+#List of professional experience
+#The job description allows hiring managers to understand your job and the technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+#The description must be more than 25 words. If your experience is not software related, please focus on soft skills and achievements (e.g. team collaboration, problem-solving, improvements, communication).
+professional_experience:
+  #Write your Jarvis role as a professional experience rather than training.
+  - title: "Software Developer"
+    company: "Jarvis"
+    duration: "2022-present"
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: "Worked as a software developer in a Scrum environment, while leading daily sprints and participating in sprint retros. Partook in master code reviews to ensure knowledge about current technologies is sufficient, while implementing mutiple projects using a variety of tools to enhance my skillset towards industry standards."
+  - title: "Math & Programming Tutor"
+    company: "Oxford Learning Centers"
+    duration: "2020-2022"
+    description: "Worked closely with high school students in aiding them with math and programming homework help; focus involved problem solving at a high level, as well as efficient and effective communication."
+
+#List of edcuation
+education:
+  - school_name: "McMaster University"
+    duration: "2013-2019"
+    degree: "Bachelor of Applied Sciences"
+    department: "Computer Science"
+    # optional
+    awards_achievements:
+      - "GPA: 3.2/4.0"
+
+#Optional section
+others:
+  - title: "Activities/Hobbies"
+    bullets:
+      - "Piano playing"
+      - "Competitive soccer/volleyball"
+      - "Casual video games"

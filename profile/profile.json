@@ -1,0 +1,92 @@
+{
+  "education": [
+    {
+      "awards_achievements": [
+        "GPA: 3.2/4.0"
+      ],
+      "degree": "Bachelor of Applied Sciences",
+      "department": "Computer Science",
+      "duration": "2013-2019",
+      "school_name": "McMaster University"
+    }
+  ],
+  "github_repo_root_url": "https://github.com/jarviscanada/jarvis_data_eng_TristanTapson",
+  "highlighted_projects": [
+    {
+      "description": "Built a personal webpage to display my skills in an interactive format, as well as to showcase my skills in web development; tools used were HTML and CSS. Website can be found at: https://tristantapson8.github.io/",
+      "git_url": "https://github.com/tristantapson8/tristantapson8.github.io",
+      "name": "Personal Webpage"
+    }
+  ],
+  "jarvis_projects": [
+    {
+      "description": "Developed a linux cluster monitoring agent that stored key hardware information and usage within a database within a client-server architecture. A postgreSQL database is provisioned on a client machine using docker, and a bash agent collects relevant information to be stored within the database tables. In addition, the afformention inforation is retrived at periodical intervals with Crontab, and the database is queried using SQL.",
+      "git_url": "/linux_sql",
+      "name": "Cluster Monitor"
+    },
+    {
+      "description": [
+        "Twitter App: Developed an app that allows for CRUD (Create, Read, Update, Delete) operations to manage a personal twitter account through the command line, alongside the use of HttpClient and the Twitter REST API. Tested with JUnit and Mockito, various integration tests and unit tests were done to ensure that to project is working correctly. In addition, spring framework is also applied to handle dependency management and injection concerns.",
+        "JDBC App: Implemented a JDBC app that connects to a postgreSQL database. CRUD (Create, Read, Update, Delete) operations are performed to update the database, and they manipulate and modify relevant information; here, the Data Access Object (DAO) design pattern is used while the database is queried using SQL.",
+        "Grep App: Created a grep app in Java that allows for the search of files within a root directory and its subdirectories, returning all lines containing a specified regular expression. The app is very similar to the grep command in Linux, and also uses stream APIs and lambda notation to handle insufficient memory problems"
+      ],
+      "git_url": "/core_java",
+      "name": "Core Java Apps"
+    },
+    {
+      "description": "Built a trading platform with a three-tier architecture allowing users to manage their own personal trader accounts, and fetch stock information by the IEX Cloud API. The app uses the Spring framework and information is managed by CRUD operations via JDBC against a PostgreSQL database; it is deployed as a web servlet with the aid of Apache Tomcat and Swagger UI, where endpoints can be tested.",
+      "git_url": "/springboot",
+      "name": "Springboot App"
+    }
+  ],
+  "name": "Tristan Tapson",
+  "others": [
+    {
+      "bullets": [
+        "Piano playing",
+        "Competitive soccer/volleyball",
+        "Casual video games"
+      ],
+      "title": "Activities/Hobbies"
+    }
+  ],
+  "professional_experience": [
+    {
+      "company": "Jarvis",
+      "description": "Worked as a software developer in a Scrum environment, while leading daily sprints and participating in sprint retros. Partook in master code reviews to ensure knowledge about current technologies is sufficient, while implementing mutiple projects using a variety of tools to enhance my skillset towards industry standards.",
+      "duration": "2022-present",
+      "title": "Software Developer"
+    },
+    {
+      "company": "Oxford Learning Centers",
+      "description": "Worked closely with high school students in aiding them with math and programming homework help; focus involved problem solving at a high level, as well as efficient and effective communication.",
+      "duration": "2020-2022",
+      "title": "Math \u0026 Programming Tutor"
+    }
+  ],
+  "skills": {
+    "competent": [
+      "HTML/CSS",
+      "Agile/Scrum",
+      "JUnit Testing",
+      "IntelliJ IDE",
+      "Docker"
+    ],
+    "familiar": [
+      "Python",
+      "Haskell",
+      "Elm",
+      "Concurrent Programming",
+      "RDBMS/SQL",
+      "Spring Framework"
+    ],
+    "proficient": [
+      "Java",
+      "Linux/Bash",
+      "C/C++",
+      "OOP",
+      "Git"
+    ]
+  },
+  "summary": "I am a recent McMaster University Computer Science graduate, and am currently working for Jarvis Consulting as a software developer, where I am applying modern technology and industry standards to various real world problems and projects. Through programming, I am able to enjoy working towards structured solutions for a wide range of complex challenges. I have experience working with many technologies such as Java, PostgreSQL, Docker, bash, and Spring Boot to complete my recent projects. I have also tutored high school students in mathematics and programming. Coding is an excellent tool for solving various problems that we encounter in our lives, and can also be used to make our lives substantially easier if applied correctly."
+}
