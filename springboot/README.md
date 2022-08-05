@@ -2,9 +2,9 @@
 
 ## Table of contents
 * [Introduction](#Introduction)
-* [Quick Start](#QuickStart)
+* [Quick Start](#Quick-Start)
 * [Implementation](#Implementation)
-* [REST API Usage](#RESTAPIUsage)
+* [REST API Usage](#REST-API-Usage)
 * [Test](#Test)
 * [Deployment](#Deployment)
 * [Improvements](#Improvements)
@@ -78,7 +78,7 @@ docker container stop trading-app-dev trading-psql-dev
 ## Implementation
 
 <p align="center">
-    <img src="./assets/componentDiagram2.PNG" alt="">
+    <img src="./assets/componentDiagram2.png" alt="">
 </p>
 <p align="center">
     <i> Component Diagram </i>
@@ -155,12 +155,12 @@ Additionally, line coverage is applied to ensure that the application is robust.
 ## Deployment
 
 <p align="center">
-    <img src="./assets/dockerDiagram.PNG" alt="">
+    <img src="./assets/dockerDiagram.png" alt="">
 </p>
 <p align="center">
     <i> Docker diagram  </i>
 </p>
-For the purpose of this assignment, the app code is stored on a remote repository. GitHub is used here, and development was done locally. In addtion, Docker commands were used to create images, which is stored within my Dockerhub repository. The docker images can be pulled to a local machine with a `docker pull` command in your command line interface. As there are two images (PSQL and app image) needed for the trading platform, a container respectively pertaining to each one is needed, which are then connected through a Docker network and ran individually.
+For the purpose of this assignment, the app code is stored on a remote repository. GitHub is used here, and development was done locally. In addtion, Docker commands were used to create images, which is stored within my Dockerhub repository. The docker images can be pulled to a local machine with a docker pull command in your command line interface. As there are two images (PSQL and app image) needed for the trading platform, a container respectively pertaining to each one is needed, which are then connected through a Docker network and ran individually.
 
 ## Improvements
 Listed below are three improvements that could be added to the application to improve it:
