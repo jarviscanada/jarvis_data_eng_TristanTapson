@@ -16,7 +16,7 @@ Technologies used: Docker, Git, HTTP Clients, IEX Cloud API, IntelliJ, Java, JUn
 
 > **_NOTE:_** This app is used to manage a trading platform account through a Swagger UI. To use this application in its entirety, access to a IEX Cloud account is needed, along with its accompanying API keys and access tokens. To apply for a IEX Cloud account, you can do so here at the following link: https://iexcloud.io/console/tokens
 
-## Quick Start (TODO - upload images to dockerhub after optional tickets)
+## Quick Start
 First verify that you have a valid docker version to use with the project. Once done, a docker command is used to pull the docker image stored within my dockerhub repository. Then a network is created to establish communication between Docker containers; these containers will be created later on in this section:   
 ```
 # docker version must be 17.05 or higher
@@ -75,10 +75,10 @@ docker container stop trading-app-dev trading-psql-dev
 </p>
 
 
-## Implementation (TODO - update diagram after optional tickets)
+## Implementation
 
 <p align="center">
-    <img src="./assets/componentDiagram1.1.PNG" alt="">
+    <img src="./assets/componentDiagram2.PNG" alt="">
 </p>
 <p align="center">
     <i> Component Diagram </i>
@@ -134,19 +134,25 @@ Testing was done for the app using integration testing to ensure that the projec
     <img src="./assets/test2.PNG" alt="">
 </p>
 <p align="center">
+</p>
+
+<p align="center">
+    <img src="./assets/test3.PNG" alt="">
+</p>
+<p align="center">
     <i> response body and updated database from endpoint testing </i>
 </p>
 
 Additionally, line coverage is applied to ensure that the application is robust. For this project, it is required that a line coverage of 50% or greater was needed for all service and DAO classes. Below is the coverage for our trading app:
 
 <p align="center">
-    <img src="./assets/codeCoverage.PNG" alt="">
+    <img src="./assets/coverageEx.PNG" alt="">
 </p>
 <p align="center">
     <i> line coverage for the trading app </i>
 </p>
 
-## Deployment (TODO - CLI docker build steps)
+## Deployment
 
 <p align="center">
     <img src="./assets/dockerDiagram.PNG" alt="">
@@ -163,5 +169,3 @@ Listed below are three improvements that could be added to the application to im
 - **Start-up Script**: A script could be implemented that will pull the neccessary docker images, and create and run docker containers; a user would simply have to execute a single line of code within the command line, and then easily view the Swagger UI in their browser.
 
 - **Simulated Trading Market**: Allow for the purchase and selling of securities by traders - this may need for the implementation of additional controllers and updated component layers, or even an entire restructuring of the project. Despite this, having a fully functional trading platform would be a good proof of concept to demonstrate to a company that is heavily invested in this field.
-
-
