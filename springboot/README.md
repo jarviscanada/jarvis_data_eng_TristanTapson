@@ -78,10 +78,10 @@ docker container stop trading-app-dev trading-psql-dev
 ## Implementation
 
 <p align="center">
-    <img src="./assets/componentDiagram2.png" alt="">
+    <img src="./assets/componentDiagram3.png" alt="">
 </p>
 <p align="center">
-    <i> Component Diagram </i>
+    <i> Component Diagram (red = controller layer, yellow = service layer, blue = data access layer)</i>
 </p>
 
 ### Architecture
@@ -122,7 +122,7 @@ Swagger UI allows a development team to visualize and interact with an APIs reso
   | **PUT**  `/trader/withdraw/traderId/{traderId}/amount/{amount}` | Withdraw a fund |
 
 ## Test
-Testing was done for the app using integration testing to ensure that the project was able to compile, as well as unit testing to ensure that the app is working as intended. **JUnit** is used here, with various assertion tests to ensure that intended use of the project does not include any logic errors. To verify that the progam was working in entirety, a user could open up the Swagger UI to test the endpoints; if correctly implemented, a proper response body would be returned, and displayed to the user in the UI. In addition to this, users would also be able to connect to the PSQL database through the command line, and verify that the requested information has been persisted correctly into the database.
+Testing was done for the app using integration testing to ensure that the project was able to compile, as well as unit testing to ensure that the app is working as intended. **JUnit** is used here, with various assertion tests to ensure that intended use of the project does not include any logic errors. To verify that the progam was working in entirety, a user could open up the Swagger UI to test the endpoints; if correctly implemented, a proper response body would be returned, and displayed to the user in the UI. In addition to this, users would also be able to connect to the PSQL database through the command line, and verify that the requested information has been persisted correctly into the database. Below is a sample sequence of a tested endpoint:
 
 <p align="center">
     <img src="./assets/test1.PNG" alt="">
