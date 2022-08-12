@@ -154,6 +154,7 @@ public class OrderService {
         Double currentBalance = account.getAmount();
 
         // update position after successful order
+        // TODO - list of positions via find all and compare to ID ?
         Position position = positionDao.findById(id).get();
         Integer currentPosition = position.getPosition();
 

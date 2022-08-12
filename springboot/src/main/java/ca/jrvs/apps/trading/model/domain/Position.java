@@ -4,7 +4,6 @@ import org.hibernate.id.IntegralDataTypeHolder;
 
 public class Position implements Entity<Integer>{
 
-    private Integer id;
     private Integer accountId;
     private Integer position;
     private String ticker;
@@ -37,11 +36,21 @@ public class Position implements Entity<Integer>{
 
     @Override
     public Integer getId() {
-        return id;
+        return accountId;
     }
 
     @Override
     public void setId(Integer integer) {
-        id = integer;
+        this.accountId = integer;
+    }
+
+    // toString for testing...
+    @Override
+    public String toString() {
+        return "Position{" +
+                "accountId=" + accountId +
+                ", position=" + position +
+                ", ticker='" + ticker + '\'' +
+                '}';
     }
 }
