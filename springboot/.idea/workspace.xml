@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c384d13d-a4b6-4ab5-b6b8-7f42829dd596" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ca/jrvs/apps/trading/service/QuoteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/jrvs/apps/trading/service/QuoteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ca/jrvs/apps/trading/dao/PositionDaoIntTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ca/jrvs/apps/trading/dao/PositionDaoIntTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,30 +92,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PositionDaoIntTest.saves" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="trading-app" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ca.jrvs.apps.trading.dao.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ca.jrvs.apps.trading.dao" />
-      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.trading.dao.PositionDaoIntTest" />
-      <option name="METHOD_NAME" value="saves" />
-      <option name="TEST_OBJECT" value="method" />
-      <envs>
-        <env name="IEX_PUB_TOKEN" value="pk_5273e1f95462408e984b0b8c906f3189" />
-        <env name="PSQL_URL" value="jdbc:postgresql://localhost:5432/jrvstrading" />
-        <env name="PSQL_USER" value="postgres" />
-        <env name="PSQL_PASSWORD" value="password" />
-      </envs>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TraderAccountServiceIntTest.withDraw" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="trading-app" />
+    <configuration name="OrderServiceIntTest.buyMarketOrder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="trading" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="ca.jrvs.apps.trading.service.*" />
@@ -121,8 +101,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ca.jrvs.apps.trading.service" />
-      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.trading.service.TraderAccountServiceIntTest" />
-      <option name="METHOD_NAME" value="withDraw" />
+      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.trading.service.OrderServiceIntTest" />
+      <option name="METHOD_NAME" value="buyMarketOrder" />
       <option name="TEST_OBJECT" value="method" />
       <envs>
         <env name="IEX_PUB_TOKEN" value="pk_5273e1f95462408e984b0b8c906f3189" />
@@ -134,18 +114,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ca.jrvs.apps.trading in trading" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OrderServiceIntTest.sellMarketOrder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="trading" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ca.jrvs.apps.trading.*" />
+          <option name="PATTERN" value="ca.jrvs.apps.trading.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ca.jrvs.apps.trading" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="ca.jrvs.apps.trading.service" />
+      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.trading.service.OrderServiceIntTest" />
+      <option name="METHOD_NAME" value="sellMarketOrder" />
+      <option name="TEST_OBJECT" value="method" />
       <envs>
         <env name="IEX_PUB_TOKEN" value="pk_5273e1f95462408e984b0b8c906f3189" />
         <env name="PSQL_URL" value="jdbc:postgresql://localhost:5432/jrvstrading" />
@@ -156,42 +136,52 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ca.jrvs.apps.trading.dao in trading" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OrderServiceUnitTest.buyMarketOrder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="trading" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ca.jrvs.apps.trading.dao.*" />
+          <option name="PATTERN" value="ca.jrvs.apps.trading.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ca.jrvs.apps.trading.dao" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <envs>
-        <env name="IEX_PUB_TOKEN" value="pk_5273e1f95462408e984b0b8c906f3189" />
-        <env name="PSQL_URL" value="jdbc:postgresql://localhost:5432/jrvstrading" />
-        <env name="PSQL_USER" value="postgres" />
-        <env name="PSQL_PASSWORD" value="password" />
-      </envs>
+      <option name="PACKAGE_NAME" value="ca.jrvs.apps.trading.service" />
+      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.trading.service.OrderServiceUnitTest" />
+      <option name="METHOD_NAME" value="buyMarketOrder" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderServiceUnitTest.sellMarketOrder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="trading" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.jrvs.apps.trading.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ca.jrvs.apps.trading.service" />
+      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.trading.service.OrderServiceUnitTest" />
+      <option name="METHOD_NAME" value="sellMarketOrder" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
       <item itemvalue="Application.ca.jrvs.apps.trading.Application" />
-      <item itemvalue="JUnit.ca.jrvs.apps.trading.dao in trading" />
-      <item itemvalue="JUnit.ca.jrvs.apps.trading in trading" />
-      <item itemvalue="JUnit.TraderAccountServiceIntTest.withDraw" />
-      <item itemvalue="JUnit.PositionDaoIntTest.saves" />
+      <item itemvalue="JUnit.OrderServiceUnitTest.sellMarketOrder" />
+      <item itemvalue="JUnit.OrderServiceIntTest.sellMarketOrder" />
+      <item itemvalue="JUnit.OrderServiceIntTest.buyMarketOrder" />
+      <item itemvalue="JUnit.OrderServiceUnitTest.buyMarketOrder" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ca.jrvs.apps.trading.Application" />
-        <item itemvalue="JUnit.ca.jrvs.apps.trading in trading" />
-        <item itemvalue="JUnit.ca.jrvs.apps.trading.dao in trading" />
-        <item itemvalue="JUnit.TraderAccountServiceIntTest.withDraw" />
-        <item itemvalue="JUnit.PositionDaoIntTest.saves" />
+        <item itemvalue="JUnit.OrderServiceUnitTest.buyMarketOrder" />
+        <item itemvalue="JUnit.OrderServiceUnitTest.sellMarketOrder" />
+        <item itemvalue="JUnit.OrderServiceIntTest.sellMarketOrder" />
+        <item itemvalue="JUnit.OrderServiceIntTest.buyMarketOrder" />
       </list>
     </recent_temporary>
   </component>

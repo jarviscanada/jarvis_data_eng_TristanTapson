@@ -51,6 +51,7 @@ public class QuoteService {
         List<Quote> updatedQuotes = new LinkedList<>();
 
         // TODO - make this more efficient with lambdas
+        // TODO - should not be deleting then adding new quote, fix this...
 
         for(Quote quote: quotes) {
 
@@ -60,6 +61,9 @@ public class QuoteService {
             deleteQuoteById(quote);      // delete previous entry from quote table
             saveQuote(updatedQuote);     // save updated entry to quote table
             updatedQuotes.add(updatedQuote);
+
+            /*updatedQuotes.add(updatedQuote);
+            saveQuote(updatedQuote);*/
 
             /*System.out.println();
             System.out.println(updatedQuote.getTicker() + ": updated market data...");
