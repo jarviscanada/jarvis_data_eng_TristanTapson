@@ -6,17 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c384d13d-a4b6-4ab5-b6b8-7f42829dd596" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ca/jrvs/apps/trading/model/domain/SecurityRow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/jrvs/apps/trading/model/domain/SecurityRow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ca/jrvs/apps/trading/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/jrvs/apps/trading/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ca/jrvs/apps/trading/dao/SecurityOrderDaoIntTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ca/jrvs/apps/trading/dao/SecurityOrderDaoIntTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ca/jrvs/apps/trading/service/OrderServiceIntTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ca/jrvs/apps/trading/service/OrderServiceIntTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ca/jrvs/apps/trading/model/domain/SecurityRow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ca/jrvs/apps/trading/model/domain/SecurityRow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ca/jrvs/apps/trading/service/DashboardService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ca/jrvs/apps/trading/service/DashboardService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ca/jrvs/apps/trading/service/OrderService$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ca/jrvs/apps/trading/service/OrderService$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ca/jrvs/apps/trading/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ca/jrvs/apps/trading/service/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/ca/jrvs/apps/trading/dao/SecurityOrderDaoIntTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/ca/jrvs/apps/trading/dao/SecurityOrderDaoIntTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/ca/jrvs/apps/trading/service/DashboardServiceIntTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/ca/jrvs/apps/trading/service/DashboardServiceIntTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/ca/jrvs/apps/trading/service/OrderServiceIntTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/ca/jrvs/apps/trading/service/OrderServiceIntTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

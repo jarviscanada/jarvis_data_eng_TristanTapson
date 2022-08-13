@@ -69,7 +69,7 @@ public class OrderService {
         SecurityOrder securityOrder = new SecurityOrder();
         securityOrder.setAccountId(id);
         securityOrder.setStatus("PENDING");
-        securityOrder.setNotes("pending...");
+        // securityOrder.setNotes("pending...");
 
         Account account = new Account();
         try {
@@ -123,7 +123,6 @@ public class OrderService {
             securityOrder.setSize(size);
             securityOrder.setStatus("FILLED");
             securityOrder.setNotes("");
-
         }
 
         // invalid funds to purchase order
@@ -133,7 +132,6 @@ public class OrderService {
             securityOrder.setSize(size);
             securityOrder.setStatus("CANCELLED");
             securityOrder.setNotes("Insufficient funds.");
-
         }
     }
 
@@ -145,7 +143,7 @@ public class OrderService {
         Integer size = marketOrderDto.getSize();
         Quote quote = quoteDao.findById(marketOrderDto.getTicker()).get();
         Double price = quote.getLastPrice();
-        Double orderProfit = size * price;
+        Double orderProfit = ((size * price) * -1.0);
         Double currentBalance = account.getAmount();
 
         // find the position with the ticker and validate for sale
@@ -163,12 +161,10 @@ public class OrderService {
 
             // valid position to sell order
             if(Objects.equals(position.getTicker(), marketOrderDto.getTicker())
-                    && (currentPosition - size >= 0)){
-                System.out.println("matched ticker " + position.getTicker());
-                System.out.println("position " + position.getPosition() + " size " + size*-1);
+                    && (currentPosition + size >= 0)){
 
                 // update the amount in the account after order sell
-                account.setAmount(currentBalance + (orderProfit * -1.0));
+                account.setAmount(currentBalance + orderProfit);
                 accountDao.save(account);
 
                 // update security order
@@ -182,6 +178,7 @@ public class OrderService {
             // invalid position to sell order
             if(Objects.equals(position.getTicker(), marketOrderDto.getTicker())
                     && (currentPosition + size < 0)){
+
                 securityOrder.setTicker(marketOrderDto.getTicker());
                 securityOrder.setPrice(price);
                 securityOrder.setSize(size);
