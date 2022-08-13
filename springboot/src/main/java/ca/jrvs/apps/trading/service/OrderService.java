@@ -13,6 +13,10 @@ import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
+import java.util.List;
+import java.util.Objects;
+
 @Service
 @Transactional
 public class OrderService {
@@ -84,7 +88,8 @@ public class OrderService {
             handleSellMarketOrder(orderDto, securityOrder, account);
         }
 
-        //securityOrderDao.save(securityOrder);
+        // save the securityOrder
+        securityOrderDao.save(securityOrder);
         return securityOrder;
     }
 
@@ -118,17 +123,7 @@ public class OrderService {
             securityOrder.setSize(size);
             securityOrder.setStatus("FILLED");
             securityOrder.setNotes("");
-            securityOrderDao.save(securityOrder);
 
-            // update position after successful order purchase
-            Position position = positionDao.findById(id).get();
-
-            if(position.getPosition() != null) {
-                position.setPosition(position.getPosition() + size);
-            }
-            else{
-                position.setPosition(size);
-            }
         }
 
         // invalid funds to purchase order
@@ -138,7 +133,7 @@ public class OrderService {
             securityOrder.setSize(size);
             securityOrder.setStatus("CANCELLED");
             securityOrder.setNotes("Insufficient funds.");
-            securityOrderDao.save(securityOrder);
+
         }
     }
 
@@ -153,38 +148,46 @@ public class OrderService {
         Double orderProfit = size * price;
         Double currentBalance = account.getAmount();
 
-        // update position after successful order
+        // find the position with the ticker and validate for sale
         // TODO - list of positions via find all and compare to ID ?
-        Position position = positionDao.findById(id).get();
-        Integer currentPosition = position.getPosition();
+        List<Position> positions = positionDao.findAll();
 
-        // valid position to sell order (negative size means sell)
-        if(currentPosition + size > 0) {
+        for(Position position : positions){
 
-            // update the amount in the account after order sell
-            account.setAmount(currentBalance + (orderProfit * -1.0));
-            accountDao.save(account);
+            /*System.out.println(position.toString());
+            System.out.println(marketOrderDto.getTicker());
+            System.out.println(position.getTicker());
+            System.out.println(position.getPosition());*/
 
-            // update security order
-            securityOrder.setTicker(marketOrderDto.getTicker());
-            securityOrder.setPrice(price);
-            securityOrder.setSize(size);
-            securityOrder.setStatus("FILLED");
-            securityOrder.setNotes("");
-            securityOrderDao.save(securityOrder);
+            Integer currentPosition = position.getPosition();
 
-            // update position after successful order sale
-            position.setPosition(currentPosition + size);
-        }
+            // valid position to sell order
+            if(Objects.equals(position.getTicker(), marketOrderDto.getTicker())
+                    && (currentPosition - size >= 0)){
+                System.out.println("matched ticker " + position.getTicker());
+                System.out.println("position " + position.getPosition() + " size " + size*-1);
 
-        // invalid position to sell order
-        if(currentPosition + size <= 0){
-            securityOrder.setTicker(marketOrderDto.getTicker());
-            securityOrder.setPrice(price);
-            securityOrder.setSize(size);
-            securityOrder.setStatus("CANCELLED");
-            securityOrder.setNotes("Insufficient position.");
-            securityOrderDao.save(securityOrder);
+                // update the amount in the account after order sell
+                account.setAmount(currentBalance + (orderProfit * -1.0));
+                accountDao.save(account);
+
+                // update security order
+                securityOrder.setTicker(marketOrderDto.getTicker());
+                securityOrder.setPrice(price);
+                securityOrder.setSize(size);
+                securityOrder.setStatus("FILLED");
+                securityOrder.setNotes("");
+            }
+
+            // invalid position to sell order
+            if(Objects.equals(position.getTicker(), marketOrderDto.getTicker())
+                    && (currentPosition + size < 0)){
+                securityOrder.setTicker(marketOrderDto.getTicker());
+                securityOrder.setPrice(price);
+                securityOrder.setSize(size);
+                securityOrder.setStatus("CANCELLED");
+                securityOrder.setNotes("Insufficient position.");
+            }
         }
     }
 }

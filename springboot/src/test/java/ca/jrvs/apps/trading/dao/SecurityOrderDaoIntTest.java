@@ -5,6 +5,7 @@ import ca.jrvs.apps.trading.model.domain.Account;
 import ca.jrvs.apps.trading.model.domain.Quote;
 import ca.jrvs.apps.trading.model.domain.SecurityOrder;
 import ca.jrvs.apps.trading.model.domain.Trader;
+import ca.jrvs.apps.trading.service.QuoteService;
 import com.google.common.collect.Lists;
 import org.junit.After;
 import org.junit.Before;
@@ -37,6 +38,8 @@ public class SecurityOrderDaoIntTest {
     private SecurityOrderDao securityOrderDao;
     @Autowired
     private QuoteDao quoteDao;
+    @Autowired
+    private QuoteService quoteService;
 
     private Account savedAccount1 = new Account();
     private Account savedAccount2 = new Account();
@@ -46,6 +49,7 @@ public class SecurityOrderDaoIntTest {
     private SecurityOrder securityOrder2 = new SecurityOrder();
 
     private Quote savedQuote1 = new Quote();
+    private Quote savedQuote2 = new Quote();
 
     @Before
     public void setUp(){
@@ -57,9 +61,19 @@ public class SecurityOrderDaoIntTest {
         savedQuote1.setAskSize(10);
         savedQuote1.setBidPrice(10.2d);
         savedQuote1.setBidSize(10);
-        savedQuote1.setId("aapl");
+        savedQuote1.setId("AAPL");
         savedQuote1.setLastPrice(10.1d);
         quoteDao.save(savedQuote1);
+
+        savedQuote2.setAskPrice(10d);
+        savedQuote2.setAskSize(10);
+        savedQuote2.setBidPrice(10.2d);
+        savedQuote2.setBidSize(10);
+        savedQuote2.setId("MSFT");
+        savedQuote2.setLastPrice(10.1d);
+        quoteDao.save(savedQuote2);
+
+        quoteService.updateMarketData();
 
         // traders
         savedTrader1.setCountry("Canada");
@@ -87,18 +101,18 @@ public class SecurityOrderDaoIntTest {
 
         // traders security orders
         securityOrder1.setAccountId(savedTrader1.getId());
-        securityOrder1.setStatus("PENDING");
+        securityOrder1.setStatus("FILLED");
         securityOrder1.setTicker(savedQuote1.getTicker());
-        securityOrder1.setSize(20);
-        securityOrder1.setPrice(450.00);
+        securityOrder1.setSize(savedQuote1.getAskSize());
+        securityOrder1.setPrice(savedQuote1.getAskPrice());
         securityOrder1.setNotes("just a note, bro...");
         securityOrderDao.save(securityOrder1);
 
-        securityOrder2.setAccountId(savedTrader2.getId());
-        securityOrder2.setStatus("CANCELLED");
-        securityOrder2.setTicker(savedQuote1.getTicker());
-        securityOrder2.setSize(15);
-        securityOrder2.setPrice(790.50);
+        securityOrder2.setAccountId(savedTrader1.getId());
+        securityOrder2.setStatus("FILLED");
+        securityOrder2.setTicker(savedQuote2.getTicker());
+        securityOrder2.setSize(savedQuote2.getAskSize());
+        securityOrder2.setPrice(savedQuote2.getAskPrice());
         securityOrder2.setNotes("notes are fun");
         securityOrderDao.save(securityOrder2);
 
@@ -171,8 +185,37 @@ public class SecurityOrderDaoIntTest {
         assertEquals(1, before-1);
     }
 
+    @Test
+    public void multiOrder(){
+
+        SecurityOrder securityOrder3 = new SecurityOrder();
+        Quote savedQuote3 = new Quote();
+
+        savedQuote3.setAskPrice(10d);
+        savedQuote3.setAskSize(10);
+        savedQuote3.setBidPrice(10.2d);
+        savedQuote3.setBidSize(10);
+        savedQuote3.setId("JNJ");
+        savedQuote3.setLastPrice(10.1d);
+        quoteDao.save(savedQuote3);
+        quoteService.updateMarketData();
+
+        securityOrder3.setAccountId(savedTrader1.getId());
+        securityOrder3.setStatus("FILLED");
+        securityOrder3.setTicker(savedQuote3.getTicker());
+        securityOrder3.setSize(savedQuote3.getAskSize());
+        securityOrder3.setPrice(savedQuote3.getAskPrice());
+        securityOrder3.setNotes("just a note, bro...");
+        securityOrderDao.save(securityOrder3);
+
+        assertEquals(3, securityOrderDao.count());
+    }
+
     @After
     public void tearDown(){
-        // securityOrderDao.deleteAll();
+        securityOrderDao.deleteAll();
+        accountDao.deleteAll();
+        traderDao.deleteAll();
+        quoteDao.deleteAll();
     }
 }

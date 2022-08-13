@@ -37,14 +37,18 @@ public class OrderServiceIntTest {
     private SecurityOrderDao securityOrderDao;
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private QuoteService quoteService;
 
     private Quote savedQuote1 = new Quote();
+    private Quote savedQuote2 = new Quote();
     private Trader savedTrader1 = new Trader();
     private Account savedAccount1 = new Account();
 
     private SecurityOrder securityOrder1 = new SecurityOrder();
     private MarketOrderDto marketOrderDto1 = new MarketOrderDto();
     private MarketOrderDto marketOrderDto2 = new MarketOrderDto();
+    private MarketOrderDto marketOrderDto3 = new MarketOrderDto();
 
     @Before
     public void setUp() throws Exception {
@@ -59,6 +63,16 @@ public class OrderServiceIntTest {
         savedQuote1.setId("AMZN");
         savedQuote1.setLastPrice(10.1d);
         quoteDao.save(savedQuote1);
+        quoteService.updateMarketData();
+
+        savedQuote2.setAskPrice(10d);
+        savedQuote2.setAskSize(10);
+        savedQuote2.setBidPrice(10.2d);
+        savedQuote2.setBidSize(10);
+        savedQuote2.setId("MSFT");
+        savedQuote2.setLastPrice(10.1d);
+        quoteDao.save(savedQuote2);
+        quoteService.updateMarketData();
 
         // traders
         savedTrader1.setCountry("Canada");
@@ -87,11 +101,17 @@ public class OrderServiceIntTest {
         marketOrderDto1.setAccountId(savedAccount1.getId());
         marketOrderDto1.setSize(3);
 
-        marketOrderDto2.setTicker("AMZN");
+        marketOrderDto2.setTicker("MSFT");
         marketOrderDto2.setAccountId(savedAccount1.getId());
-        marketOrderDto2.setSize(-2);
+        marketOrderDto2.setSize(6);
+
+        marketOrderDto3.setTicker("AMZN");
+        marketOrderDto3.setAccountId(savedAccount1.getId());
+        marketOrderDto3.setSize(-1);
 
     }
+
+    // TODO - assertion tests...
 
     @Test
     public void buyMarketOrder(){
@@ -102,8 +122,9 @@ public class OrderServiceIntTest {
     @Test
     public void sellMarketOrder(){
         assertTrue(true);
-        orderService.executeMarketOrder(marketOrderDto1);
-        orderService.executeMarketOrder(marketOrderDto2);
+        orderService.executeMarketOrder(marketOrderDto1); // buy amzn
+        orderService.executeMarketOrder(marketOrderDto2); // buy msft
+        orderService.executeMarketOrder(marketOrderDto3); // sell amzn
     }
 
     @After

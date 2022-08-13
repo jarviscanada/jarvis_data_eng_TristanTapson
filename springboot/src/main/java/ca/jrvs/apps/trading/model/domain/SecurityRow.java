@@ -2,9 +2,9 @@ package ca.jrvs.apps.trading.model.domain;
 
 public class SecurityRow {
 
+    private String ticker;
     private Position position;
     private Quote quote;
-    private String ticker;
 
     // getters and setters
 
