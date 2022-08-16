@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "Order", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Controller
 @RequestMapping("/order")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 public class OrderController {
 
     private OrderService orderService;

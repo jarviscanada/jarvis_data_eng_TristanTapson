@@ -1,6 +1,7 @@
 package ca.jrvs.apps.trading.controller;
 
 import ca.jrvs.apps.trading.model.domain.PortfolioView;
+import ca.jrvs.apps.trading.model.domain.Trader;
 import ca.jrvs.apps.trading.model.domain.TraderAccountView;
 
 import ca.jrvs.apps.trading.service.DashboardService;
@@ -11,14 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/dashboard")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 public class DashboardController {
 
     private DashboardService dashboardService;
@@ -53,6 +53,19 @@ public class DashboardController {
             return dashboardService.getProfileViewByTraderId(traderId);
         } catch (Exception e) {
             throw ResponseExceptionUtil.getResponseStatusException(e);
+        }
+    }
+
+    @ApiOperation(value = "Show all traders", notes = "")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(path = "/traders", produces = {
+            MediaType.APPLICATION_JSON_UTF8_VALUE})
+    public List<Trader> getTraders(){
+        try{
+            return dashboardService.getTraders();
+        } catch (Exception ex){
+            throw ResponseExceptionUtil.getResponseStatusException(ex);
         }
     }
 

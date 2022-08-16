@@ -18,6 +18,7 @@ import java.util.List;
 @Api(value = "quote", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Controller
 @RequestMapping("/quote")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 public class QuoteController {
 
     private QuoteService quoteService;

@@ -126,6 +126,14 @@ public class DashboardService {
     }
 
     /**
+     * Finds and returns all traders from database (for frontend UI)
+     * @return the list of traders
+     */
+    public List<Trader> getTraders(){
+        return  traderDao.findAll();
+    }
+
+    /**
      * helper function to find account by trader ID
      * @param traderId must not be null
      * @throws IllegalArgumentException if traderId is not found

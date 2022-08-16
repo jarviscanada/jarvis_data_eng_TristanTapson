@@ -21,6 +21,7 @@ import java.time.LocalDate;
 @Api(value = "Trader", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Controller
 @RequestMapping("/trader")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 public class TraderAccountController {
 
     private TraderAccountService traderAccountService;
