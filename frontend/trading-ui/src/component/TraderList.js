@@ -1,6 +1,11 @@
 import { Component } from 'react';
 import { Table } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faTrashAlt as deleteIcon
+} from '@fortawesome/free-solid-svg-icons';
+import { Sorter } from "../util/sorter";
+
 
 import 'antd/dist/antd.min.css';
 import './TraderList.scss';
@@ -16,11 +21,17 @@ export default class TraderList extends Component {
                 title: 'First Name',
                 dataIndex: 'firstName',
                 key: 'firstName',
+                sorter: {
+                    compare: Sorter.FIRST
+                }
             },
             {
                 title: 'Last Name',
                 dataIndex: 'lastName',
                 key: 'lastName',
+                sorter: {
+                    compare: Sorter.LAST
+                }
             },
             {
                 title: 'Email',
@@ -31,6 +42,9 @@ export default class TraderList extends Component {
                 title: 'Date of Birth',
                 dataIndex: 'dob',
                 key: 'dob',
+                sorter: {
+                    compare: Sorter.DATE
+                }
             },
             {
                 title: 'Country',
@@ -40,7 +54,12 @@ export default class TraderList extends Component {
             {
                 title: 'Actions',
                 dataIndex: 'actions',
-                key: 'actions'
+                key: 'actions',
+                render: (text, record) => (
+                    <div className="trader-delete-icon">
+                        <FontAwesomeIcon icon={ deleteIcon } onClick={() => props.onTraderDeleteClick(record.id) } />
+                    </div>
+                ),
             },
         ];
         this.state = {
@@ -65,7 +84,7 @@ export default class TraderList extends Component {
                 id: 2,
                 firstName: 'Hellen',
                 lastName: 'Miller',
-                dob: new Date().toLocaleDateString(),
+                dob: new Date(1995, 6, 14, 12, 30, 0, 0).toLocaleDateString(), // modified to test sorting
                 country: 'Austria',
                 email: 'hellen@test.com'
             },

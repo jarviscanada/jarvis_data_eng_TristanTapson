@@ -10,5 +10,15 @@
         font-weight: 700;
         text-align: left;
         padding-bottom: 24px;
+
+        .add-trader-button {
+            float: right;
+        }
+    }
+}
+
+.add-trader-form {
+    .add-trader-field {
+        padding-bottom: 12px;
     }
 }
