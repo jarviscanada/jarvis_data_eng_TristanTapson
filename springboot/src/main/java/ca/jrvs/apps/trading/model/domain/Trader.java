@@ -1,11 +1,12 @@
 package ca.jrvs.apps.trading.model.domain;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Trader implements Entity<Integer> {
 
     private String country;
-    private Date dob;
+    private LocalDate dob;
     private String email;
     private String firstName;
     private Integer id;
@@ -30,11 +31,11 @@ public class Trader implements Entity<Integer> {
         this.country = country;
     }
 
-    public Date getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 

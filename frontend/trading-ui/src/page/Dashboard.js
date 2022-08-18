@@ -31,13 +31,13 @@ export default withRouter(class Dashboard extends Component {
     }
 
     async getTraders() {
-                // Set traders to state of the component
-                // You should mock traders here for now
-        this.setState({
-            traders: []
-        })
+        const response = await axios.get(tradersUrl);
+        if (response) {
+            this.setState({
+                traders: response.data || []
+            })
+        }
     }
-
 
         // Method that sets if the modal for adding traders is visible or not
     showModal() {
@@ -48,17 +48,13 @@ export default withRouter(class Dashboard extends Component {
 
     
     async handleOk() {
-        // Here we would send a request to the backend to create a new trader
-        // After creating a new trader, refresh traders list
+        const paramUrl = `/firstname/${this.state.firstName}/lastname/${this.state.lastName}/dob/${this.state.dob}/country/${this.state.country}/email/${this.state.email}`;
+        const response = await axios.post(createTraderUrl + paramUrl, {});
+        // Refresh traders list
         await this.getTraders();
-        // Close the modal & unset all fields
+        // Close the modal
         this.setState({
-            isModalVisible: false,
-            firstName: null,
-            lastName: null,
-            dob: null,
-            country: null,
-            email: null
+            isModalVisible: false
         });
     };
     
@@ -77,6 +73,9 @@ export default withRouter(class Dashboard extends Component {
 
     async onTraderDelete(id) {
         // send a request to backend to delete the trader with specific id
+        // delete trader by using axios.delete method
+        const paramUrl = "/" + id;
+        const response = await axios.delete(deleteTraderUrl + paramUrl, {});
         
         // refresh traders list
         await this.getTraders();

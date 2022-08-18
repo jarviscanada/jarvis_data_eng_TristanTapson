@@ -51,7 +51,7 @@ public class TraderAccountController {
             trader.setLastName(lastname);
             trader.setCountry(country);
             trader.setEmail(email);
-            trader.setDob(Date.valueOf(dob));
+            trader.setDob(dob);
             return traderAccountService.createTraderAndAccount(trader);
         } catch (Exception ex){
             throw ResponseExceptionUtil.getResponseStatusException(ex);

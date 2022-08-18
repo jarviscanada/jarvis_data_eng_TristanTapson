@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.*;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Optional;
 
@@ -49,7 +50,7 @@ public class OrderServiceUnitTest {
     @Before
     public void setUp() throws Exception {
 
-        Date date = new Date();
+        LocalDate date = LocalDate.now();
 
         // quotes
         savedQuote1.setAskPrice(10d);
