@@ -73,6 +73,7 @@ export default withRouter(class Dashboard extends Component {
 
     async onTraderDelete(id) {
         // send a request to backend to delete the trader with specific id
+
         // delete trader by using axios.delete method
         const paramUrl = "/" + id;
         const response = await axios.delete(deleteTraderUrl + paramUrl, {});
