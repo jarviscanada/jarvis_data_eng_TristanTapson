@@ -6,6 +6,9 @@ import axios from 'axios';
 import { createTraderUrl, deleteTraderUrl, tradersUrl } from '../util/constants';
 import Navbar from '../component/NavBar';
 import TraderList from '../component/TraderList';
+import TraderAccount from '../page/TraderAccount';
+
+import { NavLink } from 'react-router-dom';
 
 import 'antd/dist/antd.min.css';
 import "./Dashboard.scss";
@@ -80,7 +83,12 @@ export default withRouter(class Dashboard extends Component {
         
         // refresh traders list
         await this.getTraders();
-        console.log("test");
+    }
+
+    // TODO: page navigation to the trader/trader:id page
+    async onTraderShow(id){
+
+
     }
 
     render () {

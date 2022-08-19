@@ -10,7 +10,6 @@ import {
 
 import { Sorter } from "../util/sorter";
 
-
 import 'antd/dist/antd.min.css';
 import './TraderList.scss';
 
@@ -55,7 +54,8 @@ export default class TraderList extends Component {
                 dataIndex: 'country',
                 key: 'country',
             },
-            {
+            {   
+                // TODO: make the search icon button navigate to the trader/:traderId page 
                 title: 'Actions',
                 dataIndex: 'actions',
                 key: 'actions',
@@ -65,7 +65,7 @@ export default class TraderList extends Component {
                             <FontAwesomeIcon icon={ deleteIcon } onClick={() => props.onTraderDeleteClick(record.id) } />
                         </div>
                         <div className="trader-search-icon">
-                            <FontAwesomeIcon icon={ searchIcon } />
+                            <FontAwesomeIcon icon={ searchIcon } onClick={() => props.onTraderShowClick(record.id) } />
                         </div>
 
                     </div>

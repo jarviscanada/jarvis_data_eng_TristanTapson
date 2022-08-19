@@ -22,6 +22,8 @@ export default class Navbar extends Component {
                 <NavLink to="/quotes" className="page-navigation-item">
                     <FontAwesomeIcon icon={ quoteIcon } />
                 </NavLink>
+               
+
 
             </nav>
         );

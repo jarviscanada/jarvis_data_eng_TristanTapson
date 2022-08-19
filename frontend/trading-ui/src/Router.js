@@ -5,6 +5,7 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 // We have to import all components to. beable to use them.
 // Currently, we should only have the Dashboard component
 import Dashboard from './page/Dashboard';
+import TraderAccountPage from './page/TraderAccount';
 import QuotePage from './page/Quote';
 
 // Initialization of Router Component
@@ -20,6 +21,9 @@ export default class Router extends Component {
                     </Route>
                     <Route exact path="/dashboard">
                         <Dashboard />
+                    </Route>
+                    <Route exact path="/trader/:traderId">
+                        <TraderAccountPage />
                     </Route>
                     <Route exact path="/quotes">
                         <QuotePage />
