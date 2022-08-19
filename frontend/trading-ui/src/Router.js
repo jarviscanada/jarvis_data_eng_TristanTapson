@@ -5,6 +5,7 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 // We have to import all components to. beable to use them.
 // Currently, we should only have the Dashboard component
 import Dashboard from './page/Dashboard';
+import QuotePage from './page/Quote';
 
 // Initialization of Router Component
 // Every React component extends Component from "react" library
@@ -19,6 +20,9 @@ export default class Router extends Component {
                     </Route>
                     <Route exact path="/dashboard">
                         <Dashboard />
+                    </Route>
+                    <Route exact path="/quotes">
+                        <QuotePage />
                     </Route>
                </Switch>
             </BrowserRouter>

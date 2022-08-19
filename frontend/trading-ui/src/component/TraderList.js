@@ -4,6 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faTrashAlt as deleteIcon
 } from '@fortawesome/free-solid-svg-icons';
+import {
+    faSearch as searchIcon
+} from '@fortawesome/free-solid-svg-icons';
+
 import { Sorter } from "../util/sorter";
 
 
@@ -56,8 +60,14 @@ export default class TraderList extends Component {
                 dataIndex: 'actions',
                 key: 'actions',
                 render: (text, record) => (
-                    <div className="trader-delete-icon">
-                        <FontAwesomeIcon icon={ deleteIcon } onClick={() => props.onTraderDeleteClick(record.id) } />
+                    <div className="icons">
+                        <div className="trader-delete-icon">
+                            <FontAwesomeIcon icon={ deleteIcon } onClick={() => props.onTraderDeleteClick(record.id) } />
+                        </div>
+                        <div className="trader-search-icon">
+                            <FontAwesomeIcon icon={ searchIcon } />
+                        </div>
+
                     </div>
                 ),
             },

@@ -5,12 +5,13 @@ import java.util.Date;
 
 public class Trader implements Entity<Integer> {
 
-    private String country;
-    private LocalDate dob;
-    private String email;
-    private String firstName;
     private Integer id;
+    private String firstName;
     private String lastName;
+    private LocalDate dob;
+    private String country;
+    private String email;
+
 
     // getters and setters
     @Override
@@ -19,8 +20,8 @@ public class Trader implements Entity<Integer> {
     }
 
     @Override
-    public void setId(Integer integer) {
-        id = integer;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getCountry() {

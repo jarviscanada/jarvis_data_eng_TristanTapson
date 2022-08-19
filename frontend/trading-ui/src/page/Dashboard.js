@@ -80,8 +80,8 @@ export default withRouter(class Dashboard extends Component {
         
         // refresh traders list
         await this.getTraders();
+        console.log("test");
     }
-
 
     render () {
         return (
