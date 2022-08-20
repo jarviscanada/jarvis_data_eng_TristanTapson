@@ -55,7 +55,7 @@ export default class TraderList extends Component {
                 key: 'country',
             },
             {   
-                // TODO: make the search icon button navigate to the trader/:traderId page 
+                // TODO: make the search icon button navigate to trader account page 
                 title: 'Actions',
                 dataIndex: 'actions',
                 key: 'actions',
@@ -65,7 +65,7 @@ export default class TraderList extends Component {
                             <FontAwesomeIcon icon={ deleteIcon } onClick={() => props.onTraderDeleteClick(record.id) } />
                         </div>
                         <div className="trader-search-icon">
-                            <FontAwesomeIcon icon={ searchIcon } onClick={() => props.onTraderShowClick(record.id) } />
+                            <FontAwesomeIcon icon={ searchIcon } onClick={() => this.onTraderShowClick(record.id) } />
                         </div>
 
                     </div>
@@ -75,6 +75,17 @@ export default class TraderList extends Component {
         this.state = {
             columns
         }
+    }
+
+    /* 
+       helper function to jump to trader account page
+       NOTE: page is reloaded, should normally do with a redirect as not to erase history, may want to 
+             implement this more efficiently later as it is best practice... 
+    */
+    onTraderShowClick(id) {
+        const pathUrl = "/trader/" + id;
+        console.log("jump to " + pathUrl); // testing
+        window.location.href=(pathUrl);
     }
 
     componentDidMount() {

@@ -64,7 +64,7 @@ export default withRouter(class Dashboard extends Component {
     handleCancel() {
         // On cancel just close the modal
         this.setState({
-            isModalVisible: false
+            isModalVisible: false,
         });
     };
 
@@ -83,12 +83,7 @@ export default withRouter(class Dashboard extends Component {
         
         // refresh traders list
         await this.getTraders();
-    }
-
-    // TODO: page navigation to the trader/trader:id page
-    async onTraderShow(id){
-
-
+        console.log("got trader: " + id); // testing
     }
 
     render () {
