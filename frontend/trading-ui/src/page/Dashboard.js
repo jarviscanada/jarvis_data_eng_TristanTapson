@@ -13,6 +13,8 @@ import { NavLink } from 'react-router-dom';
 import 'antd/dist/antd.min.css';
 import "./Dashboard.scss";
 
+import React from 'react';
+
 export default withRouter(class Dashboard extends Component {
     constructor(props) {
         super(props);
@@ -22,6 +24,7 @@ export default withRouter(class Dashboard extends Component {
         this.handleCancel = this.handleCancel.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
         this.onTraderDelete = this.onTraderDelete.bind(this);
+        this.formRef = React.createRef();
         this.state = {
             isModalVisible: false,
             traders: []
@@ -45,8 +48,10 @@ export default withRouter(class Dashboard extends Component {
         // Method that sets if the modal for adding traders is visible or not
     showModal() {
         this.setState({
-            isModalVisible: true
+            isModalVisible: true,
         });
+
+        console.log("show modal"); // testing
     };
 
     
@@ -57,14 +62,14 @@ export default withRouter(class Dashboard extends Component {
         await this.getTraders();
         // Close the modal
         this.setState({
-            isModalVisible: false
+            isModalVisible: false,
         });
     };
     
     handleCancel() {
         // On cancel just close the modal
         this.setState({
-            isModalVisible: false,
+            isModalVisible: false,  
         });
     };
 
@@ -95,33 +100,98 @@ export default withRouter(class Dashboard extends Component {
                         Dashboard
                         <div className="add-trader-button">
                             <Button onClick={this.showModal.bind(this)}>Add New Trader</Button>
-                            <Modal title="Add New Trader"  okText="Submit" visible={this.state.isModalVisible} onOk={this.handleOk} onCancel={this.handleCancel}>
+                            <Modal 
+                                title="Add New Trader"  
+                                okText="Submit" 
+                                visible={this.state.isModalVisible}
+                                onCancel={this.handleCancel}
+                                onOk={() => {
+                                    this.formRef.current
+                                    .validateFields()
+                                    .then((values) => {
+                                        this.formRef.current.resetFields();
+                                        this.handleOk();
+                                    })
+                                    .catch((info) => {
+                                        console.warn('Validate Failed:', info);
+                                    });
+                                }} 
+                            >
                                 <Form
+                                    ref={this.formRef}
                                     layout="vertical"
+                                    onSubmit={this.handleOk}
                                 >
                                     <div className="add-trader-form">
                                         <div className="add-trader-field">
-                                            <Form.Item label="First Name">
+                                            <Form.Item
+                                                name="First Name"
+                                                label="First Name"
+                                                rules={[
+                                                    {
+                                                        required: true,
+                                                        message: "A first name must be entered",
+                                                    }
+                                                ]}
+                                            >
                                                 <Input allowClear={false} placeholder="John" onChange={(event) => this.onInputChange("firstName", event.target.value)} />
                                             </Form.Item>
                                         </div>
                                         <div className="add-trader-field">
-                                            <Form.Item label="Last Name">
+                                            <Form.Item
+                                                name="Last Name" 
+                                                label="Last Name"
+                                                rules={[
+                                                    {
+                                                        required: true,
+                                                        message: "A last name must be entered",
+                                                    }
+                                                ]}
+                                            >
                                                 <Input allowClear={false} placeholder="Doe" onChange={(event) => this.onInputChange("lastName", event.target.value)} />
                                             </Form.Item>
                                         </div>
                                         <div className="add-trader-field">
-                                            <Form.Item label="Email">
+                                            <Form.Item
+                                                name="Email" 
+                                                label="Email"
+                                                rules={[
+                                                    {
+                                                        required: true,
+                                                        message: "A valid email must be entered",
+                                                        // email format is [alphaNumericChars]@[alphaNumericChars].[alphaNumericChars]
+                                                        pattern: new RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$/)
+                                                    }
+                                                ]}
+                                            >
                                                 <Input allowClear={false} placeholder="john.doe@gmail.com" onChange={(event) => this.onInputChange("email", event.target.value)} />
                                             </Form.Item>
                                         </div>
                                         <div className="add-trader-field">
-                                            <Form.Item label="Country">
+                                            <Form.Item 
+                                                name="Country"
+                                                label="Country"
+                                                rules={[
+                                                    {
+                                                        required: true,
+                                                        message: "A country must be entered",
+                                                    }
+                                                ]}
+                                            >
                                                 <Input allowClear={false} placeholder="Canada" onChange={(event) => this.onInputChange("country", event.target.value)} />
                                             </Form.Item>
                                         </div>
                                         <div className="add-trader-field">
-                                            <Form.Item label="Date of Birth">
+                                            <Form.Item 
+                                                name="Date of Birth"
+                                                label="Date of Birth"
+                                                rules={[
+                                                    {
+                                                        required: true,
+                                                        message: "A date of birth must be selected",
+                                                    }
+                                                ]}
+                                            >
                                                 <DatePicker style={{width:"100%"}} placeholder="" onChange={(date, dateString) => this.onInputChange("dob", date.format("yyyy-MM-DD"))} />
                                             </Form.Item>
                                         </div>
@@ -135,4 +205,4 @@ export default withRouter(class Dashboard extends Component {
             </div>
         );
     }
-});
+})

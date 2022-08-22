@@ -17,10 +17,10 @@ export default class Navbar extends Component {
                     <></>
                 </NavLink>
                 <NavLink to="/dashboard" className="page-navigation-item">
-                    <FontAwesomeIcon icon={ dashboardIcon } color="coral"/>
+                    <FontAwesomeIcon icon={ dashboardIcon } />
                 </NavLink>
                 <NavLink to="/quotes" className="page-navigation-item">
-                    <FontAwesomeIcon icon={ quoteIcon } color="coral"/>
+                    <FontAwesomeIcon icon={ quoteIcon } />
                 </NavLink>
                
 

@@ -41,7 +41,7 @@
         -webkit-justify-content: space-evenly;
         cursor: pointer;
 
-        color: white;
+        color: coral;
         font-size: 20px;
         text-align: center;
 
@@ -53,13 +53,13 @@
 
         &.active {
             background-color: #2e486e;
-            color: white;
+            color: coral;
         }
 
         &:hover {
             background-color: rgba(46,72,110,.5); // Change all of the background
 																									// colors to your preference
-            color: white;
+            color: coral;
         }
 
         &:active {

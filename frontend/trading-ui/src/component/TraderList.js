@@ -64,7 +64,7 @@ export default class TraderList extends Component {
                         <div className="trader-delete-icon">
                             <FontAwesomeIcon icon={ deleteIcon } onClick={() => props.onTraderDeleteClick(record.id) } />
                         </div>
-                        <div className="trader-search-icon">
+                        <div className="trader-search-icon" >
                             <FontAwesomeIcon icon={ searchIcon } onClick={() => this.onTraderShowClick(record.id) } />
                         </div>
 

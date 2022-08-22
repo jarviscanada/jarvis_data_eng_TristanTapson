@@ -18,6 +18,12 @@
         .actions {
             button {
                 margin-right: 12px;
+                // slight button modification
+                display: block;
+                width: 100%;
+                background-color:white;
+                cursor: point;
+
             }
         }
         .trader-card {
