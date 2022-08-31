@@ -52,7 +52,7 @@ docker run -d --rm --name trading-app-dev \
 --network trading-net \
 -p 8080:8080 -t tristantapson8/trading-app
 ```
-After both running containers have been verified, navigate to the **trading-ui** directory within this repository, and execute `npm start` in the command line. Lastly, navigate to http://localhost:3000/dashboard/ in your browser to view and test the app using the interface. Upon finishing usage of the app, it is recommended that both the running containers be stopped, as to free up the assigned ports.
+After both running containers have been verified, navigate to the **trading-ui** directory within this repository, and execute `npm start` in the command line. Lastly, navigate to http://localhost:3000/dashboard/ in your browser to view and test the app using the interface. Upon finishing usage of the app, it is recommended that both the running containers be stopped, as to free up the assigned ports:
 
 ```
 # verify two running docker containers

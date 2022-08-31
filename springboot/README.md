@@ -53,7 +53,7 @@ docker run -d --rm --name trading-app-dev \
 --network trading-net \
 -p 8080:8080 -t tristantapson8/trading-app
 ```
-After both running containers have been verified, navigate to http://localhost:8080/swagger-ui.html#/ in your browser to view and test the app and its endpoints using the Swagger UI. Upon finishing usage of the app, it is recommended that both the running containers be stopped, as to free up the assigned ports.
+After both running containers have been verified, navigate to http://localhost:8080/swagger-ui.html#/ in your browser to view and test the app and its endpoints using the Swagger UI. Upon finishing usage of the app, it is recommended that both the running containers be stopped, as to free up the assigned ports:
 
 ```
 # verify two running docker containers
@@ -80,14 +80,14 @@ docker container stop trading-app-dev trading-psql-dev
     <img src="./assets/componentDiagram4.png" alt="">
 </p>
 <p align="center">
-    <i> Component Diagram </i>
+    <i> Component Diagram (red = controller layer, yellow = service layer, blue = data access layer) </i>
 </p>
 
 ### Architecture
 To manage our trader application, the app uses a three tier architecture. Within the client tier, users can use HTTP clients to consume the IEX Cloud API. The application tier is divided into a controller layer, service layer, and a data access layer to process all relevant information retrieved by the client tier using Java. Lastly, the database tier is used as a means to store the data proccessed from the application tier inside a database instance. The application consists of the following components:
 
-- **Controller Layer**: This layer is used to primarily handle user requests, done through `traderAccountController` and `quoteController`. Accessed through the Swagger UI, a user can test endpoints, which will then process the request and pass the retrieved information on to the service layer.
-- **Service Layer**: Within this layer the business logic is handled; through `traderAccountService` and `quoteService`, the information passed from the controllers are processed and verified, and subsequently calls the needed components from the data access layer.
+- **Controller Layer**: This layer is used to primarily handle user requests, done through `traderAccountController`, `quoteController`, `orderController`, and `dashBoardController`. Accessed through the Swagger UI, a user can test endpoints, which will then process the request and pass the retrieved information on to the service layer.
+- **Service Layer**: Within this layer the business logic is handled; through `traderAccountService`, `quoteService`, `orderService`, and `dashboardSevice`, the information passed from the controllers are processed and verified, and subsequently calls the needed components from the data access layer.
 - **Data Access Layer**: The final layer that interacts with the Database, while making use of the DAO design pattern. It is able to perform CRUD operations on our database, where Java objects are converted into SQL queries, with respect to database persistence and SQL injection.
 - **SpringBoot**: To handle the IoC problem, Spring framework is used to manage this applications dependencies. This trading app has its dependencies managed by the IoC container, and each component has a bean created for it which handles dependency injection. In addition, the app uses **Tomcat** as its web servlet, allowing the trading platform to function as a web app, viewed within the Swagger UI.
 - **PSQL and IEX**: To store information a PSQL database is used; this database is created using an SQL script, which creates our necessary tables for persisted information. The IEX Cloud API is also applied to our app, allowing access of quote data from the market.
@@ -184,11 +184,13 @@ For the purpose of this assignment, the app code is stored on a remote repositor
 # build the psql image
 cd ./springboot/psql/sql_ddl/
 docker build -t trading-psql .
-docker image ls -f reference=trading-psql
 
 # build the app image
 cd ./springboot/
 docker build -t trading-app .
+
+# verify images
+docker image ls -f reference=trading-psql
 docker image ls -f reference=trading-app
 ```
 
@@ -199,4 +201,3 @@ Listed below are three improvements that could be added to the application to im
 - **Start-up Script**: A script could be implemented that will pull the neccessary docker images, and create and run docker containers; a user would simply have to execute a single line of code within the command line, and then easily view the Swagger UI in their browser.
 
 - **Simulated Trading Market**: Allow for the purchase and selling of securities by traders - this may need for the implementation of additional controllers and updated component layers, or even an entire restructuring of the project. Despite this, having a fully functional trading platform would be a good proof of concept to demonstrate to a company that is heavily invested in this field.
-
