@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -40,7 +41,7 @@ public class AccountDaoIntTest {
     @Before
     public void setUp(){
 
-        Date date = new Date();
+        LocalDate date = LocalDate.now();
 
         // traders
         savedTrader1.setCountry("Canada");

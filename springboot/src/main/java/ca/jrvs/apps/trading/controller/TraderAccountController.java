@@ -21,6 +21,7 @@ import java.time.LocalDate;
 @Api(value = "Trader", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @Controller
 @RequestMapping("/trader")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 public class TraderAccountController {
 
     private TraderAccountService traderAccountService;
@@ -50,7 +51,7 @@ public class TraderAccountController {
             trader.setLastName(lastname);
             trader.setCountry(country);
             trader.setEmail(email);
-            trader.setDob(Date.valueOf(dob));
+            trader.setDob(dob);
             return traderAccountService.createTraderAndAccount(trader);
         } catch (Exception ex){
             throw ResponseExceptionUtil.getResponseStatusException(ex);

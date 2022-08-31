@@ -14,6 +14,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -35,7 +36,7 @@ public class TraderDaoIntTest {
     public void setUp(){
 
         // SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = new Date();
+        LocalDate date = LocalDate.now();
 
         savedTrader1.setCountry("Canada");
         savedTrader1.setDob(date); // yyyy-dd-mm in swagger UI

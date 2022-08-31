@@ -15,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Optional;
 
@@ -47,7 +48,7 @@ public class TraderAccountServiceIntTest {
     @Before
     public void setUp(){
 
-        Date date = new Date();
+        LocalDate date = LocalDate.now();
 
         // quotes
         savedQuote1.setAskPrice(10d);

@@ -1,15 +1,17 @@
 package ca.jrvs.apps.trading.model.domain;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Trader implements Entity<Integer> {
 
-    private String country;
-    private Date dob;
-    private String email;
-    private String firstName;
     private Integer id;
+    private String firstName;
     private String lastName;
+    private LocalDate dob;
+    private String country;
+    private String email;
+
 
     // getters and setters
     @Override
@@ -18,8 +20,8 @@ public class Trader implements Entity<Integer> {
     }
 
     @Override
-    public void setId(Integer integer) {
-        id = integer;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getCountry() {
@@ -30,11 +32,11 @@ public class Trader implements Entity<Integer> {
         this.country = country;
     }
 
-    public Date getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 
