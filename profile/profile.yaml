@@ -5,7 +5,7 @@ github_repo_root_url: https://github.com/jarviscanada/jarvis_data_eng_TristanTap
 
 # Introduce yourself, your academic and professional background.
 # What excites you about the software industry and your passion. At least 80 words
-summary: I am a recent McMaster University Computer Science graduate, and am currently working for Jarvis Consulting as a software developer, where I am applying modern technology and industry standards to various real world problems and projects. Through programming, I am able to enjoy working towards structured solutions for a wide range of complex challenges. I have experience working with many technologies such as Java, PostgreSQL, Docker, bash, and Spring Boot to complete my recent projects. I have also tutored high school students in mathematics and programming. Coding is an excellent tool for solving various problems that we encounter in our lives, and can also be used to make our lives substantially easier if applied correctly.
+summary: I am a recent McMaster University Computer Science graduate, and am currently working for Jarvis Consulting as a software developer, where I am applying modern technology and industry standards to various real world problems and projects. Through programming, I am able to enjoy working towards structured solutions for a wide range of complex challenges. I have experience working with many technologies such as Java, PostgreSQL, Docker, Bash, and Spring Boot to complete my recent projects. I have also tutored high school students in mathematics and programming. Coding is an excellent tool for solving various problems that we encounter in our lives, and can also be used to make our lives substantially easier if applied correctly.
 # Group your skills by level.
 # Your skills can be anything software related (e.g. language, frameworks, methodologies, software, etc.).
 skills:
@@ -31,6 +31,8 @@ skills:
     - Concurrent Programming
     - RDBMS/SQL
     - Spring Framework
+    - Javascript
+    - React
 
 # List of Jarvis projects
 jarvis_projects:
@@ -48,6 +50,12 @@ jarvis_projects:
   - name: "Springboot App"
     git_url: "/springboot"
     description: "Built a trading platform with a three-tier architecture allowing users to manage their own personal trader accounts, and fetch stock information by the IEX Cloud API. The app uses the Spring framework and information is managed by CRUD operations via JDBC against a PostgreSQL database; it is deployed as a web servlet with the aid of Apache Tomcat and Swagger UI, where endpoints can be tested."
+  - name: "Frontend App"
+    git_url: "/frontend"
+    description: "Implemented a frontend for the above Springboot trading platform. The app makes use of a simple and appealing interface that allows for users to manage accounts and view securities. Endpoints from the backend are accessed by a lightweight HTTP client; Javascript is used in conjunction with the React library to make use of components and props to render data for our webpage - design and style is done with HTML and CSS."
+  - name: "Cloud/DevOps"
+    git_url: "/cloud_devops"
+    description: "In progress"
 
 # List of personal or academic projects
 # Feel free to add more projects
@@ -58,6 +66,9 @@ highlighted_projects:
     git_url: "https://github.com/tristantapson8/tristantapson8.github.io"
     # The project description must start with an action verb (https://bit.ly/3guO98u)
     description: "Built a personal webpage to display my skills in an interactive format, as well as to showcase my skills in web development; tools used were HTML and CSS. Website can be found at: https://tristantapson8.github.io/"
+
+  - name: "Capstone Project"
+    description: "Constructed one half of a backend to a final project that involved processing a floorplan image. The image was binarized and read by pixels via image processing in Java. A watershed algorithm was used to eliminate unnecesary pixels; then returned was a text file in JSON format with the processed image information to be read by the frontend for map construction."
 
 #List of professional experience
 #The job description allows hiring managers to understand your job and the technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
@@ -72,7 +83,7 @@ professional_experience:
   - title: "Math & Programming Tutor"
     company: "Oxford Learning Centers"
     duration: "2020-2022"
-    description: "Worked closely with high school students in aiding them with math and programming homework help; focus involved problem solving at a high level, as well as efficient and effective communication."
+    description: "Worked closely with high school students in aiding them with math and programming homework help; focus involved problem solving at a high level, as well as efficient and effective communication - grades would be increased by one level overall."
 
 #List of edcuation
 education:
@@ -83,11 +94,12 @@ education:
     # optional
     awards_achievements:
       - "GPA: 3.2/4.0"
+      - "Final Year GPA: 3.7/4.0"
 
 #Optional section
 others:
   - title: "Activities/Hobbies"
     bullets:
-      - "Piano playing"
+      - "Classical and Modern piano"
       - "Competitive soccer/volleyball"
       - "Casual video games"
