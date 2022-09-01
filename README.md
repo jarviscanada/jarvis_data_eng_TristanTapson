@@ -1,6 +1,6 @@
 # Tristan Tapson . Jarvis Consulting
 
-I am a recent McMaster University Computer Science graduate, and am currently working for Jarvis Consulting as a software developer, where I am applying modern technology and industry standards to various real world problems and projects. Through programming, I am able to enjoy working towards structured solutions for a wide range of complex challenges. I have experience working with many technologies such as Java, PostgreSQL, Docker, bash, and Spring Boot to complete my recent projects. I have also tutored high school students in mathematics and programming. Coding is an excellent tool for solving various problems that we encounter in our lives, and can also be used to make our lives substantially easier if applied correctly.
+I am a recent McMaster University Computer Science graduate, and am currently working for Jarvis Consulting as a software developer, where I am applying modern technology and industry standards to various real world problems and projects. Through programming, I am able to enjoy working towards structured solutions for a wide range of complex challenges. I have experience working with many technologies such as Java, PostgreSQL, Docker, Bash, and Spring Boot to complete my recent projects. I have also tutored high school students in mathematics and programming. Coding is an excellent tool for solving various problems that we encounter in our lives, and can also be used to make our lives substantially easier if applied correctly.
 
 ## Skills
 
@@ -8,7 +8,7 @@ I am a recent McMaster University Computer Science graduate, and am currently wo
 
 **Competent:** HTML/CSS, Agile/Scrum, JUnit Testing, IntelliJ IDE, Docker
 
-**Familiar:** Python, Haskell, Elm, Concurrent Programming, RDBMS/SQL, Spring Framework
+**Familiar:** Python, Haskell, Elm, Concurrent Programming, RDBMS/SQL, Spring Framework, Javascript, React
 
 ## Jarvis Projects
 
@@ -25,24 +25,31 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_TristanTap
 
 **Springboot App** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/springboot)]: Built a trading platform with a three-tier architecture allowing users to manage their own personal trader accounts, and fetch stock information by the IEX Cloud API. The app uses the Spring framework and information is managed by CRUD operations via JDBC against a PostgreSQL database; it is deployed as a web servlet with the aid of Apache Tomcat and Swagger UI, where endpoints can be tested.
 
+**Frontend App** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/frontend)]: Implemented a frontend for the above Springboot trading platform. The app makes use of a simple and appealing interface that allows for users to manage accounts and view securities. Endpoints from the backend are accessed by a lightweight HTTP client; Javascript is used in conjunction with the React library to make use of components and props to render data for our webpage - design and style is done with HTML and CSS.
+
+**Cloud/DevOps** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/cloud_devops)]: In progress
+
 
 ## Highlighted Projects
 **Personal Webpage** [[GitHub](https://github.com/tristantapson8/tristantapson8.github.io)]: Built a personal webpage to display my skills in an interactive format, as well as to showcase my skills in web development; tools used were HTML and CSS. Website can be found at: https://tristantapson8.github.io/
+
+**Capstone Project**: Constructed one half of a backend to a final project that involved processing a floorplan image. The image was binarized and read by pixels via image processing in Java. A watershed algorithm was used to eliminate unnecesary pixels; then returned was a text file in JSON format with the processed image information to be read by the frontend for map construction.
 
 
 ## Professional Experiences
 
 **Software Developer, Jarvis (2022-present)**: Worked as a software developer in a Scrum environment, while leading daily sprints and participating in sprint retros. Partook in master code reviews to ensure knowledge about current technologies is sufficient, while implementing mutiple projects using a variety of tools to enhance my skillset towards industry standards.
 
-**Math & Programming Tutor, Oxford Learning Centers (2020-2022)**: Worked closely with high school students in aiding them with math and programming homework help; focus involved problem solving at a high level, as well as efficient and effective communication.
+**Math & Programming Tutor, Oxford Learning Centers (2020-2022)**: Worked closely with high school students in aiding them with math and programming homework help; focus involved problem solving at a high level, as well as efficient and effective communication - grades would be increased by one level overall.
 
 
 ## Education
 **McMaster University (2013-2019)**, Bachelor of Applied Sciences, Computer Science
 - GPA: 3.2/4.0
+- Final Year GPA: 3.7/4.0
 
 
 ## Miscellaneous
-- Piano playing
+- Classical and Modern piano
 - Competitive soccer/volleyball
 - Casual video games
