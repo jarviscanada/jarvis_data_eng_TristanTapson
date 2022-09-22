@@ -16,10 +16,10 @@ pipeline {
         IMAGE_NAME="springboot_demo_app_dev:${BUILD_NUMBER}"
 
         //Deploy
-        RESOURCE_GROUP='rg-traindg-app-aks'
+        RESOURCE_GROUP='rg-trading-app-aks'
         CLUSTER_NAME='aks-trading-app'
         DOCKER_REPO='acrjarvistristantapson.azurecr.io'
-        DEPLOYMENT_NAME='deployment.apps/springboot-demo-app'
+        DEPLOYMENT_NAME='deployment.apps/springboot-demo-app-jd'
     }
 
     stages {
