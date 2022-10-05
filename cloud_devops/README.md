@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This project makes use of deployment concepts, in which we use multiple methods to deploy our Springboot trading application. To start, Microsfot Azure is utilized, using a resource group alongside Kubernetes to deploy the project. Within this cluster, we have our master node in tandem with a worker node created from configuration files. This worker node consists of 2 pods for our trading app, and a single pod for our PostgreSQL database - here, a load balancer is used to distrubute traffic between the available available pods. Auto scaling is also utilized to ensure that we have the correct number of pods scaled in relation to the amount of traffic on our server, however we can only scale up to a maximum of 2 pods as of the Azure trial limitations.
+This project makes use of deployment concepts, in which we use multiple methods to deploy our Springboot trading application. To start, Microsoft Azure is utilized, using a resource group alongside Kubernetes to deploy the project. Within this cluster, we have our master node in tandem with a worker node created from configuration files. This worker node consists of 2 pods for our trading app, and a single pod for our PostgreSQL database - here, a load balancer is used to distribute traffic between the available pods. Auto scaling is also utilized to ensure that we have the correct number of pods scaled in relation to the amount of traffic on our server, however we can only scale up to a maximum of 2 pods as of the Azure trial limitations.
 
 The project also uses a Jenkins CI/CD pipeline, that can build and deploy our trading application from both the dev and prod branches into its respective Kubernetes cluster. The Jenkinsfiles found in our Springboot repository are used to deploy our app, in which three stages are applied: init, build, and deploy. For the purpose of this assignment, both the dev and prod pipelines are more or less the same, however in practice it is used to differentiate between different build versions of the project.
 
@@ -18,7 +18,7 @@ Technologies Used: Bash, Docker, Helm, Jenkins, Kubernetes, Microsoft Azure
 </p>
 
 ## Jenkins CI/CD Pipeline
-A CI/CD pipeline is used to deploy either the dev or prod branch into its respective Kubernetes cluster. We made use of a Jenkins agent to create our pipeline, in which our agent used an image with azure and kubectl installed necessary to deploy the app. A pod is create with the agent, and the app is then deployed by connecting to the Jenkins web UI and utilizing the Jenkinsfiles.
+A CI/CD pipeline is used to deploy either the dev or prod branch into its respective Kubernetes cluster. We made use of a Jenkins agent to create our pipeline, in which our agent uses an image with azure and kubectl installed necessary to deploy the app. A pod is create with the agent, and the app is then deployed by connecting to the Jenkins web UI and utilizing the Jenkinsfiles.
 
 Each Jenkinsfile contains environment variables needed to execute the pipeline, as well as the init, build and deploy stages. With the init stage, we simply log in to Azure using `--service-principal` alongside our environment variables. Next is build, where the trading application image is built from the Dockerfile in the Springboot repo, and adds it to our Azure Cloud Repository. Lastly, we have the deploy stage; since the tickets had us manually deploying the cluster beforehand using bash commands, we simply use `kubectl set image` here to update our images.
 
