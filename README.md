@@ -27,7 +27,7 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_TristanTap
 
 **Frontend App** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/frontend)]: Implemented a frontend for the above Springboot trading platform. The app makes use of a simple and appealing interface that allows for users to manage accounts and view securities. Endpoints from the backend are accessed by a lightweight HTTP client; Javascript is used in conjunction with the React library to make use of components and props to render data for our webpage - design and style is done with HTML and CSS.
 
-**Cloud/DevOps** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/cloud_devops)]: In progress
+**Cloud/DevOps** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_TristanTapson/tree/master/cloud_devops)]: Deployed the Springboot trading platform using Microsoft Azure services and Kubernetes; our Kubernetes cluster is created from configuration files, and the application images are built and uploaded to a container registry. The application makes use of a load balancer to distribute traffic, as well as a scale set to scale up the number of pods within our Kubernetes cluster. To deploy, a Jenkins CI/CD pipeline is utilized to build, test, and deploy continuously over the project lifecycle.
 
 
 ## Highlighted Projects
@@ -38,7 +38,7 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_TristanTap
 
 ## Professional Experiences
 
-**Software Developer, Jarvis (2022-present)**: Worked as a software developer in a Scrum environment, while leading daily sprints and participating in sprint retros. Partook in master code reviews to ensure knowledge about current technologies is sufficient, while implementing mutiple projects using a variety of tools to enhance my skillset towards industry standards.
+**Software Developer, Jarvis (2022-present)**: Worked as a software developer in an Agile environment, while leading daily sprints and participating in sprint retros. Partook in master code reviews to ensure knowledge about current technologies is sufficient, while implementing multiple projects using a variety of tools to enhance my skillset towards industry standards.
 
 **Math & Programming Tutor, Oxford Learning Centers (2020-2022)**: Worked closely with high school students in aiding them with math and programming homework help; focus involved problem solving at a high level, as well as efficient and effective communication - grades would be increased by one level overall.
 

@@ -55,7 +55,7 @@ jarvis_projects:
     description: "Implemented a frontend for the above Springboot trading platform. The app makes use of a simple and appealing interface that allows for users to manage accounts and view securities. Endpoints from the backend are accessed by a lightweight HTTP client; Javascript is used in conjunction with the React library to make use of components and props to render data for our webpage - design and style is done with HTML and CSS."
   - name: "Cloud/DevOps"
     git_url: "/cloud_devops"
-    description: "In progress"
+    description: "Deployed the Springboot trading platform using Microsoft Azure services and Kubernetes; our Kubernetes cluster is created from configuration files, and the application images are built and uploaded to a container registry. The application makes use of a load balancer to distribute traffic, as well as a scale set to scale up the number of pods within our Kubernetes cluster. To deploy, a Jenkins CI/CD pipeline is utilized to build, test, and deploy continuously over the project lifecycle."
 
 # List of personal or academic projects
 # Feel free to add more projects
@@ -79,7 +79,7 @@ professional_experience:
     company: "Jarvis"
     duration: "2022-present"
     # The project description must start with an action verb (https://bit.ly/3guO98u)
-    description: "Worked as a software developer in a Scrum environment, while leading daily sprints and participating in sprint retros. Partook in master code reviews to ensure knowledge about current technologies is sufficient, while implementing mutiple projects using a variety of tools to enhance my skillset towards industry standards."
+    description: "Worked as a software developer in an Agile environment, while leading daily sprints and participating in sprint retros. Partook in master code reviews to ensure knowledge about current technologies is sufficient, while implementing multiple projects using a variety of tools to enhance my skillset towards industry standards."
   - title: "Math & Programming Tutor"
     company: "Oxford Learning Centers"
     duration: "2020-2022"
