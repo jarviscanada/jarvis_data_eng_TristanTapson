@@ -49,7 +49,7 @@
       "name": "Frontend App"
     },
     {
-      "description": "In progress",
+      "description": "Deployed the Springboot trading platform using Microsoft Azure services and Kubernetes; our Kubernetes cluster is created from configuration files, and the application images are built and uploaded to a container registry. The application makes use of a load balancer to distribute traffic, as well as a scale set to scale up the number of pods within our Kubernetes cluster. To deploy, a Jenkins CI/CD pipeline is utilized to build, test, and deploy continuously over the project lifecycle.",
       "git_url": "/cloud_devops",
       "name": "Cloud/DevOps"
     }
@@ -68,7 +68,7 @@
   "professional_experience": [
     {
       "company": "Jarvis",
-      "description": "Worked as a software developer in a Scrum environment, while leading daily sprints and participating in sprint retros. Partook in master code reviews to ensure knowledge about current technologies is sufficient, while implementing mutiple projects using a variety of tools to enhance my skillset towards industry standards.",
+      "description": "Worked as a software developer in an Agile environment, while leading daily sprints and participating in sprint retros. Partook in master code reviews to ensure knowledge about current technologies is sufficient, while implementing multiple projects using a variety of tools to enhance my skillset towards industry standards.",
       "duration": "2022-present",
       "title": "Software Developer"
     },
