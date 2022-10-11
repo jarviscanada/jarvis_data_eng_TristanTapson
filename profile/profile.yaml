@@ -12,27 +12,29 @@ skills:
   # At least 5 skills
   proficient:
     - Java
-    - Linux/Bash
     - C/C++
-    - OOP
     - Git
+    - Linux/Bash
+    - OOP
   # At least 5 skills
   competent:
-    - HTML/CSS
     - Agile/Scrum
-    - JUnit Testing
-    - IntelliJ IDE
     - Docker
+    - HTML/CSS
+    - IntelliJ IDE
+    - JUnit Testing
   # At least 5 skills
   familiar:
-    - Python
-    - Haskell
-    - Elm
+    - Azure
     - Concurrent Programming
+    - Elm
+    - Haskell
+    - Javascript
+    - Kubernetes
+    - Python
+    - React
     - RDBMS/SQL
     - Spring Framework
-    - Javascript
-    - React
 
 # List of Jarvis projects
 jarvis_projects:

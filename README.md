@@ -4,11 +4,11 @@ I am a recent McMaster University Computer Science graduate, and am currently wo
 
 ## Skills
 
-**Proficient:** Java, Linux/Bash, C/C++, OOP, Git
+**Proficient:** Java, C/C++, Git, Linux/Bash, OOP
 
-**Competent:** HTML/CSS, Agile/Scrum, JUnit Testing, IntelliJ IDE, Docker
+**Competent:** Agile/Scrum, Docker, HTML/CSS, IntelliJ IDE, JUnit Testing
 
-**Familiar:** Python, Haskell, Elm, Concurrent Programming, RDBMS/SQL, Spring Framework, Javascript, React
+**Familiar:** Azure, Concurrent Programming, Elm, Haskell, Javascript, Kubernetes, Python, React, RDBMS/SQL, Spring Framework
 
 ## Jarvis Projects
 
