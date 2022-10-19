@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: ca.jrvs.apps.trading.dao.MarketDataDaoIntTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 1.238 s <<< FAILURE! - in ca.jrvs.apps.trading.dao.MarketDataDaoIntTest
+findById(ca.jrvs.apps.trading.dao.MarketDataDaoIntTest)  Time elapsed: 0.956 s  <<< ERROR!
+org.springframework.dao.DataRetrievalFailureException: Unexpected HTTP status: 403
+	at ca.jrvs.apps.trading.dao.MarketDataDaoIntTest.findById(MarketDataDaoIntTest.java:59)
+
+findAllById(ca.jrvs.apps.trading.dao.MarketDataDaoIntTest)  Time elapsed: 0.172 s  <<< ERROR!
+org.springframework.dao.DataRetrievalFailureException: Unexpected HTTP status: 403
+	at ca.jrvs.apps.trading.dao.MarketDataDaoIntTest.findAllById(MarketDataDaoIntTest.java:39)
+

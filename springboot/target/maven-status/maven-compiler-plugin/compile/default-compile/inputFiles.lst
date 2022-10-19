@@ -1,0 +1,5 @@
+/home/centos/dev/jarvis_data_eng_TristanTapson/springboot/src/main/java/ca/jrvs/apps/trading/model/domain/IexQuote.java
+/home/centos/dev/jarvis_data_eng_TristanTapson/springboot/src/main/java/ca/jrvs/apps/trading/model/config/MarketDataConfig.java
+/home/centos/dev/jarvis_data_eng_TristanTapson/springboot/src/main/java/ca/jrvs/apps/trading/Application.java
+/home/centos/dev/jarvis_data_eng_TristanTapson/springboot/src/main/java/ca/jrvs/apps/trading/dao/MarketDataDao.java
+/home/centos/dev/jarvis_data_eng_TristanTapson/springboot/src/main/java/ca/jrvs/apps/trading/example/JsonParser.java

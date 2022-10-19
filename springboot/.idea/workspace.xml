@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c384d13d-a4b6-4ab5-b6b8-7f42829dd596" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="JUnit4 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2BjdUS9SBeIhjlgh7sAvffTECfA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;/home/centos/dev/jarvis_data_eng_TristanTapson/springboot/src/test/java/ca/jrvs/apps/trading&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/centos/dev/jarvis_data_eng_TristanTapson/springboot&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pathVariables&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="ca.jrvs.apps.trading.service" />
+      <recent name="ca.jrvs.apps.trading.dao" />
+      <recent name="ca.jrvs.apps.trading" />
+      <recent name="ca.jrvs.apps.trading.model.domain" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.ca.jrvs.apps.trading.Application">
+    <configuration name="ca.jrvs.apps.trading.Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="IEX_PUB_TOKEN" value="pk_5273e1f95462408e984b0b8c906f3189" />
+        <env name="PSQL_PASSWORD" value="password" />
+        <env name="PSQL_URL" value="jdbc:postgresql://localhost:5432/jrvstrading" />
+        <env name="PSQL_USER" value="postgres" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.trading.Application" />
+      <module name="trading" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.jrvs.apps.trading.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DashboardServiceIntTest.getPortfolioView" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="trading" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.jrvs.apps.trading.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ca.jrvs.apps.trading.service" />
+      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.trading.service.DashboardServiceIntTest" />
+      <option name="METHOD_NAME" value="getPortfolioView" />
+      <option name="TEST_OBJECT" value="method" />
+      <envs>
+        <env name="IEX_PUB_TOKEN" value="pk_5273e1f95462408e984b0b8c906f3189" />
+        <env name="PSQL_URL" value="jdbc:postgresql://localhost:5432/jrvstrading" />
+        <env name="PSQL_USER" value="postgres" />
+        <env name="PSQL_PASSWORD" value="password" />
+      </envs>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderServiceIntTest.sellMarketOrder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="trading" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.jrvs.apps.trading.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ca.jrvs.apps.trading.service" />
+      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.trading.service.OrderServiceIntTest" />
+      <option name="METHOD_NAME" value="sellMarketOrder" />
+      <option name="TEST_OBJECT" value="method" />
+      <envs>
+        <env name="IEX_PUB_TOKEN" value="pk_5273e1f95462408e984b0b8c906f3189" />
+        <env name="PSQL_URL" value="jdbc:postgresql://localhost:5432/jrvstrading" />
+        <env name="PSQL_USER" value="postgres" />
+        <env name="PSQL_PASSWORD" value="password" />
+      </envs>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="QuoteServiceIntTest.updateMarketData" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="trading" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.jrvs.apps.trading.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ca.jrvs.apps.trading.service" />
+      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.trading.service.QuoteServiceIntTest" />
+      <option name="METHOD_NAME" value="updateMarketData" />
+      <option name="TEST_OBJECT" value="method" />
+      <envs>
+        <env name="IEX_PUB_TOKEN" value="pk_5273e1f95462408e984b0b8c906f3189" />
+        <env name="PSQL_URL" value="jdbc:postgresql://localhost:5432/jrvstrading" />
+        <env name="PSQL_USER" value="postgres" />
+        <env name="PSQL_PASSWORD" value="password" />
+      </envs>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SecurityOrderDaoIntTest.multiOrder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="trading" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.jrvs.apps.trading.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ca.jrvs.apps.trading.dao" />
+      <option name="MAIN_CLASS_NAME" value="ca.jrvs.apps.trading.dao.SecurityOrderDaoIntTest" />
+      <option name="METHOD_NAME" value="multiOrder" />
+      <option name="TEST_OBJECT" value="method" />
+      <envs>
+        <env name="IEX_PUB_TOKEN" value="pk_5273e1f95462408e984b0b8c906f3189" />
+        <env name="PSQL_URL" value="jdbc:postgresql://localhost:5432/jrvstrading" />
+        <env name="PSQL_USER" value="postgres" />
+        <env name="PSQL_PASSWORD" value="password" />
+      </envs>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.ca.jrvs.apps.trading.Application" />
+      <item itemvalue="JUnit.OrderServiceIntTest.sellMarketOrder" />
+      <item itemvalue="JUnit.SecurityOrderDaoIntTest.multiOrder" />
+      <item itemvalue="JUnit.DashboardServiceIntTest.getPortfolioView" />
+      <item itemvalue="JUnit.QuoteServiceIntTest.updateMarketData" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ca.jrvs.apps.trading.Application" />
+        <item itemvalue="JUnit.OrderServiceIntTest.sellMarketOrder" />
+        <item itemvalue="JUnit.SecurityOrderDaoIntTest.multiOrder" />
+        <item itemvalue="JUnit.DashboardServiceIntTest.getPortfolioView" />
+        <item itemvalue="JUnit.QuoteServiceIntTest.updateMarketData" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c384d13d-a4b6-4ab5-b6b8-7f42829dd596" name="Changes" comment="" />
+      <created>1657423445052</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1657423445052</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/springboot$Application.ic" NAME="Application Coverage Results" MODIFIED="1658010706502" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ca.jrvs.apps.trading.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/springboot$MarketDataDaoIntTest.ic" NAME="MarketDataDaoIntTest Coverage Results" MODIFIED="1658253271631" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ca.jrvs.apps.trading.dao.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/springboot$ca_jrvs_apps_trading_Application.ic" NAME="ca.jrvs.apps.trading.Application Coverage Results" MODIFIED="1660320827131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ca.jrvs.apps.trading.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/springboot$ca_jrvs_apps_trading_in_trading.ic" NAME="ca.jrvs.apps.trading in trading Coverage Results" MODIFIED="1659214420746" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ca.jrvs.apps.trading.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/springboot$SecurityOrderDaoIntTest.ic" NAME="SecurityOrderDaoIntTest Coverage Results" MODIFIED="1658875726335" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ca.jrvs.apps.trading.dao.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/springboot$All_in_trading_app.ic" NAME="All in trading-app Coverage Results" MODIFIED="1658250770800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/springboot$ca_jrvs_apps_trading_dao_in_trading_app.ic" NAME="ca.jrvs.apps.trading.dao in trading-app Coverage Results" MODIFIED="1658875461296" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ca.jrvs.apps.trading.dao.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/springboot$ca_jrvs_apps_trading_dao_in_trading.ic" NAME="ca.jrvs.apps.trading.dao in trading Coverage Results" MODIFIED="1659214291276" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ca.jrvs.apps.trading.dao.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/springboot$QuoteServiceIntTest.ic" NAME="QuoteServiceIntTest Coverage Results" MODIFIED="1658259360225" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ca.jrvs.apps.trading.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/springboot$QuoteDaoIntTest.ic" NAME="QuoteDaoIntTest Coverage Results" MODIFIED="1658875587590" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ca.jrvs.apps.trading.dao.*</FILTER>
+    </SUITE>
+  </component>
+</project>
